@@ -1,0 +1,68 @@
+{
+    "extends": "base",
+    "module_label": "Simple IK",
+    "sections": {
+        "IK": {
+            "order": 16
+        }
+    },
+    "attributes": {
+        "rotatePlaneSolver": {
+            "label": "Rotate Plane Solver",
+            "widget": "bool",
+            "order": 60,
+            "section": "IK",
+            "tooltip": "ikRPsolver avec ctrl pole vector (contrainte PoleVectorCnstr). Désactivé : ikSCsolver, sans pole vector.",
+            "at": "bool",
+            "value": 1
+        },
+        "stretchIk": {
+            "label": "Stretch",
+            "widget": "bool",
+            "order": 62,
+            "section": "IK",
+            "tooltip": "Stretch de la chaîne IK, quel que soit son nombre de joints (attribut 'stretch' sur le ctrl IK). Avec un pole (Rotate Plane Solver), lock du joint du milieu sur le pole (attribut 'lock' sur le ctrl pole).",
+            "at": "bool",
+            "value": 1
+        },
+        "ikCtrlOrient": {
+            "label": "IK Ctrl Orientation",
+            "widget": "enum",
+            "order": 64,
+            "section": "IK",
+            "tooltip": "Joint : le ctrl IK prend l'orientation du dernier joint. World : aligné au monde (le dernier joint garde son orientation, maintain offset).",
+            "at": "enum",
+            "enumName": "Joint:World",
+            "value": 0
+        },
+        "poleCtrlOrient": {
+            "label": "Pole Ctrl Orientation",
+            "widget": "enum",
+            "order": 66,
+            "section": "IK",
+            "visible_when": {"attr": "rotatePlaneSolver", "equals": 1},
+            "tooltip": "World : ctrl pole vector aligné au monde. Joint : orienté comme le joint du milieu (coude / genou).",
+            "at": "enum",
+            "enumName": "World:Joint",
+            "value": 0
+        },
+        "ikSpaceSwitchTargets": {
+            "label": "IK Space Switch Targets",
+            "widget": "message_list",
+            "order": 80,
+            "section": "Space Switch",
+            "tooltip": "Guides added here become space-switch spaces on the IK control.",
+            "at": "message",
+            "multi": true
+        },
+        "poleSpaceSwitchTargets": {
+            "label": "Pole Space Switch Targets",
+            "widget": "message_list",
+            "order": 90,
+            "section": "Space Switch",
+            "tooltip": "Guides added here become space-switch spaces on the pole vector control.",
+            "at": "message",
+            "multi": true
+        }
+    }
+}

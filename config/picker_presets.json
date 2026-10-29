@@ -1,0 +1,44 @@
+{
+    "side_colors": {
+        "left": "#ff3d8fd6",
+        "right": "#ffd64545",
+        "center": "#fff2d034"
+    },
+    "button_presets": {
+        "FK - cercle bleu": {"shape": "circle", "width": 24, "height": 24, "color": "#ff3d8fd6"},
+        "IK - carré rouge": {"shape": "rect", "width": 28, "height": 28, "color": "#ffd64545"},
+        "Main / Root": {
+            "shape": "rounded",
+            "width": 140,
+            "height": 26,
+            "corner_radius": 13,
+            "color": "#ffe8c547",
+            "text_color": "#ff202020"
+        },
+        "COG - hexagone": {"shape": "hexagon", "width": 60, "height": 34, "color": "#fff08a3c"},
+        "Pole vector - losange": {"shape": "diamond", "width": 22, "height": 22, "color": "#fff2d034"},
+        "Spine - barre": {
+            "shape": "rounded",
+            "width": 70,
+            "height": 14,
+            "corner_radius": 7,
+            "color": "#ff52c46b"
+        },
+        "Doigt - petit rond": {"shape": "circle", "width": 12, "height": 12, "color": "#ff7fd1e8"},
+        "Facial - point": {"shape": "ellipse", "width": 10, "height": 10, "color": "#fff28cb1"},
+        "Switch IK/FK - étoile": {"shape": "star", "width": 30, "height": 30, "color": "#ffa66bdb"},
+        "Flèche - triangle": {"shape": "triangle", "width": 24, "height": 20, "color": "#ffcccccc"},
+        "Couleur : gauche": {"color": "#ff3d8fd6"},
+        "Couleur : droite": {"color": "#ffd64545"},
+        "Couleur : centre": {"color": "#fff2d034"}
+    },
+    "border_presets": {
+        "Aucune": {"border_style": "none", "border_width": 0},
+        "Fine sombre": {"border_style": "solid", "border_width": 1, "border_color": "#ff1a1a1a"},
+        "Épaisse sombre": {"border_style": "solid", "border_width": 3, "border_color": "#ff1a1a1a"},
+        "Blanche": {"border_style": "solid", "border_width": 2, "border_color": "#ffffffff"},
+        "Tirets": {"border_style": "dash", "border_width": 1.5, "border_color": "#ff1a1a1a"},
+        "Pointillés blancs": {"border_style": "dot", "border_width": 2, "border_color": "#ffffffff"},
+        "Accent jaune": {"border_style": "solid", "border_width": 2.5, "border_color": "#ffffd84a"}
+    }
+}

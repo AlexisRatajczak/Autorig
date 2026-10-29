@@ -1,0 +1,148 @@
+{
+    "side": {
+        "left": {
+            "prefix": "L_",
+            "suffix": ""
+        },
+        "right": {
+            "prefix": "R_",
+            "suffix": ""
+        },
+        "center": {
+            "prefix": "C_",
+            "suffix": ""
+        }
+    },
+
+    "ctrl": {
+        "name": {
+            "classic": {
+                "prefix": "",
+                "suffix": "_ctrl"
+            },
+            "jnt": {
+                "prefix": "",
+                "suffix": "_jnt_ctrl"
+            },
+            "shape": {
+                "prefix": "",
+                "suffix": "_shape_ctrl"
+            },
+            "IK": {
+                "prefix": "",
+                "suffix": "_IK_ctrl"
+            },
+            "FK": {
+                "prefix": "",
+                "suffix": "_FK_ctrl"
+            },
+            "ribbon": {
+                "prefix": "",
+                "suffix": "_ribbon_ctrl"
+            }
+        },
+        "color": {
+            "main": {
+                "Center": [1, 1, 1],
+                "Left": [1, 1, 1],
+                "Right": [1, 1, 1]
+            },
+            "secondary": {
+                "Center": [1, 1, 1],
+                "Left": [1, 1, 1],
+                "Right": [1, 1, 1]
+            },
+            "tertiary": {
+                "Center": [1, 1, 1],
+                "Left": [1, 1, 1],
+                "Right": [1, 1, 1]
+            }
+        }
+    },
+
+    "joint": {
+        "name": {
+            "classic": {
+                "prefix": "",
+                "suffix": "_jnt"
+            },
+            "last": {
+                "prefix": "",
+                "suffix": "_end_jnt"
+            },
+            "IK": {
+                "prefix": "",
+                "suffix": "_IK_jnt"
+            },
+            "FK": {
+                "prefix": "",
+                "suffix": "_FK_jnt"
+            },
+            "ribbon": {
+                "prefix": "",
+                "suffix": "_ribbon_jnt"
+            }
+        }
+    },
+
+    "offset": {
+        "name": {
+            "classic": {
+                "prefix": "",
+                "suffix": "_offset"
+            },
+            "neg": {
+                "prefix": "",
+                "suffix": "_neg_offset"
+            },
+            "negT": {
+                "prefix": "",
+                "suffix": "_negT_offset"
+            },
+            "negR": {
+                "prefix": "",
+                "suffix": "_negR_offset"
+            },
+            "negS": {
+                "prefix": "",
+                "suffix": "_negS_offset"
+            }
+        }
+    },
+
+    "ribbon": {
+        "name": {
+            "classic": {
+                "prefix": "",
+                "suffix": "_ribbon"
+            }
+        }
+    },
+
+    "group": {
+        "name": {
+            "classic": {
+                "prefix": "",
+                "suffix": "_grp"
+            }
+        }
+    },
+
+    "MD": {
+        "name": {
+            "classic": {
+                "prefix": "",
+                "suffix": "_MD"
+            }
+        }
+    },
+
+    "PMA": {
+        "name": {
+            "classic": {
+                "prefix": "",
+                "suffix": "_PMA"
+            }
+        }
+    }
+}
