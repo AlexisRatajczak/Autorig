@@ -1,0 +1,81 @@
+{
+    "name": "FACS",
+    "description": "Facial Action Coding System - un groupe par region, une shape par Action Unit.",
+    "groups": [
+        {
+            "name": "Brow",
+            "shapes": [
+                {"name": "AU1_InnerBrowRaiser", "label": "AU1 - Inner Brow Raiser"},
+                {"name": "AU2_OuterBrowRaiser", "label": "AU2 - Outer Brow Raiser"},
+                {"name": "AU4_BrowLowerer", "label": "AU4 - Brow Lowerer"}
+            ]
+        },
+        {
+            "name": "Eyes",
+            "shapes": [
+                {"name": "AU5_UpperLidRaiser", "label": "AU5 - Upper Lid Raiser"},
+                {"name": "AU6_CheekRaiser", "label": "AU6 - Cheek Raiser"},
+                {"name": "AU7_LidTightener", "label": "AU7 - Lid Tightener"},
+                {"name": "AU41_LidDroop", "label": "AU41 - Lid Droop"},
+                {"name": "AU42_Slit", "label": "AU42 - Slit"},
+                {"name": "AU43_EyesClosed", "label": "AU43 - Eyes Closed"},
+                {"name": "AU45_Blink", "label": "AU45 - Blink"},
+                {"name": "AU46_Wink", "label": "AU46 - Wink"}
+            ]
+        },
+        {
+            "name": "Nose",
+            "shapes": [
+                {"name": "AU9_NoseWrinkler", "label": "AU9 - Nose Wrinkler"},
+                {"name": "AU38_NostrilDilator", "label": "AU38 - Nostril Dilator"},
+                {"name": "AU39_NostrilCompressor", "label": "AU39 - Nostril Compressor"}
+            ]
+        },
+        {
+            "name": "Cheeks",
+            "shapes": [
+                {"name": "AU13_CheekPuffer", "label": "AU13 - Cheek Puffer"}
+            ]
+        },
+        {
+            "name": "Mouth",
+            "shapes": [
+                {"name": "AU10_UpperLipRaiser", "label": "AU10 - Upper Lip Raiser"},
+                {"name": "AU12_LipCornerPuller", "label": "AU12 - Lip Corner Puller"},
+                {"name": "AU14_Dimpler", "label": "AU14 - Dimpler"},
+                {"name": "AU15_LipCornerDepressor", "label": "AU15 - Lip Corner Depressor"},
+                {"name": "AU16_LowerLipDepressor", "label": "AU16 - Lower Lip Depressor"},
+                {"name": "AU18_LipPucker", "label": "AU18 - Lip Pucker"},
+                {"name": "AU20_LipStretcher", "label": "AU20 - Lip Stretcher"},
+                {"name": "AU22_LipFunneler", "label": "AU22 - Lip Funneler"},
+                {"name": "AU23_LipTightener", "label": "AU23 - Lip Tightener"},
+                {"name": "AU24_LipPressor", "label": "AU24 - Lip Pressor"},
+                {"name": "AU25_LipsPart", "label": "AU25 - Lips Part"},
+                {"name": "AU28_LipSuck", "label": "AU28 - Lip Suck"}
+            ]
+        },
+        {
+            "name": "Jaw",
+            "shapes": [
+                {"name": "AU17_ChinRaiser", "label": "AU17 - Chin Raiser"},
+                {"name": "AU26_JawDrop", "label": "AU26 - Jaw Drop"},
+                {"name": "AU27_MouthStretch", "label": "AU27 - Mouth Stretch"},
+                {"name": "AU29_JawThrust", "label": "AU29 - Jaw Thrust"},
+                {"name": "AU30_JawSideways", "label": "AU30 - Jaw Sideways"}
+            ]
+        },
+        {
+            "name": "Tongue",
+            "shapes": [
+                {"name": "AU19_TongueOut", "label": "AU19 - Tongue Out"},
+                {"name": "AU36_TongueBulge", "label": "AU36 - Tongue Bulge"}
+            ]
+        },
+        {
+            "name": "Neck",
+            "shapes": [
+                {"name": "AU21_NeckTightener", "label": "AU21 - Neck Tightener"}
+            ]
+        }
+    ]
+}

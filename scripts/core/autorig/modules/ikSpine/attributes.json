@@ -1,0 +1,72 @@
+{
+    "extends": "base",
+    "module_label": "IK Spine",
+    "sections": {
+        "IK Spine": {
+            "order": 16
+        }
+    },
+    "attributes": {
+        "noCtrl": {
+            "hidden": true
+        },
+        "shapeCtrl": {
+            "hidden": true
+        },
+        "spaceSwitchTargets": {
+            "tooltip": "Guides ajoutés ici : espaces du space switch du main ctrl du premier guide."
+        },
+
+        "spineJointCount": {
+            "label": "Spine Joint Count",
+            "widget": "int",
+            "order": 60,
+            "section": "IK Spine",
+            "min": 2,
+            "max": 50,
+            "tooltip": "Nombre de joints de spine (joints de skin) répartis à distance égale le long de la courbe des ctrls, pilotés par la spline IK.",
+            "at": "long",
+            "value": 8
+        },
+        "mainShape": {
+            "label": "Main Shape",
+            "widget": "enum",
+            "order": 62,
+            "section": "IK Spine",
+            "tooltip": "Forme des main ctrls (un par guide, chaînés).",
+            "at": "enum",
+            "enumName": "circle:square:cube:sphere:diamond:arrow:plus:pyramid",
+            "value": 0
+        },
+        "mainSize": {
+            "label": "Main Size",
+            "widget": "float",
+            "order": 64,
+            "section": "IK Spine",
+            "min": 0.01,
+            "tooltip": "Taille des main ctrls.",
+            "at": "double",
+            "value": 1.5
+        },
+        "subShape": {
+            "label": "Sub Shape",
+            "widget": "enum",
+            "order": 66,
+            "section": "IK Spine",
+            "tooltip": "Forme des sub ctrls (sous chaque main, pilotent les joints des guides qui skinnent la courbe).",
+            "at": "enum",
+            "enumName": "circle:square:cube:sphere:diamond:arrow:plus:pyramid",
+            "value": 0
+        },
+        "subSize": {
+            "label": "Sub Size",
+            "widget": "float",
+            "order": 68,
+            "section": "IK Spine",
+            "min": 0.01,
+            "tooltip": "Taille des sub ctrls.",
+            "at": "double",
+            "value": 1.0
+        }
+    }
+}
