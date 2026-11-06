@@ -1,0 +1,4727 @@
+{
+    "version": 1,
+    "rig_data": {
+        "node": "Biped_RIG_DATA",
+        "rig_name": "Biped",
+        "settings": {
+            "rigName": "Biped",
+            "majorVersion": 1,
+            "minorVersion": 0,
+            "author": "",
+            "creationDate": "2026-11-02",
+            "lastBuildDate": "",
+            "rigScale": 1.0,
+            "controlSize": 4.0,
+            "mirrorAxis": 0,
+            "controlShape": 0,
+            "useRGBColors": false,
+            "preBuildScripts": "[]",
+            "postBuildScripts": "[]",
+            "leftFKMainColor": [
+                0.8500000238418579,
+                0.10000000149011612,
+                0.10000000149011612
+            ],
+            "leftFKSecondaryColor": [
+                1.0,
+                0.5,
+                0.5
+            ],
+            "leftIKMainColor": [
+                0.6000000238418579,
+                0.0,
+                0.0
+            ],
+            "leftIKSecondaryColor": [
+                1.0,
+                0.6499999761581421,
+                0.6499999761581421
+            ],
+            "leftTweakerMainColor": [
+                0.800000011920929,
+                0.30000001192092896,
+                0.30000001192092896
+            ],
+            "leftTweakerSecondaryColor": [
+                1.0,
+                0.75,
+                0.75
+            ],
+            "centerFKMainColor": [
+                0.8999999761581421,
+                0.8500000238418579,
+                0.10000000149011612
+            ],
+            "centerFKSecondaryColor": [
+                1.0,
+                0.949999988079071,
+                0.5
+            ],
+            "centerIKMainColor": [
+                0.699999988079071,
+                0.6000000238418579,
+                0.0
+            ],
+            "centerIKSecondaryColor": [
+                1.0,
+                0.8999999761581421,
+                0.6000000238418579
+            ],
+            "centerTweakerMainColor": [
+                0.8500000238418579,
+                0.75,
+                0.30000001192092896
+            ],
+            "centerTweakerSecondaryColor": [
+                1.0,
+                0.949999988079071,
+                0.75
+            ],
+            "rightFKMainColor": [
+                0.10000000149011612,
+                0.30000001192092896,
+                0.8500000238418579
+            ],
+            "rightFKSecondaryColor": [
+                0.5,
+                0.6499999761581421,
+                1.0
+            ],
+            "rightIKMainColor": [
+                0.0,
+                0.15000000596046448,
+                0.6000000238418579
+            ],
+            "rightIKSecondaryColor": [
+                0.6499999761581421,
+                0.800000011920929,
+                1.0
+            ],
+            "rightTweakerMainColor": [
+                0.30000001192092896,
+                0.5,
+                0.800000011920929
+            ],
+            "rightTweakerSecondaryColor": [
+                0.75,
+                0.8500000238418579,
+                1.0
+            ]
+        }
+    },
+    "modules": [
+        {
+            "node": "C_world_00_GUIDE_DATA",
+            "module_type": "Simple_Jnt",
+            "base_name": "world",
+            "side": "Center",
+            "index": 0,
+            "guide_count": 1,
+            "guide_nodes": [
+                "C_world_00_GUIDE_ROOT"
+            ],
+            "guides": [
+                {
+                    "translate": [
+                        0.0,
+                        0.0,
+                        0.0
+                    ],
+                    "rotate": [
+                        0.0,
+                        0.0,
+                        0.0
+                    ],
+                    "scale": [
+                        1.7566139857504743,
+                        1.7566139857504743,
+                        1.7566139857504743
+                    ]
+                }
+            ],
+            "pivot_nodes": {},
+            "pivots": {},
+            "settings": {
+                "constraintType": 0,
+                "simpleConnection": false,
+                "offsetGroup": false,
+                "noCtrl": false,
+                "shapeCtrl": 0,
+                "shapeTranslate": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "shapeRotate": [
+                    0.0,
+                    0.0,
+                    90.0
+                ],
+                "shapeScale": 5.0,
+                "moduleType": 0,
+                "side": 0,
+                "baseName": "world",
+                "index": 0,
+                "aimVector": [
+                    1.0,
+                    0.0,
+                    0.0
+                ],
+                "upVector": [
+                    0.0,
+                    0.0,
+                    1.0
+                ],
+                "jointOrientation": 0
+            },
+            "parent": {
+                "node": null,
+                "guide_index": null
+            }
+        },
+        {
+            "node": "C_general_00_GUIDE_DATA",
+            "module_type": "Simple_Jnt",
+            "base_name": "general",
+            "side": "Center",
+            "index": 0,
+            "guide_count": 1,
+            "guide_nodes": [
+                "C_general_00_GUIDE_ROOT"
+            ],
+            "guides": [
+                {
+                    "translate": [
+                        0.0,
+                        0.0,
+                        0.0
+                    ],
+                    "rotate": [
+                        0.0,
+                        0.0,
+                        0.0
+                    ],
+                    "scale": [
+                        3.1599984366046825,
+                        3.1599984366046825,
+                        3.1599984366046825
+                    ]
+                }
+            ],
+            "pivot_nodes": {},
+            "pivots": {},
+            "settings": {
+                "constraintType": 0,
+                "simpleConnection": false,
+                "offsetGroup": false,
+                "noCtrl": false,
+                "shapeCtrl": 0,
+                "shapeTranslate": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "shapeRotate": [
+                    0.0,
+                    0.0,
+                    90.0
+                ],
+                "shapeScale": 4.0,
+                "moduleType": 0,
+                "side": 0,
+                "baseName": "general",
+                "index": 0,
+                "aimVector": [
+                    1.0,
+                    0.0,
+                    0.0
+                ],
+                "upVector": [
+                    0.0,
+                    0.0,
+                    1.0
+                ],
+                "jointOrientation": 0
+            },
+            "parent": {
+                "node": "C_world_00_GUIDE_DATA",
+                "guide_index": 0
+            }
+        },
+        {
+            "node": "C_spine_00_GUIDE_DATA",
+            "module_type": "Limb_Spine",
+            "base_name": "spine",
+            "side": "Center",
+            "index": 0,
+            "guide_count": 3,
+            "guide_nodes": [
+                "C_spine_00_GUIDE_ROOT",
+                "C_spine_00_01_GUIDE",
+                "C_spine_00_02_GUIDE"
+            ],
+            "guides": [
+                {
+                    "translate": [
+                        0.0,
+                        95.3116049346348,
+                        -2.851273922433155
+                    ],
+                    "rotate": [
+                        0.0,
+                        0.0,
+                        0.0
+                    ],
+                    "scale": [
+                        0.3164558527675944,
+                        0.3164558527675944,
+                        0.3164558527675944
+                    ]
+                },
+                {
+                    "translate": [
+                        0.0,
+                        113.16856336398016,
+                        -0.16396496290687868
+                    ],
+                    "rotate": [
+                        0.0,
+                        0.0,
+                        0.0
+                    ],
+                    "scale": [
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                },
+                {
+                    "translate": [
+                        0.0,
+                        130.2319660823196,
+                        -2.8512739224331543
+                    ],
+                    "rotate": [
+                        0.0,
+                        0.0,
+                        0.0
+                    ],
+                    "scale": [
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                }
+            ],
+            "pivot_nodes": {},
+            "pivots": {},
+            "settings": {
+                "constraintType": 0,
+                "simpleConnection": false,
+                "offsetGroup": false,
+                "noCtrl": false,
+                "shapeCtrl": 0,
+                "shapeTranslate": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "shapeRotate": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "shapeScale": 1.0,
+                "moduleType": 0,
+                "side": 0,
+                "baseName": "spine",
+                "index": 0,
+                "aimVector": [
+                    1.0,
+                    0.0,
+                    0.0
+                ],
+                "upVector": [
+                    0.0,
+                    0.0,
+                    1.0
+                ],
+                "jointOrientation": 0,
+                "spineJointCount": 5,
+                "twistMethod": 0,
+                "upCurveOffset": 2.0,
+                "mainShape": 0,
+                "mainSize": 1.5,
+                "subShape": 0,
+                "subSize": 1.0
+            },
+            "parent": {
+                "node": "C_general_00_GUIDE_DATA",
+                "guide_index": 0
+            }
+        },
+        {
+            "node": "C_neck_00_GUIDE_DATA",
+            "module_type": "Simple_Fk",
+            "base_name": "neck",
+            "side": "Center",
+            "index": 0,
+            "guide_count": 3,
+            "guide_nodes": [
+                "C_neck_00_GUIDE_ROOT",
+                "C_neck_00_01_GUIDE",
+                "C_neck_00_02_GUIDE"
+            ],
+            "guides": [
+                {
+                    "translate": [
+                        0.0,
+                        144.3825975516183,
+                        -4.159407101476111
+                    ],
+                    "rotate": [
+                        0.0,
+                        0.0,
+                        0.0
+                    ],
+                    "scale": [
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                },
+                {
+                    "translate": [
+                        0.0,
+                        151.77481279317283,
+                        -4.159407101476109
+                    ],
+                    "rotate": [
+                        0.0,
+                        0.0,
+                        0.0
+                    ],
+                    "scale": [
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                },
+                {
+                    "translate": [
+                        0.0,
+                        159.16702803472737,
+                        -4.159407101476107
+                    ],
+                    "rotate": [
+                        0.0,
+                        0.0,
+                        0.0
+                    ],
+                    "scale": [
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                }
+            ],
+            "pivot_nodes": {},
+            "pivots": {},
+            "settings": {
+                "constraintType": 0,
+                "simpleConnection": false,
+                "offsetGroup": false,
+                "noCtrl": false,
+                "shapeCtrl": 0,
+                "shapeTranslate": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "shapeRotate": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "shapeScale": 1.0,
+                "moduleType": 0,
+                "side": 0,
+                "baseName": "neck",
+                "index": 0,
+                "aimVector": [
+                    1.0,
+                    0.0,
+                    0.0
+                ],
+                "upVector": [
+                    0.0,
+                    0.0,
+                    1.0
+                ],
+                "jointOrientation": 0,
+                "subCtrl": false,
+                "subCtrlSize": 0.75
+            },
+            "parent": {
+                "node": "C_spine_00_GUIDE_DATA",
+                "guide_index": 2
+            }
+        },
+        {
+            "node": "C_head_00_GUIDE_DATA",
+            "module_type": "Simple_Jnt",
+            "base_name": "head",
+            "side": "Center",
+            "index": 0,
+            "guide_count": 1,
+            "guide_nodes": [
+                "C_head_00_GUIDE_ROOT"
+            ],
+            "guides": [
+                {
+                    "translate": [
+                        0.0,
+                        159.16702803472737,
+                        -4.159407101476107
+                    ],
+                    "rotate": [
+                        0.0,
+                        0.0,
+                        0.0
+                    ],
+                    "scale": [
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                }
+            ],
+            "pivot_nodes": {},
+            "pivots": {},
+            "settings": {
+                "constraintType": 0,
+                "simpleConnection": false,
+                "offsetGroup": false,
+                "noCtrl": false,
+                "shapeCtrl": 0,
+                "shapeTranslate": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "shapeRotate": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "shapeScale": 1.0,
+                "moduleType": 0,
+                "side": 0,
+                "baseName": "head",
+                "index": 0,
+                "aimVector": [
+                    1.0,
+                    0.0,
+                    0.0
+                ],
+                "upVector": [
+                    0.0,
+                    0.0,
+                    1.0
+                ],
+                "jointOrientation": 0
+            },
+            "parent": {
+                "node": "C_neck_00_GUIDE_DATA",
+                "guide_index": 2
+            }
+        },
+        {
+            "node": "C_pelvis_00_GUIDE_DATA",
+            "module_type": "Simple_Jnt",
+            "base_name": "pelvis",
+            "side": "Center",
+            "index": 0,
+            "guide_count": 1,
+            "guide_nodes": [
+                "C_pelvis_00_GUIDE_ROOT"
+            ],
+            "guides": [
+                {
+                    "translate": [
+                        0.0,
+                        95.31160493463479,
+                        -2.8512739224331556
+                    ],
+                    "rotate": [
+                        0.0,
+                        0.0,
+                        0.0
+                    ],
+                    "scale": [
+                        1.3275925793985426,
+                        1.3275925793985426,
+                        1.3275925793985426
+                    ]
+                }
+            ],
+            "pivot_nodes": {},
+            "pivots": {},
+            "settings": {
+                "constraintType": 0,
+                "simpleConnection": false,
+                "offsetGroup": false,
+                "noCtrl": false,
+                "shapeCtrl": 2,
+                "shapeTranslate": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "shapeRotate": [
+                    0.0,
+                    0.0,
+                    90.0
+                ],
+                "shapeScale": 2.0,
+                "moduleType": 0,
+                "side": 0,
+                "baseName": "pelvis",
+                "index": 0,
+                "aimVector": [
+                    1.0,
+                    0.0,
+                    0.0
+                ],
+                "upVector": [
+                    0.0,
+                    0.0,
+                    1.0
+                ],
+                "jointOrientation": 0
+            },
+            "parent": {
+                "node": "C_spine_00_GUIDE_DATA",
+                "guide_index": 0
+            }
+        },
+        {
+            "node": "L_clavicle_00_GUIDE_DATA",
+            "module_type": "Limb_Clavicle",
+            "base_name": "clavicle",
+            "side": "Left",
+            "index": 0,
+            "guide_count": 2,
+            "guide_nodes": [
+                "L_clavicle_00_GUIDE_ROOT",
+                "L_clavicle_00_01_GUIDE"
+            ],
+            "guides": [
+                {
+                    "translate": [
+                        3.153055697037028,
+                        135.05156388586994,
+                        -2.8512739224331685
+                    ],
+                    "rotate": [
+                        0.0,
+                        0.0,
+                        0.0
+                    ],
+                    "scale": [
+                        1.0000000000000002,
+                        1.0000000000000002,
+                        1.0000000000000002
+                    ]
+                },
+                {
+                    "translate": [
+                        12.450843577548332,
+                        143.2294054260651,
+                        -2.8512739224331827
+                    ],
+                    "rotate": [
+                        0.0,
+                        0.0,
+                        0.0
+                    ],
+                    "scale": [
+                        0.9999999999999998,
+                        0.9999999999999998,
+                        0.9999999999999998
+                    ]
+                }
+            ],
+            "pivot_nodes": {},
+            "pivots": {},
+            "settings": {
+                "constraintType": 0,
+                "simpleConnection": false,
+                "offsetGroup": false,
+                "noCtrl": false,
+                "shapeCtrl": 0,
+                "shapeTranslate": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "shapeRotate": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "shapeScale": 1.0,
+                "moduleType": 0,
+                "side": 1,
+                "baseName": "clavicle",
+                "index": 0,
+                "aimVector": [
+                    1.0,
+                    0.0,
+                    0.0
+                ],
+                "upVector": [
+                    0.0,
+                    0.0,
+                    1.0
+                ],
+                "jointOrientation": 0,
+                "stretchIk": false,
+                "ikCtrlOrient": 0,
+                "guide0Name": "clavicle",
+                "guide1Name": "clavicleEnd"
+            },
+            "parent": {
+                "node": "C_spine_00_GUIDE_DATA",
+                "guide_index": 2
+            }
+        },
+        {
+            "node": "L_arm_00_GUIDE_DATA",
+            "module_type": "Limb_Arm",
+            "base_name": "arm",
+            "side": "Left",
+            "index": 0,
+            "guide_count": 3,
+            "guide_nodes": [
+                "L_arm_00_GUIDE_ROOT",
+                "L_arm_00_01_GUIDE",
+                "L_arm_00_02_GUIDE"
+            ],
+            "guides": [
+                {
+                    "translate": [
+                        12.450843577548348,
+                        143.22940542606523,
+                        -2.851273922433183
+                    ],
+                    "rotate": [
+                        0.0,
+                        0.0,
+                        -3.0607430847838857
+                    ],
+                    "scale": [
+                        1.0,
+                        1.0,
+                        1.0000000000000002
+                    ]
+                },
+                {
+                    "translate": [
+                        39.30556723598512,
+                        141.7934587153718,
+                        -3.960594737214665
+                    ],
+                    "rotate": [
+                        0.0,
+                        0.0,
+                        -3.0607430847838857
+                    ],
+                    "scale": [
+                        1.0,
+                        1.0,
+                        0.9999999999999999
+                    ]
+                },
+                {
+                    "translate": [
+                        64.19576305663116,
+                        140.46255711043437,
+                        -2.34920804019035
+                    ],
+                    "rotate": [
+                        0.0,
+                        0.0,
+                        -3.0607430847838857
+                    ],
+                    "scale": [
+                        1.0,
+                        1.0,
+                        0.9999999999999998
+                    ]
+                }
+            ],
+            "pivot_nodes": {},
+            "pivots": {},
+            "settings": {
+                "constraintType": 0,
+                "simpleConnection": false,
+                "offsetGroup": false,
+                "noCtrl": false,
+                "shapeCtrl": 0,
+                "shapeTranslate": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "shapeRotate": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "shapeScale": 1.0,
+                "moduleType": 0,
+                "side": 1,
+                "baseName": "arm",
+                "index": 0,
+                "spaceSwitchTargets": {
+                    "__message__": [
+                        "C_world_00_GUIDE_ROOT",
+                        "C_general_00_GUIDE_ROOT",
+                        "C_spine_00_02_GUIDE",
+                        "L_clavicle_00_01_GUIDE"
+                    ]
+                },
+                "aimVector": [
+                    1.0,
+                    0.0,
+                    0.0
+                ],
+                "upVector": [
+                    0.0,
+                    0.0,
+                    1.0
+                ],
+                "jointOrientation": 0,
+                "subCtrl": false,
+                "subCtrlSize": 0.75,
+                "guide0Name": "shoulder",
+                "guide1Name": "elbow",
+                "guide2Name": "wrist",
+                "ikFkDefault": 0,
+                "fkShape": 0,
+                "fkSize": 1.0,
+                "ikShape": 0,
+                "ikSize": 1.0,
+                "ikCtrlOrient": 1,
+                "poleShape": 0,
+                "poleCtrlOrient": 0,
+                "poleSize": 1.0,
+                "poleDistance": 1.0,
+                "stretchIk": true,
+                "ikSpaceSwitchTargets": {
+                    "__message__": [
+                        "C_world_00_GUIDE_ROOT",
+                        "C_general_00_GUIDE_ROOT",
+                        "C_spine_00_02_GUIDE",
+                        "L_clavicle_00_01_GUIDE"
+                    ]
+                },
+                "poleSpaceSwitchTargets": {
+                    "__message__": [
+                        "C_world_00_GUIDE_ROOT",
+                        "C_general_00_GUIDE_ROOT",
+                        "C_spine_00_02_GUIDE",
+                        "L_clavicle_00_01_GUIDE"
+                    ]
+                },
+                "useRibbon": true,
+                "bindJointCount": 5,
+                "ribbonWidth": 2.0,
+                "ribbonDirection": 1,
+                "ribbonOffsetDirection": 1,
+                "ribbonReverse": false,
+                "ribbonPinch": 0.1,
+                "ribbonDegree": 1,
+                "ribbonUniformIsoparms": false,
+                "follicleScale": true,
+                "levelCount": 1,
+                "level1ControlCount": 5,
+                "level1Shape": 0,
+                "level1ShapeTranslate": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "level1ShapeScale": [
+                    1.0,
+                    1.0,
+                    1.0
+                ],
+                "level2ControlCount": 3,
+                "level2Shape": 0,
+                "level2ShapeTranslate": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "level2ShapeScale": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "parent": {
+                "node": "L_clavicle_00_GUIDE_DATA",
+                "guide_index": 1
+            }
+        },
+        {
+            "node": "L_leg_00_GUIDE_DATA",
+            "module_type": "Limb_LegBiped",
+            "base_name": "leg",
+            "side": "Left",
+            "index": 0,
+            "guide_count": 3,
+            "guide_nodes": [
+                "L_leg_00_GUIDE_ROOT",
+                "L_leg_00_01_GUIDE",
+                "L_leg_00_02_GUIDE"
+            ],
+            "guides": [
+                {
+                    "translate": [
+                        6.936820181307932,
+                        91.65132056986,
+                        -2.8524433289017557
+                    ],
+                    "rotate": [
+                        9.706420269055562e-20,
+                        -0.30516246766462457,
+                        179.82987820258168
+                    ],
+                    "scale": [
+                        0.9999999999999996,
+                        0.9999999999999996,
+                        0.9999999999999998
+                    ]
+                },
+                {
+                    "translate": [
+                        6.886521782237516,
+                        51.3601545226592,
+                        -4.071691726424403
+                    ],
+                    "rotate": [
+                        9.706420269055562e-20,
+                        -0.3051624676646246,
+                        179.82987820258168
+                    ],
+                    "scale": [
+                        1.0,
+                        1.0000000000000004,
+                        1.0
+                    ]
+                },
+                {
+                    "translate": [
+                        6.7940770437862605,
+                        8.553595730633354,
+                        -7.252896071300272
+                    ],
+                    "rotate": [
+                        9.706420269055562e-20,
+                        -0.3051624676646246,
+                        179.82987820258168
+                    ],
+                    "scale": [
+                        0.9999999999999999,
+                        1.0000000000000004,
+                        0.9999999999999999
+                    ]
+                }
+            ],
+            "pivot_nodes": {},
+            "pivots": {},
+            "settings": {
+                "constraintType": 0,
+                "simpleConnection": false,
+                "offsetGroup": false,
+                "noCtrl": false,
+                "shapeCtrl": 0,
+                "shapeTranslate": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "shapeRotate": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "shapeScale": 1.0,
+                "moduleType": 0,
+                "side": 1,
+                "baseName": "leg",
+                "index": 0,
+                "spaceSwitchTargets": {
+                    "__message__": [
+                        "C_world_00_GUIDE_ROOT",
+                        "C_general_00_GUIDE_ROOT",
+                        "C_pelvis_00_GUIDE_ROOT"
+                    ]
+                },
+                "aimVector": [
+                    1.0,
+                    0.0,
+                    0.0
+                ],
+                "upVector": [
+                    0.0,
+                    0.0,
+                    1.0
+                ],
+                "jointOrientation": 0,
+                "subCtrl": false,
+                "subCtrlSize": 0.75,
+                "guide0Name": "hip",
+                "guide1Name": "knee",
+                "guide2Name": "ankle",
+                "ikFkDefault": 0,
+                "fkShape": 0,
+                "fkSize": 1.0,
+                "ikShape": 0,
+                "ikSize": 1.0,
+                "ikCtrlOrient": 1,
+                "poleShape": 0,
+                "poleCtrlOrient": 0,
+                "poleSize": 1.0,
+                "poleDistance": 1.0,
+                "stretchIk": true,
+                "ikSpaceSwitchTargets": {
+                    "__message__": [
+                        "C_world_00_GUIDE_ROOT",
+                        "C_general_00_GUIDE_ROOT",
+                        "C_pelvis_00_GUIDE_ROOT"
+                    ]
+                },
+                "poleSpaceSwitchTargets": {
+                    "__message__": [
+                        "C_world_00_GUIDE_ROOT",
+                        "C_general_00_GUIDE_ROOT",
+                        "C_pelvis_00_GUIDE_ROOT"
+                    ]
+                },
+                "useRibbon": true,
+                "bindJointCount": 5,
+                "ribbonWidth": 2.0,
+                "ribbonDirection": 1,
+                "ribbonOffsetDirection": 1,
+                "ribbonReverse": false,
+                "ribbonPinch": 0.1,
+                "ribbonDegree": 1,
+                "ribbonUniformIsoparms": false,
+                "follicleScale": true,
+                "levelCount": 1,
+                "level1ControlCount": 5,
+                "level1Shape": 0,
+                "level1ShapeTranslate": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "level1ShapeScale": [
+                    1.0,
+                    1.0,
+                    1.0
+                ],
+                "level2ControlCount": 3,
+                "level2Shape": 0,
+                "level2ShapeTranslate": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "level2ShapeScale": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "parent": {
+                "node": "C_pelvis_00_GUIDE_DATA",
+                "guide_index": 0
+            }
+        },
+        {
+            "node": "L_foot_00_GUIDE_DATA",
+            "module_type": "Limb_Foot",
+            "base_name": "foot",
+            "side": "Left",
+            "index": 0,
+            "guide_count": 3,
+            "guide_nodes": [
+                "L_foot_00_GUIDE_ROOT",
+                "L_foot_00_01_GUIDE",
+                "L_foot_00_02_GUIDE"
+            ],
+            "guides": [
+                {
+                    "translate": [
+                        6.7940770437862605,
+                        8.553595730633354,
+                        -7.252896071300272
+                    ],
+                    "rotate": [
+                        9.706420269055562e-20,
+                        -0.3051624676646246,
+                        179.82987820258168
+                    ],
+                    "scale": [
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                },
+                {
+                    "translate": [
+                        6.831959115176592,
+                        0.987238681467729,
+                        5.305604662129243
+                    ],
+                    "rotate": [
+                        9.706420269055562e-20,
+                        -0.3051624676646246,
+                        179.82987820258168
+                    ],
+                    "scale": [
+                        0.3277529590733622,
+                        0.3277529590733622,
+                        0.3277529590733622
+                    ]
+                },
+                {
+                    "translate": [
+                        6.831959115176596,
+                        0.9872386814677074,
+                        10.94595392187917
+                    ],
+                    "rotate": [
+                        9.706420269055562e-20,
+                        -0.3051624676646246,
+                        179.82987820258168
+                    ],
+                    "scale": [
+                        1.0594422997876118,
+                        1.0594422997876116,
+                        1.0594422997876116
+                    ]
+                }
+            ],
+            "pivot_nodes": {
+                "heelGuide": "L_foot_00_heel_PIVOT",
+                "tiptoeGuide": "L_foot_00_tiptoe_PIVOT",
+                "bankLGuide": "L_foot_00_bankL_PIVOT",
+                "bankRGuide": "L_foot_00_bankR_PIVOT"
+            },
+            "pivots": {
+                "heelGuide": {
+                    "translate": [
+                        6.789358483248413,
+                        -1.862918089123866e-05,
+                        -10.738967512462356
+                    ],
+                    "rotate": [
+                        9.706420269055562e-20,
+                        -0.3051624676646246,
+                        179.82987820258168
+                    ],
+                    "scale": [
+                        0.9999999999999998,
+                        1.0,
+                        1.0
+                    ]
+                },
+                "tiptoeGuide": {
+                    "translate": [
+                        6.90612351534751,
+                        7.722599899473437e-05,
+                        11.184140578031025
+                    ],
+                    "rotate": [
+                        9.706420269055562e-20,
+                        -0.3051624676646246,
+                        179.82987820258168
+                    ],
+                    "scale": [
+                        0.9999999999999998,
+                        1.0,
+                        1.0
+                    ]
+                },
+                "bankLGuide": {
+                    "translate": [
+                        3.7509631379599715,
+                        -0.004587353584089016,
+                        4.423889661099148
+                    ],
+                    "rotate": [
+                        9.706420269055562e-20,
+                        -0.3051624676646246,
+                        179.82987820258168
+                    ],
+                    "scale": [
+                        0.9999999999999998,
+                        1.0,
+                        1.0
+                    ]
+                },
+                "bankRGuide": {
+                    "translate": [
+                        12.55387961545985,
+                        -0.003027989595617342,
+                        4.377003887299992
+                    ],
+                    "rotate": [
+                        9.706420269055562e-20,
+                        -0.3051624676646246,
+                        179.82987820258168
+                    ],
+                    "scale": [
+                        0.9999999999999998,
+                        1.0,
+                        1.0
+                    ]
+                }
+            },
+            "settings": {
+                "constraintType": 0,
+                "simpleConnection": false,
+                "offsetGroup": false,
+                "noCtrl": false,
+                "shapeCtrl": 0,
+                "shapeTranslate": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "shapeRotate": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "shapeScale": 1.0,
+                "moduleType": 0,
+                "side": 1,
+                "baseName": "foot",
+                "index": 0,
+                "aimVector": [
+                    1.0,
+                    0.0,
+                    0.0
+                ],
+                "upVector": [
+                    0.0,
+                    0.0,
+                    1.0
+                ],
+                "jointOrientation": 0,
+                "attachToLeg": true,
+                "footShape": 0,
+                "footSize": 1.0,
+                "pivotControls": true,
+                "pivotCtrlSize": 1.0,
+                "phalanxAngle": 20.0,
+                "rollFactor": 10.0,
+                "rollCtrlOffset": 2.0,
+                "fkCtrlSize": 1.0,
+                "ballAngle": 30.0
+            },
+            "parent": {
+                "node": "L_leg_00_GUIDE_DATA",
+                "guide_index": 2
+            }
+        },
+        {
+            "node": "L_indexMetacarpal_00_GUIDE_DATA",
+            "module_type": "Limb_Metacarpal",
+            "base_name": "indexMetacarpal",
+            "side": "Left",
+            "index": 0,
+            "guide_count": 2,
+            "guide_nodes": [
+                "L_indexMetacarpal_00_GUIDE_ROOT",
+                "L_indexMetacarpal_00_01_GUIDE"
+            ],
+            "guides": [
+                {
+                    "translate": [
+                        66.12658560850524,
+                        140.67410559141084,
+                        -0.5903597569676751
+                    ],
+                    "rotate": [
+                        6.567166500134554,
+                        -1.0521195220357227,
+                        -83.99851881675741
+                    ],
+                    "scale": [
+                        0.33399510122091813,
+                        0.33399510122091813,
+                        0.33399510122091813
+                    ]
+                },
+                {
+                    "translate": [
+                        72.70093758204571,
+                        141.37932380257683,
+                        0.17071298547807534
+                    ],
+                    "rotate": [
+                        6.567166500134555,
+                        -1.0521195220357227,
+                        -83.99851881675743
+                    ],
+                    "scale": [
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                }
+            ],
+            "pivot_nodes": {},
+            "pivots": {},
+            "settings": {
+                "constraintType": 0,
+                "simpleConnection": false,
+                "offsetGroup": false,
+                "noCtrl": false,
+                "shapeCtrl": 0,
+                "shapeTranslate": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "shapeRotate": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "shapeScale": 1.0,
+                "moduleType": 0,
+                "side": 1,
+                "baseName": "indexMetacarpal",
+                "index": 0,
+                "aimVector": [
+                    1.0,
+                    0.0,
+                    0.0
+                ],
+                "upVector": [
+                    0.0,
+                    0.0,
+                    1.0
+                ],
+                "jointOrientation": 0,
+                "subCtrl": true,
+                "subCtrlSize": 0.75,
+                "guide0Name": "metacarpal",
+                "guide1Name": "knuckle",
+                "ikFkDefault": 0,
+                "fkShape": 0,
+                "fkSize": 0.5,
+                "ikShape": 0,
+                "ikSize": 0.5,
+                "ikCtrlOrient": 0,
+                "stretchIk": false,
+                "useRibbon": false,
+                "bindJointCount": 5,
+                "ribbonWidth": 2.0,
+                "ribbonDirection": 1,
+                "ribbonOffsetDirection": 1,
+                "ribbonReverse": false,
+                "ribbonPinch": 0.1,
+                "ribbonDegree": 1,
+                "ribbonUniformIsoparms": false,
+                "follicleScale": true,
+                "levelCount": 1,
+                "level1ControlCount": 5,
+                "level1Shape": 0,
+                "level1ShapeTranslate": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "level1ShapeScale": [
+                    1.0,
+                    1.0,
+                    1.0
+                ],
+                "level2ControlCount": 3,
+                "level2Shape": 0,
+                "level2ShapeTranslate": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "level2ShapeScale": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "parent": {
+                "node": "L_arm_00_GUIDE_DATA",
+                "guide_index": 2
+            }
+        },
+        {
+            "node": "L_index_00_GUIDE_DATA",
+            "module_type": "Limb_Finger",
+            "base_name": "index",
+            "side": "Left",
+            "index": 0,
+            "guide_count": 4,
+            "guide_nodes": [
+                "L_index_00_GUIDE_ROOT",
+                "L_index_00_01_GUIDE",
+                "L_index_00_02_GUIDE",
+                "L_index_00_03_GUIDE"
+            ],
+            "guides": [
+                {
+                    "translate": [
+                        72.70093758204571,
+                        141.37932380257683,
+                        0.17071298547807534
+                    ],
+                    "rotate": [
+                        6.65044717735205,
+                        0.03657599217807346,
+                        -93.3744376504555
+                    ],
+                    "scale": [
+                        0.6284728083272106,
+                        0.6284728083272106,
+                        0.6284728083272106
+                    ]
+                },
+                {
+                    "translate": [
+                        76.02540086631379,
+                        141.2336133682368,
+                        0.5586931754295856
+                    ],
+                    "rotate": [
+                        6.0308870212938475,
+                        1.6788453638376228,
+                        -105.79246742679756
+                    ],
+                    "scale": [
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                },
+                {
+                    "translate": [
+                        77.9616360667038,
+                        140.69482985028827,
+                        0.7713657243994217
+                    ],
+                    "rotate": [
+                        5.4559485639280245,
+                        3.072602497986685,
+                        -119.59430130866596
+                    ],
+                    "scale": [
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                },
+                {
+                    "translate": [
+                        79.7731481127868,
+                        139.65368449434317,
+                        0.9706406153485108
+                    ],
+                    "rotate": [
+                        5.4559485639280245,
+                        3.072602497986686,
+                        -119.59430130866599
+                    ],
+                    "scale": [
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                }
+            ],
+            "pivot_nodes": {},
+            "pivots": {},
+            "settings": {
+                "constraintType": 0,
+                "simpleConnection": false,
+                "offsetGroup": false,
+                "noCtrl": false,
+                "shapeCtrl": 0,
+                "shapeTranslate": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "shapeRotate": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "shapeScale": 1.0,
+                "moduleType": 0,
+                "side": 1,
+                "baseName": "index",
+                "index": 0,
+                "aimVector": [
+                    1.0,
+                    0.0,
+                    0.0
+                ],
+                "upVector": [
+                    0.0,
+                    0.0,
+                    1.0
+                ],
+                "jointOrientation": 0,
+                "subCtrl": false,
+                "subCtrlSize": 0.75,
+                "guide0Name": "base",
+                "guide1Name": "middle",
+                "guide2Name": "distal",
+                "ikFkDefault": 0,
+                "fkShape": 0,
+                "fkSize": 0.5,
+                "ikShape": 0,
+                "ikSize": 0.5,
+                "ikCtrlOrient": 0,
+                "poleShape": 0,
+                "poleCtrlOrient": 0,
+                "poleSize": 0.3,
+                "poleDistance": 1.0,
+                "stretchIk": true,
+                "useRibbon": false,
+                "bindJointCount": 5,
+                "ribbonWidth": 2.0,
+                "ribbonDirection": 1,
+                "ribbonOffsetDirection": 1,
+                "ribbonReverse": false,
+                "ribbonPinch": 0.1,
+                "ribbonDegree": 1,
+                "ribbonUniformIsoparms": false,
+                "follicleScale": true,
+                "levelCount": 1,
+                "level1ControlCount": 5,
+                "level1Shape": 0,
+                "level1ShapeTranslate": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "level1ShapeScale": [
+                    1.0,
+                    1.0,
+                    1.0
+                ],
+                "level2ControlCount": 3,
+                "level2Shape": 0,
+                "level2ShapeTranslate": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "level2ShapeScale": [
+                    1.0,
+                    1.0,
+                    1.0
+                ],
+                "guide3Name": "tip",
+                "guide4Name": "",
+                "invertCurl": false,
+                "spreadFactor": 1.0
+            },
+            "parent": {
+                "node": "L_indexMetacarpal_00_GUIDE_DATA",
+                "guide_index": 1
+            }
+        },
+        {
+            "node": "L_middleMetacarpal_00_GUIDE_DATA",
+            "module_type": "Limb_Metacarpal",
+            "base_name": "middleMetacarpal",
+            "side": "Left",
+            "index": 0,
+            "guide_count": 2,
+            "guide_nodes": [
+                "L_middleMetacarpal_00_GUIDE_ROOT",
+                "L_middleMetacarpal_00_01_GUIDE"
+            ],
+            "guides": [
+                {
+                    "translate": [
+                        66.24334392438918,
+                        140.65253623854338,
+                        -1.5963292965371976
+                    ],
+                    "rotate": [
+                        -0.03339860862973037,
+                        -7.22733982445196,
+                        -86.9671397166966
+                    ],
+                    "scale": [
+                        1.0000000000000002,
+                        1.0,
+                        1.0
+                    ]
+                },
+                {
+                    "translate": [
+                        72.91947528641619,
+                        141.00576602105605,
+                        -1.6001953989271078
+                    ],
+                    "rotate": [
+                        -0.03339860862973036,
+                        -7.22733982445196,
+                        -86.96713971669656
+                    ],
+                    "scale": [
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                }
+            ],
+            "pivot_nodes": {},
+            "pivots": {},
+            "settings": {
+                "constraintType": 0,
+                "simpleConnection": false,
+                "offsetGroup": false,
+                "noCtrl": false,
+                "shapeCtrl": 0,
+                "shapeTranslate": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "shapeRotate": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "shapeScale": 1.0,
+                "moduleType": 0,
+                "side": 1,
+                "baseName": "middleMetacarpal",
+                "index": 0,
+                "aimVector": [
+                    1.0,
+                    0.0,
+                    0.0
+                ],
+                "upVector": [
+                    0.0,
+                    0.0,
+                    1.0
+                ],
+                "jointOrientation": 0,
+                "subCtrl": true,
+                "subCtrlSize": 0.75,
+                "guide0Name": "metacarpal",
+                "guide1Name": "knuckle",
+                "ikFkDefault": 0,
+                "fkShape": 0,
+                "fkSize": 0.5,
+                "ikShape": 0,
+                "ikSize": 0.5,
+                "ikCtrlOrient": 0,
+                "stretchIk": false,
+                "useRibbon": false,
+                "bindJointCount": 5,
+                "ribbonWidth": 2.0,
+                "ribbonDirection": 1,
+                "ribbonOffsetDirection": 1,
+                "ribbonReverse": false,
+                "ribbonPinch": 0.1,
+                "ribbonDegree": 1,
+                "ribbonUniformIsoparms": false,
+                "follicleScale": true,
+                "levelCount": 1,
+                "level1ControlCount": 5,
+                "level1Shape": 0,
+                "level1ShapeTranslate": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "level1ShapeScale": [
+                    1.0,
+                    1.0,
+                    1.0
+                ],
+                "level2ControlCount": 3,
+                "level2Shape": 0,
+                "level2ShapeTranslate": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "level2ShapeScale": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "parent": {
+                "node": "L_indexMetacarpal_00_GUIDE_DATA",
+                "guide_index": 0
+            }
+        },
+        {
+            "node": "L_middle_00_GUIDE_DATA",
+            "module_type": "Limb_Finger",
+            "base_name": "middle",
+            "side": "Left",
+            "index": 0,
+            "guide_count": 4,
+            "guide_nodes": [
+                "L_middle_00_GUIDE_ROOT",
+                "L_middle_00_01_GUIDE",
+                "L_middle_00_02_GUIDE",
+                "L_middle_00_03_GUIDE"
+            ],
+            "guides": [
+                {
+                    "translate": [
+                        72.91947528641619,
+                        141.00576602105605,
+                        -1.6001953989271058
+                    ],
+                    "rotate": [
+                        1.1584139223389143,
+                        -7.134463583864885,
+                        -96.47987555707759
+                    ],
+                    "scale": [
+                        0.6284728083272106,
+                        0.6284728083272106,
+                        0.6284728083272106
+                    ]
+                },
+                {
+                    "translate": [
+                        75.95002474150336,
+                        140.74204913860896,
+                        -1.5461302305864362
+                    ],
+                    "rotate": [
+                        1.417211944144999,
+                        -6.729846180761594,
+                        -102.05458535738329
+                    ],
+                    "scale": [
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                },
+                {
+                    "translate": [
+                        78.34071146646677,
+                        140.14280433040875,
+                        -1.474532960130237
+                    ],
+                    "rotate": [
+                        2.9935706343638886,
+                        -6.193831668351096,
+                        -115.99308307215301
+                    ],
+                    "scale": [
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                },
+                {
+                    "translate": [
+                        80.4529351600928,
+                        139.12763015911568,
+                        -1.3526955251506203
+                    ],
+                    "rotate": [
+                        2.993570634363889,
+                        -6.193831668351098,
+                        -115.99308307215296
+                    ],
+                    "scale": [
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                }
+            ],
+            "pivot_nodes": {},
+            "pivots": {},
+            "settings": {
+                "constraintType": 0,
+                "simpleConnection": false,
+                "offsetGroup": false,
+                "noCtrl": false,
+                "shapeCtrl": 0,
+                "shapeTranslate": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "shapeRotate": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "shapeScale": 1.0,
+                "moduleType": 0,
+                "side": 1,
+                "baseName": "middle",
+                "index": 0,
+                "aimVector": [
+                    1.0,
+                    0.0,
+                    0.0
+                ],
+                "upVector": [
+                    0.0,
+                    0.0,
+                    1.0
+                ],
+                "jointOrientation": 0,
+                "subCtrl": false,
+                "subCtrlSize": 0.75,
+                "guide0Name": "base",
+                "guide1Name": "middle",
+                "guide2Name": "distal",
+                "ikFkDefault": 0,
+                "fkShape": 0,
+                "fkSize": 0.5,
+                "ikShape": 0,
+                "ikSize": 0.5,
+                "ikCtrlOrient": 0,
+                "poleShape": 0,
+                "poleCtrlOrient": 0,
+                "poleSize": 0.3,
+                "poleDistance": 1.0,
+                "stretchIk": true,
+                "useRibbon": false,
+                "bindJointCount": 5,
+                "ribbonWidth": 2.0,
+                "ribbonDirection": 1,
+                "ribbonOffsetDirection": 1,
+                "ribbonReverse": false,
+                "ribbonPinch": 0.1,
+                "ribbonDegree": 1,
+                "ribbonUniformIsoparms": false,
+                "follicleScale": true,
+                "levelCount": 1,
+                "level1ControlCount": 5,
+                "level1Shape": 0,
+                "level1ShapeTranslate": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "level1ShapeScale": [
+                    1.0,
+                    1.0,
+                    1.0
+                ],
+                "level2ControlCount": 3,
+                "level2Shape": 0,
+                "level2ShapeTranslate": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "level2ShapeScale": [
+                    1.0,
+                    1.0,
+                    1.0
+                ],
+                "guide3Name": "tip",
+                "guide4Name": "",
+                "invertCurl": false,
+                "spreadFactor": 1.0
+            },
+            "parent": {
+                "node": "L_middleMetacarpal_00_GUIDE_DATA",
+                "guide_index": 1
+            }
+        },
+        {
+            "node": "L_ringMetacarpal_00_GUIDE_DATA",
+            "module_type": "Limb_Metacarpal",
+            "base_name": "ringMetacarpal",
+            "side": "Left",
+            "index": 0,
+            "guide_count": 2,
+            "guide_nodes": [
+                "L_ringMetacarpal_00_GUIDE_ROOT",
+                "L_ringMetacarpal_00_01_GUIDE"
+            ],
+            "guides": [
+                {
+                    "translate": [
+                        66.21856529031798,
+                        140.37935918480488,
+                        -3.0092676874637614
+                    ],
+                    "rotate": [
+                        -5.289385462731866,
+                        -11.847537620746749,
+                        -91.26392322154747
+                    ],
+                    "scale": [
+                        0.9999999999999996,
+                        0.9999999999999999,
+                        0.9999999999999999
+                    ]
+                },
+                {
+                    "translate": [
+                        72.31984723090656,
+                        140.1286701412339,
+                        -3.562460035022313
+                    ],
+                    "rotate": [
+                        -5.289385462731867,
+                        -11.847537620746747,
+                        -91.26392322154747
+                    ],
+                    "scale": [
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                }
+            ],
+            "pivot_nodes": {},
+            "pivots": {},
+            "settings": {
+                "constraintType": 0,
+                "simpleConnection": false,
+                "offsetGroup": false,
+                "noCtrl": false,
+                "shapeCtrl": 0,
+                "shapeTranslate": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "shapeRotate": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "shapeScale": 1.0,
+                "moduleType": 0,
+                "side": 1,
+                "baseName": "ringMetacarpal",
+                "index": 0,
+                "aimVector": [
+                    1.0,
+                    0.0,
+                    0.0
+                ],
+                "upVector": [
+                    0.0,
+                    0.0,
+                    1.0
+                ],
+                "jointOrientation": 0,
+                "subCtrl": true,
+                "subCtrlSize": 0.75,
+                "guide0Name": "metacarpal",
+                "guide1Name": "knuckle",
+                "ikFkDefault": 0,
+                "fkShape": 0,
+                "fkSize": 0.5,
+                "ikShape": 0,
+                "ikSize": 0.5,
+                "ikCtrlOrient": 0,
+                "stretchIk": false,
+                "useRibbon": false,
+                "bindJointCount": 5,
+                "ribbonWidth": 2.0,
+                "ribbonDirection": 1,
+                "ribbonOffsetDirection": 1,
+                "ribbonReverse": false,
+                "ribbonPinch": 0.1,
+                "ribbonDegree": 1,
+                "ribbonUniformIsoparms": false,
+                "follicleScale": true,
+                "levelCount": 1,
+                "level1ControlCount": 5,
+                "level1Shape": 0,
+                "level1ShapeTranslate": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "level1ShapeScale": [
+                    1.0,
+                    1.0,
+                    1.0
+                ],
+                "level2ControlCount": 3,
+                "level2Shape": 0,
+                "level2ShapeTranslate": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "level2ShapeScale": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "parent": {
+                "node": "L_middleMetacarpal_00_GUIDE_DATA",
+                "guide_index": 0
+            }
+        },
+        {
+            "node": "L_pinkyMetacarpal_00_GUIDE_DATA",
+            "module_type": "Limb_Metacarpal",
+            "base_name": "pinkyMetacarpal",
+            "side": "Left",
+            "index": 0,
+            "guide_count": 2,
+            "guide_nodes": [
+                "L_pinkyMetacarpal_00_GUIDE_ROOT",
+                "L_pinkyMetacarpal_00_01_GUIDE"
+            ],
+            "guides": [
+                {
+                    "translate": [
+                        66.08909061991503,
+                        140.0391029662832,
+                        -4.283079527798982
+                    ],
+                    "rotate": [
+                        -10.093673339157187,
+                        -20.61699732743578,
+                        -89.88250888310426
+                    ],
+                    "scale": [
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                },
+                {
+                    "translate": [
+                        71.413773954177,
+                        139.71630208836865,
+                        -5.170125500261473
+                    ],
+                    "rotate": [
+                        -10.093673339157183,
+                        -20.61699732743578,
+                        -89.88250888310426
+                    ],
+                    "scale": [
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                }
+            ],
+            "pivot_nodes": {},
+            "pivots": {},
+            "settings": {
+                "constraintType": 0,
+                "simpleConnection": false,
+                "offsetGroup": false,
+                "noCtrl": false,
+                "shapeCtrl": 0,
+                "shapeTranslate": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "shapeRotate": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "shapeScale": 1.0,
+                "moduleType": 0,
+                "side": 1,
+                "baseName": "pinkyMetacarpal",
+                "index": 0,
+                "aimVector": [
+                    1.0,
+                    0.0,
+                    0.0
+                ],
+                "upVector": [
+                    0.0,
+                    0.0,
+                    1.0
+                ],
+                "jointOrientation": 0,
+                "subCtrl": true,
+                "subCtrlSize": 0.75,
+                "guide0Name": "metacarpal",
+                "guide1Name": "knuckle",
+                "ikFkDefault": 0,
+                "fkShape": 0,
+                "fkSize": 0.5,
+                "ikShape": 0,
+                "ikSize": 0.5,
+                "ikCtrlOrient": 0,
+                "stretchIk": false,
+                "useRibbon": false,
+                "bindJointCount": 5,
+                "ribbonWidth": 2.0,
+                "ribbonDirection": 1,
+                "ribbonOffsetDirection": 1,
+                "ribbonReverse": false,
+                "ribbonPinch": 0.1,
+                "ribbonDegree": 1,
+                "ribbonUniformIsoparms": false,
+                "follicleScale": true,
+                "levelCount": 1,
+                "level1ControlCount": 5,
+                "level1Shape": 0,
+                "level1ShapeTranslate": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "level1ShapeScale": [
+                    1.0,
+                    1.0,
+                    1.0
+                ],
+                "level2ControlCount": 3,
+                "level2Shape": 0,
+                "level2ShapeTranslate": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "level2ShapeScale": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "parent": {
+                "node": "L_ringMetacarpal_00_GUIDE_DATA",
+                "guide_index": 0
+            }
+        },
+        {
+            "node": "L_pinky_00_GUIDE_DATA",
+            "module_type": "Limb_Finger",
+            "base_name": "pinky",
+            "side": "Left",
+            "index": 0,
+            "guide_count": 4,
+            "guide_nodes": [
+                "L_pinky_00_GUIDE_ROOT",
+                "L_pinky_00_01_GUIDE",
+                "L_pinky_00_02_GUIDE",
+                "L_pinky_00_03_GUIDE"
+            ],
+            "guides": [
+                {
+                    "translate": [
+                        71.41377395417699,
+                        139.71630208836868,
+                        -5.170125500261481
+                    ],
+                    "rotate": [
+                        -1.0905204073421286,
+                        -22.8335856259525,
+                        -113.89299221844006
+                    ],
+                    "scale": [
+                        0.6284728083272106,
+                        0.6284728083272106,
+                        0.6284728083272106
+                    ]
+                },
+                {
+                    "translate": [
+                        74.05942474295446,
+                        138.81019944844059,
+                        -5.322065066097745
+                    ],
+                    "rotate": [
+                        2.1367735496242166,
+                        -22.484707700413175,
+                        -123.34960113439709
+                    ],
+                    "scale": [
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                },
+                {
+                    "translate": [
+                        75.56783043131847,
+                        137.8480506728526,
+                        -5.26039130076827
+                    ],
+                    "rotate": [
+                        3.1742963904369517,
+                        -22.368105862802732,
+                        -126.06877694678525
+                    ],
+                    "scale": [
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                },
+                {
+                    "translate": [
+                        77.08156355479134,
+                        136.79363702169465,
+                        -5.165801760613117
+                    ],
+                    "rotate": [
+                        3.1742963904369517,
+                        -22.368105862802732,
+                        -126.06877694678526
+                    ],
+                    "scale": [
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                }
+            ],
+            "pivot_nodes": {},
+            "pivots": {},
+            "settings": {
+                "constraintType": 0,
+                "simpleConnection": false,
+                "offsetGroup": false,
+                "noCtrl": false,
+                "shapeCtrl": 0,
+                "shapeTranslate": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "shapeRotate": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "shapeScale": 1.0,
+                "moduleType": 0,
+                "side": 1,
+                "baseName": "pinky",
+                "index": 0,
+                "aimVector": [
+                    1.0,
+                    0.0,
+                    0.0
+                ],
+                "upVector": [
+                    0.0,
+                    0.0,
+                    1.0
+                ],
+                "jointOrientation": 0,
+                "subCtrl": false,
+                "subCtrlSize": 0.75,
+                "guide0Name": "base",
+                "guide1Name": "middle",
+                "guide2Name": "distal",
+                "ikFkDefault": 0,
+                "fkShape": 0,
+                "fkSize": 0.5,
+                "ikShape": 0,
+                "ikSize": 0.5,
+                "ikCtrlOrient": 0,
+                "poleShape": 0,
+                "poleCtrlOrient": 0,
+                "poleSize": 0.3,
+                "poleDistance": 1.0,
+                "stretchIk": true,
+                "useRibbon": false,
+                "bindJointCount": 5,
+                "ribbonWidth": 2.0,
+                "ribbonDirection": 1,
+                "ribbonOffsetDirection": 1,
+                "ribbonReverse": false,
+                "ribbonPinch": 0.1,
+                "ribbonDegree": 1,
+                "ribbonUniformIsoparms": false,
+                "follicleScale": true,
+                "levelCount": 1,
+                "level1ControlCount": 5,
+                "level1Shape": 0,
+                "level1ShapeTranslate": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "level1ShapeScale": [
+                    1.0,
+                    1.0,
+                    1.0
+                ],
+                "level2ControlCount": 3,
+                "level2Shape": 0,
+                "level2ShapeTranslate": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "level2ShapeScale": [
+                    1.0,
+                    1.0,
+                    1.0
+                ],
+                "guide3Name": "tip",
+                "guide4Name": "",
+                "invertCurl": false,
+                "spreadFactor": 1.0
+            },
+            "parent": {
+                "node": "L_pinkyMetacarpal_00_GUIDE_DATA",
+                "guide_index": 1
+            }
+        },
+        {
+            "node": "L_ring_00_GUIDE_DATA",
+            "module_type": "Limb_Finger",
+            "base_name": "ring",
+            "side": "Left",
+            "index": 0,
+            "guide_count": 4,
+            "guide_nodes": [
+                "L_ring_00_GUIDE_ROOT",
+                "L_ring_00_01_GUIDE",
+                "L_ring_00_02_GUIDE",
+                "L_ring_00_03_GUIDE"
+            ],
+            "guides": [
+                {
+                    "translate": [
+                        72.31984723090655,
+                        140.1286701412339,
+                        -3.5624600350223123
+                    ],
+                    "rotate": [
+                        -4.014083440644673,
+                        -12.332008385021611,
+                        -97.3473858323704
+                    ],
+                    "scale": [
+                        0.6284728083272106,
+                        0.6284728083272106,
+                        0.6284728083272106
+                    ]
+                },
+                {
+                    "translate": [
+                        75.30639066095988,
+                        139.9994298327209,
+                        -3.8243578676592462
+                    ],
+                    "rotate": [
+                        -2.5065183733152314,
+                        -12.56095178388107,
+                        -106.28706550224328
+                    ],
+                    "scale": [
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                },
+                {
+                    "translate": [
+                        77.51732356936843,
+                        139.33054075315744,
+                        -3.9230489065631473
+                    ],
+                    "rotate": [
+                        -0.10052768943302302,
+                        -12.80426564938455,
+                        -117.21414352266781
+                    ],
+                    "scale": [
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                },
+                {
+                    "translate": [
+                        79.24402611297522,
+                        138.44174815830297,
+                        -3.926371534223163
+                    ],
+                    "rotate": [
+                        -0.1005276894330213,
+                        -12.804265649384547,
+                        -117.21414352266781
+                    ],
+                    "scale": [
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                }
+            ],
+            "pivot_nodes": {},
+            "pivots": {},
+            "settings": {
+                "constraintType": 0,
+                "simpleConnection": false,
+                "offsetGroup": false,
+                "noCtrl": false,
+                "shapeCtrl": 0,
+                "shapeTranslate": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "shapeRotate": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "shapeScale": 1.0,
+                "moduleType": 0,
+                "side": 1,
+                "baseName": "ring",
+                "index": 0,
+                "aimVector": [
+                    1.0,
+                    0.0,
+                    0.0
+                ],
+                "upVector": [
+                    0.0,
+                    0.0,
+                    1.0
+                ],
+                "jointOrientation": 0,
+                "subCtrl": false,
+                "subCtrlSize": 0.75,
+                "guide0Name": "base",
+                "guide1Name": "middle",
+                "guide2Name": "distal",
+                "ikFkDefault": 0,
+                "fkShape": 0,
+                "fkSize": 0.5,
+                "ikShape": 0,
+                "ikSize": 0.5,
+                "ikCtrlOrient": 0,
+                "poleShape": 0,
+                "poleCtrlOrient": 0,
+                "poleSize": 0.3,
+                "poleDistance": 1.0,
+                "stretchIk": true,
+                "useRibbon": false,
+                "bindJointCount": 5,
+                "ribbonWidth": 2.0,
+                "ribbonDirection": 1,
+                "ribbonOffsetDirection": 1,
+                "ribbonReverse": false,
+                "ribbonPinch": 0.1,
+                "ribbonDegree": 1,
+                "ribbonUniformIsoparms": false,
+                "follicleScale": true,
+                "levelCount": 1,
+                "level1ControlCount": 5,
+                "level1Shape": 0,
+                "level1ShapeTranslate": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "level1ShapeScale": [
+                    1.0,
+                    1.0,
+                    1.0
+                ],
+                "level2ControlCount": 3,
+                "level2Shape": 0,
+                "level2ShapeTranslate": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "level2ShapeScale": [
+                    1.0,
+                    1.0,
+                    1.0
+                ],
+                "guide3Name": "tip",
+                "guide4Name": "",
+                "invertCurl": false,
+                "spreadFactor": 1.0
+            },
+            "parent": {
+                "node": "L_ringMetacarpal_00_GUIDE_DATA",
+                "guide_index": 1
+            }
+        },
+        {
+            "node": "L_thumb_00_GUIDE_DATA",
+            "module_type": "Limb_Finger",
+            "base_name": "thumb",
+            "side": "Left",
+            "index": 0,
+            "guide_count": 4,
+            "guide_nodes": [
+                "L_thumb_00_GUIDE_ROOT",
+                "L_thumb_00_01_GUIDE",
+                "L_thumb_00_02_GUIDE",
+                "L_thumb_00_03_GUIDE"
+            ],
+            "guides": [
+                {
+                    "translate": [
+                        66.73102769681688,
+                        140.352677784077,
+                        0.5970214529278228
+                    ],
+                    "rotate": [
+                        42.34988490480119,
+                        23.966107106725723,
+                        -75.0656181640304
+                    ],
+                    "scale": [
+                        0.6284728083272106,
+                        0.6284728083272106,
+                        0.6284728083272106
+                    ]
+                },
+                {
+                    "translate": [
+                        69.09917537416307,
+                        140.1909745623479,
+                        2.500289243494038
+                    ],
+                    "rotate": [
+                        39.99800070532343,
+                        27.827154524855914,
+                        -79.49708939162012
+                    ],
+                    "scale": [
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                },
+                {
+                    "translate": [
+                        71.10504186335986,
+                        139.7259411874362,
+                        3.8566988844003145
+                    ],
+                    "rotate": [
+                        33.00593938637264,
+                        36.11309400466112,
+                        -92.62679191562995
+                    ],
+                    "scale": [
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                },
+                {
+                    "translate": [
+                        73.40703569466156,
+                        138.72140136886136,
+                        5.087550902695825
+                    ],
+                    "rotate": [
+                        33.00593938637266,
+                        36.113094004661136,
+                        -92.62679191562998
+                    ],
+                    "scale": [
+                        1.0,
+                        1.0,
+                        1.0
+                    ]
+                }
+            ],
+            "pivot_nodes": {},
+            "pivots": {},
+            "settings": {
+                "constraintType": 0,
+                "simpleConnection": false,
+                "offsetGroup": false,
+                "noCtrl": false,
+                "shapeCtrl": 0,
+                "shapeTranslate": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "shapeRotate": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "shapeScale": 1.0,
+                "moduleType": 0,
+                "side": 1,
+                "baseName": "thumb",
+                "index": 0,
+                "aimVector": [
+                    1.0,
+                    0.0,
+                    0.0
+                ],
+                "upVector": [
+                    0.0,
+                    0.0,
+                    1.0
+                ],
+                "jointOrientation": 0,
+                "subCtrl": false,
+                "subCtrlSize": 0.75,
+                "guide0Name": "base",
+                "guide1Name": "middle",
+                "guide2Name": "distal",
+                "ikFkDefault": 0,
+                "fkShape": 0,
+                "fkSize": 0.5,
+                "ikShape": 0,
+                "ikSize": 0.5,
+                "ikCtrlOrient": 0,
+                "poleShape": 0,
+                "poleCtrlOrient": 0,
+                "poleSize": 0.3,
+                "poleDistance": 1.0,
+                "stretchIk": true,
+                "useRibbon": false,
+                "bindJointCount": 5,
+                "ribbonWidth": 2.0,
+                "ribbonDirection": 1,
+                "ribbonOffsetDirection": 1,
+                "ribbonReverse": false,
+                "ribbonPinch": 0.1,
+                "ribbonDegree": 1,
+                "ribbonUniformIsoparms": false,
+                "follicleScale": true,
+                "levelCount": 1,
+                "level1ControlCount": 5,
+                "level1Shape": 0,
+                "level1ShapeTranslate": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "level1ShapeScale": [
+                    1.0,
+                    1.0,
+                    1.0
+                ],
+                "level2ControlCount": 3,
+                "level2Shape": 0,
+                "level2ShapeTranslate": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "level2ShapeScale": [
+                    1.0,
+                    1.0,
+                    1.0
+                ],
+                "guide3Name": "tip",
+                "guide4Name": "",
+                "invertCurl": false,
+                "spreadFactor": 1.0
+            },
+            "parent": {
+                "node": "L_middleMetacarpal_00_GUIDE_DATA",
+                "guide_index": 1
+            }
+        },
+        {
+            "node": "R_clavicle_00_GUIDE_DATA",
+            "module_type": "Limb_Clavicle",
+            "base_name": "clavicle",
+            "side": "Right",
+            "index": 0,
+            "guide_count": 2,
+            "guide_nodes": [
+                "R_clavicle_00_GUIDE_ROOT",
+                "R_clavicle_00_01_GUIDE"
+            ],
+            "guides": [
+                {
+                    "translate": [
+                        -3.153055697037028,
+                        135.05156388586994,
+                        -2.8512739224331685
+                    ],
+                    "rotate": [
+                        0.0,
+                        0.0,
+                        0.0
+                    ],
+                    "scale": [
+                        1.0000000000000002,
+                        1.0000000000000002,
+                        1.0000000000000002
+                    ]
+                },
+                {
+                    "translate": [
+                        -12.45084357754833,
+                        143.2294054260651,
+                        -2.8512739224331827
+                    ],
+                    "rotate": [
+                        0.0,
+                        0.0,
+                        0.0
+                    ],
+                    "scale": [
+                        0.9999999999999997,
+                        0.9999999999999997,
+                        0.9999999999999997
+                    ]
+                }
+            ],
+            "pivot_nodes": {},
+            "pivots": {},
+            "settings": {
+                "constraintType": 0,
+                "simpleConnection": false,
+                "offsetGroup": false,
+                "noCtrl": false,
+                "shapeCtrl": 0,
+                "shapeTranslate": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "shapeRotate": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "shapeScale": 1.0,
+                "moduleType": 0,
+                "side": 2,
+                "baseName": "clavicle",
+                "index": 0,
+                "aimVector": [
+                    1.0,
+                    0.0,
+                    0.0
+                ],
+                "upVector": [
+                    0.0,
+                    0.0,
+                    1.0
+                ],
+                "jointOrientation": 0,
+                "stretchIk": false,
+                "ikCtrlOrient": 0,
+                "guide0Name": "clavicle",
+                "guide1Name": "clavicleEnd"
+            },
+            "parent": {
+                "node": "C_spine_00_GUIDE_DATA",
+                "guide_index": 2
+            }
+        },
+        {
+            "node": "R_arm_00_GUIDE_DATA",
+            "module_type": "Limb_Arm",
+            "base_name": "arm",
+            "side": "Right",
+            "index": 0,
+            "guide_count": 3,
+            "guide_nodes": [
+                "R_arm_00_GUIDE_ROOT",
+                "R_arm_00_01_GUIDE",
+                "R_arm_00_02_GUIDE"
+            ],
+            "guides": [
+                {
+                    "translate": [
+                        -12.45084357754835,
+                        143.22940542606523,
+                        -2.851273922433183
+                    ],
+                    "rotate": [
+                        0.0,
+                        0.0,
+                        3.060743084783886
+                    ],
+                    "scale": [
+                        1.0,
+                        1.0,
+                        1.0000000000000002
+                    ]
+                },
+                {
+                    "translate": [
+                        -39.30556723598512,
+                        141.7934587153718,
+                        -3.9605947372146644
+                    ],
+                    "rotate": [
+                        0.0,
+                        0.0,
+                        3.060743084783886
+                    ],
+                    "scale": [
+                        1.0,
+                        1.0,
+                        0.9999999999999998
+                    ]
+                },
+                {
+                    "translate": [
+                        -64.19576305663118,
+                        140.46255711043437,
+                        -2.3492080401903497
+                    ],
+                    "rotate": [
+                        0.0,
+                        0.0,
+                        3.060743084783886
+                    ],
+                    "scale": [
+                        1.0,
+                        1.0,
+                        0.9999999999999998
+                    ]
+                }
+            ],
+            "pivot_nodes": {},
+            "pivots": {},
+            "settings": {
+                "constraintType": 0,
+                "simpleConnection": false,
+                "offsetGroup": false,
+                "noCtrl": false,
+                "shapeCtrl": 0,
+                "shapeTranslate": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "shapeRotate": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "shapeScale": 1.0,
+                "moduleType": 0,
+                "side": 2,
+                "baseName": "arm",
+                "index": 0,
+                "spaceSwitchTargets": {
+                    "__message__": [
+                        "C_world_00_GUIDE_ROOT",
+                        "C_general_00_GUIDE_ROOT",
+                        "C_spine_00_02_GUIDE",
+                        "R_clavicle_00_01_GUIDE"
+                    ]
+                },
+                "aimVector": [
+                    1.0,
+                    0.0,
+                    0.0
+                ],
+                "upVector": [
+                    0.0,
+                    0.0,
+                    1.0
+                ],
+                "jointOrientation": 0,
+                "subCtrl": false,
+                "subCtrlSize": 0.75,
+                "guide0Name": "shoulder",
+                "guide1Name": "elbow",
+                "guide2Name": "wrist",
+                "ikFkDefault": 0,
+                "fkShape": 0,
+                "fkSize": 1.0,
+                "ikShape": 0,
+                "ikSize": 1.0,
+                "ikCtrlOrient": 1,
+                "poleShape": 0,
+                "poleCtrlOrient": 0,
+                "poleSize": 1.0,
+                "poleDistance": 1.0,
+                "stretchIk": true,
+                "ikSpaceSwitchTargets": {
+                    "__message__": [
+                        "C_world_00_GUIDE_ROOT",
+                        "C_general_00_GUIDE_ROOT",
+                        "C_spine_00_02_GUIDE",
+                        "R_clavicle_00_01_GUIDE"
+                    ]
+                },
+                "poleSpaceSwitchTargets": {
+                    "__message__": [
+                        "C_world_00_GUIDE_ROOT",
+                        "C_general_00_GUIDE_ROOT",
+                        "C_spine_00_02_GUIDE",
+                        "R_clavicle_00_01_GUIDE"
+                    ]
+                },
+                "useRibbon": true,
+                "bindJointCount": 5,
+                "ribbonWidth": 2.0,
+                "ribbonDirection": 1,
+                "ribbonOffsetDirection": 1,
+                "ribbonReverse": false,
+                "ribbonPinch": 0.1,
+                "ribbonDegree": 1,
+                "ribbonUniformIsoparms": false,
+                "follicleScale": true,
+                "levelCount": 1,
+                "level1ControlCount": 5,
+                "level1Shape": 0,
+                "level1ShapeTranslate": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "level1ShapeScale": [
+                    1.0,
+                    1.0,
+                    1.0
+                ],
+                "level2ControlCount": 3,
+                "level2Shape": 0,
+                "level2ShapeTranslate": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "level2ShapeScale": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "parent": {
+                "node": "R_clavicle_00_GUIDE_DATA",
+                "guide_index": 1
+            }
+        },
+        {
+            "node": "R_leg_00_GUIDE_DATA",
+            "module_type": "Limb_LegBiped",
+            "base_name": "leg",
+            "side": "Right",
+            "index": 0,
+            "guide_count": 3,
+            "guide_nodes": [
+                "R_leg_00_GUIDE_ROOT",
+                "R_leg_00_01_GUIDE",
+                "R_leg_00_02_GUIDE"
+            ],
+            "guides": [
+                {
+                    "translate": [
+                        -6.936820181307932,
+                        91.65132056986,
+                        -2.8524433289017557
+                    ],
+                    "rotate": [
+                        0.0,
+                        0.3051624676646248,
+                        -179.82987820258168
+                    ],
+                    "scale": [
+                        0.9999999999999993,
+                        0.9999999999999993,
+                        0.9999999999999998
+                    ]
+                },
+                {
+                    "translate": [
+                        -6.886521782237514,
+                        51.36015452265917,
+                        -4.071691726424402
+                    ],
+                    "rotate": [
+                        9.706420269055562e-20,
+                        0.30516246766462485,
+                        -179.82987820258168
+                    ],
+                    "scale": [
+                        1.0,
+                        1.0000000000000004,
+                        0.9999999999999999
+                    ]
+                },
+                {
+                    "translate": [
+                        -6.794077043786261,
+                        8.55359573063334,
+                        -7.252896071300272
+                    ],
+                    "rotate": [
+                        9.706420269055562e-20,
+                        0.30516246766462485,
+                        -179.82987820258168
+                    ],
+                    "scale": [
+                        0.9999999999999998,
+                        1.0000000000000007,
+                        0.9999999999999999
+                    ]
+                }
+            ],
+            "pivot_nodes": {},
+            "pivots": {},
+            "settings": {
+                "constraintType": 0,
+                "simpleConnection": false,
+                "offsetGroup": false,
+                "noCtrl": false,
+                "shapeCtrl": 0,
+                "shapeTranslate": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "shapeRotate": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "shapeScale": 1.0,
+                "moduleType": 0,
+                "side": 2,
+                "baseName": "leg",
+                "index": 0,
+                "spaceSwitchTargets": {
+                    "__message__": [
+                        "C_world_00_GUIDE_ROOT",
+                        "C_general_00_GUIDE_ROOT",
+                        "C_pelvis_00_GUIDE_ROOT"
+                    ]
+                },
+                "aimVector": [
+                    1.0,
+                    0.0,
+                    0.0
+                ],
+                "upVector": [
+                    0.0,
+                    0.0,
+                    1.0
+                ],
+                "jointOrientation": 0,
+                "subCtrl": false,
+                "subCtrlSize": 0.75,
+                "guide0Name": "hip",
+                "guide1Name": "knee",
+                "guide2Name": "ankle",
+                "ikFkDefault": 0,
+                "fkShape": 0,
+                "fkSize": 1.0,
+                "ikShape": 0,
+                "ikSize": 1.0,
+                "ikCtrlOrient": 1,
+                "poleShape": 0,
+                "poleCtrlOrient": 0,
+                "poleSize": 1.0,
+                "poleDistance": 1.0,
+                "stretchIk": true,
+                "ikSpaceSwitchTargets": {
+                    "__message__": [
+                        "C_world_00_GUIDE_ROOT",
+                        "C_general_00_GUIDE_ROOT",
+                        "C_pelvis_00_GUIDE_ROOT"
+                    ]
+                },
+                "poleSpaceSwitchTargets": {
+                    "__message__": [
+                        "C_world_00_GUIDE_ROOT",
+                        "C_general_00_GUIDE_ROOT",
+                        "C_pelvis_00_GUIDE_ROOT"
+                    ]
+                },
+                "useRibbon": true,
+                "bindJointCount": 5,
+                "ribbonWidth": 2.0,
+                "ribbonDirection": 1,
+                "ribbonOffsetDirection": 1,
+                "ribbonReverse": false,
+                "ribbonPinch": 0.1,
+                "ribbonDegree": 1,
+                "ribbonUniformIsoparms": false,
+                "follicleScale": true,
+                "levelCount": 1,
+                "level1ControlCount": 5,
+                "level1Shape": 0,
+                "level1ShapeTranslate": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "level1ShapeScale": [
+                    1.0,
+                    1.0,
+                    1.0
+                ],
+                "level2ControlCount": 3,
+                "level2Shape": 0,
+                "level2ShapeTranslate": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "level2ShapeScale": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "parent": {
+                "node": "C_pelvis_00_GUIDE_DATA",
+                "guide_index": 0
+            }
+        },
+        {
+            "node": "R_foot_00_GUIDE_DATA",
+            "module_type": "Limb_Foot",
+            "base_name": "foot",
+            "side": "Right",
+            "index": 0,
+            "guide_count": 3,
+            "guide_nodes": [
+                "R_foot_00_GUIDE_ROOT",
+                "R_foot_00_01_GUIDE",
+                "R_foot_00_02_GUIDE"
+            ],
+            "guides": [
+                {
+                    "translate": [
+                        -6.794077043786261,
+                        8.553595730633356,
+                        -7.252896071300272
+                    ],
+                    "rotate": [
+                        9.706420269055562e-20,
+                        0.30516246766462485,
+                        -179.82987820258168
+                    ],
+                    "scale": [
+                        1.0,
+                        1.0000000000000002,
+                        1.0
+                    ]
+                },
+                {
+                    "translate": [
+                        -6.831959115176593,
+                        0.9872386814677316,
+                        5.305604662129241
+                    ],
+                    "rotate": [
+                        9.706420269055562e-20,
+                        0.30516246766462485,
+                        -179.82987820258168
+                    ],
+                    "scale": [
+                        0.3277529590733623,
+                        0.32775295907336227,
+                        0.3277529590733622
+                    ]
+                },
+                {
+                    "translate": [
+                        -6.831959115176598,
+                        0.9872386814677073,
+                        10.945953921879168
+                    ],
+                    "rotate": [
+                        9.706420269055562e-20,
+                        0.30516246766462485,
+                        -179.82987820258168
+                    ],
+                    "scale": [
+                        1.0594422997876118,
+                        1.0594422997876118,
+                        1.0594422997876118
+                    ]
+                }
+            ],
+            "pivot_nodes": {
+                "heelGuide": "R_foot_00_heel_PIVOT",
+                "tiptoeGuide": "R_foot_00_tiptoe_PIVOT",
+                "bankLGuide": "R_foot_00_bankL_PIVOT",
+                "bankRGuide": "R_foot_00_bankR_PIVOT"
+            },
+            "pivots": {
+                "heelGuide": {
+                    "translate": [
+                        -6.789358483248413,
+                        -1.8629180889462305e-05,
+                        -10.738967512462358
+                    ],
+                    "rotate": [
+                        9.706420269055562e-20,
+                        0.30516246766462485,
+                        -179.82987820258168
+                    ],
+                    "scale": [
+                        0.9999999999999997,
+                        1.0000000000000002,
+                        1.0
+                    ]
+                },
+                "tiptoeGuide": {
+                    "translate": [
+                        -6.90612351534751,
+                        7.722599899651073e-05,
+                        11.184140578031025
+                    ],
+                    "rotate": [
+                        9.706420269055562e-20,
+                        0.30516246766462485,
+                        -179.82987820258168
+                    ],
+                    "scale": [
+                        0.9999999999999997,
+                        1.0000000000000002,
+                        1.0
+                    ]
+                },
+                "bankLGuide": {
+                    "translate": [
+                        -12.55387961545985,
+                        -0.003027989595617342,
+                        4.377003887299988
+                    ],
+                    "rotate": [
+                        9.706420269055562e-20,
+                        0.30516246766462485,
+                        -179.82987820258168
+                    ],
+                    "scale": [
+                        0.9999999999999997,
+                        1.0000000000000002,
+                        1.0
+                    ]
+                },
+                "bankRGuide": {
+                    "translate": [
+                        -3.7509631379599706,
+                        -0.004587353584087239,
+                        4.423889661099144
+                    ],
+                    "rotate": [
+                        9.706420269055562e-20,
+                        0.30516246766462485,
+                        -179.82987820258168
+                    ],
+                    "scale": [
+                        0.9999999999999997,
+                        1.0000000000000002,
+                        1.0
+                    ]
+                }
+            },
+            "settings": {
+                "constraintType": 0,
+                "simpleConnection": false,
+                "offsetGroup": false,
+                "noCtrl": false,
+                "shapeCtrl": 0,
+                "shapeTranslate": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "shapeRotate": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "shapeScale": 1.0,
+                "moduleType": 0,
+                "side": 2,
+                "baseName": "foot",
+                "index": 0,
+                "aimVector": [
+                    1.0,
+                    0.0,
+                    0.0
+                ],
+                "upVector": [
+                    0.0,
+                    0.0,
+                    1.0
+                ],
+                "jointOrientation": 0,
+                "attachToLeg": true,
+                "footShape": 0,
+                "footSize": 1.0,
+                "pivotControls": true,
+                "pivotCtrlSize": 1.0,
+                "phalanxAngle": 20.0,
+                "rollFactor": 10.0,
+                "rollCtrlOffset": 2.0,
+                "fkCtrlSize": 1.0,
+                "ballAngle": 30.0
+            },
+            "parent": {
+                "node": "R_leg_00_GUIDE_DATA",
+                "guide_index": 2
+            }
+        },
+        {
+            "node": "R_indexMetacarpal_00_GUIDE_DATA",
+            "module_type": "Limb_Metacarpal",
+            "base_name": "indexMetacarpal",
+            "side": "Right",
+            "index": 0,
+            "guide_count": 2,
+            "guide_nodes": [
+                "R_indexMetacarpal_00_GUIDE_ROOT",
+                "R_indexMetacarpal_00_01_GUIDE"
+            ],
+            "guides": [
+                {
+                    "translate": [
+                        -66.12658560850521,
+                        140.6741055914109,
+                        -0.5903597569676753
+                    ],
+                    "rotate": [
+                        -6.567166500134553,
+                        -1.0521195220357225,
+                        -96.00148118324257
+                    ],
+                    "scale": [
+                        0.3339951012209182,
+                        0.33399510122091824,
+                        0.33399510122091813
+                    ]
+                },
+                {
+                    "translate": [
+                        -72.70093758204573,
+                        141.37932380257683,
+                        0.17071298547807523
+                    ],
+                    "rotate": [
+                        -6.567166500134551,
+                        -1.0521195220357222,
+                        -96.00148118324257
+                    ],
+                    "scale": [
+                        1.0000000000000002,
+                        0.9999999999999999,
+                        1.0
+                    ]
+                }
+            ],
+            "pivot_nodes": {},
+            "pivots": {},
+            "settings": {
+                "constraintType": 0,
+                "simpleConnection": false,
+                "offsetGroup": false,
+                "noCtrl": false,
+                "shapeCtrl": 0,
+                "shapeTranslate": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "shapeRotate": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "shapeScale": 1.0,
+                "moduleType": 0,
+                "side": 2,
+                "baseName": "indexMetacarpal",
+                "index": 0,
+                "aimVector": [
+                    1.0,
+                    0.0,
+                    0.0
+                ],
+                "upVector": [
+                    0.0,
+                    0.0,
+                    1.0
+                ],
+                "jointOrientation": 0,
+                "subCtrl": true,
+                "subCtrlSize": 0.75,
+                "guide0Name": "metacarpal",
+                "guide1Name": "knuckle",
+                "ikFkDefault": 0,
+                "fkShape": 0,
+                "fkSize": 0.5,
+                "ikShape": 0,
+                "ikSize": 0.5,
+                "ikCtrlOrient": 0,
+                "stretchIk": false,
+                "useRibbon": false,
+                "bindJointCount": 5,
+                "ribbonWidth": 2.0,
+                "ribbonDirection": 1,
+                "ribbonOffsetDirection": 1,
+                "ribbonReverse": false,
+                "ribbonPinch": 0.1,
+                "ribbonDegree": 1,
+                "ribbonUniformIsoparms": false,
+                "follicleScale": true,
+                "levelCount": 1,
+                "level1ControlCount": 5,
+                "level1Shape": 0,
+                "level1ShapeTranslate": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "level1ShapeScale": [
+                    1.0,
+                    1.0,
+                    1.0
+                ],
+                "level2ControlCount": 3,
+                "level2Shape": 0,
+                "level2ShapeTranslate": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "level2ShapeScale": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "parent": {
+                "node": "R_arm_00_GUIDE_DATA",
+                "guide_index": 2
+            }
+        },
+        {
+            "node": "R_index_00_GUIDE_DATA",
+            "module_type": "Limb_Finger",
+            "base_name": "index",
+            "side": "Right",
+            "index": 0,
+            "guide_count": 4,
+            "guide_nodes": [
+                "R_index_00_GUIDE_ROOT",
+                "R_index_00_01_GUIDE",
+                "R_index_00_02_GUIDE",
+                "R_index_00_03_GUIDE"
+            ],
+            "guides": [
+                {
+                    "translate": [
+                        -72.70093758204571,
+                        141.37932380257683,
+                        0.17071298547807745
+                    ],
+                    "rotate": [
+                        -6.650447177352047,
+                        0.03657599217807386,
+                        -86.6255623495445
+                    ],
+                    "scale": [
+                        0.6284728083272104,
+                        0.6284728083272105,
+                        0.6284728083272106
+                    ]
+                },
+                {
+                    "translate": [
+                        -76.02540086631376,
+                        141.23361336823675,
+                        0.5586931754295839
+                    ],
+                    "rotate": [
+                        -6.030887021293845,
+                        1.6788453638376244,
+                        -74.20753257320246
+                    ],
+                    "scale": [
+                        0.9999999999999999,
+                        1.0,
+                        1.0000000000000002
+                    ]
+                },
+                {
+                    "translate": [
+                        -77.96163606670378,
+                        140.69482985028824,
+                        0.7713657243994189
+                    ],
+                    "rotate": [
+                        -5.455948563928021,
+                        3.0726024979866886,
+                        -60.405698691334024
+                    ],
+                    "scale": [
+                        0.9999999999999998,
+                        0.9999999999999996,
+                        0.9999999999999999
+                    ]
+                },
+                {
+                    "translate": [
+                        -79.7731481127868,
+                        139.6536844943432,
+                        0.9706406153485146
+                    ],
+                    "rotate": [
+                        -5.455948563928019,
+                        3.072602497986688,
+                        -60.405698691334024
+                    ],
+                    "scale": [
+                        1.0,
+                        1.0,
+                        0.9999999999999999
+                    ]
+                }
+            ],
+            "pivot_nodes": {},
+            "pivots": {},
+            "settings": {
+                "constraintType": 0,
+                "simpleConnection": false,
+                "offsetGroup": false,
+                "noCtrl": false,
+                "shapeCtrl": 0,
+                "shapeTranslate": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "shapeRotate": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "shapeScale": 1.0,
+                "moduleType": 0,
+                "side": 2,
+                "baseName": "index",
+                "index": 0,
+                "aimVector": [
+                    1.0,
+                    0.0,
+                    0.0
+                ],
+                "upVector": [
+                    0.0,
+                    0.0,
+                    1.0
+                ],
+                "jointOrientation": 0,
+                "subCtrl": false,
+                "subCtrlSize": 0.75,
+                "guide0Name": "base",
+                "guide1Name": "middle",
+                "guide2Name": "distal",
+                "ikFkDefault": 0,
+                "fkShape": 0,
+                "fkSize": 0.5,
+                "ikShape": 0,
+                "ikSize": 0.5,
+                "ikCtrlOrient": 0,
+                "poleShape": 0,
+                "poleCtrlOrient": 0,
+                "poleSize": 0.3,
+                "poleDistance": 1.0,
+                "stretchIk": true,
+                "useRibbon": false,
+                "bindJointCount": 5,
+                "ribbonWidth": 2.0,
+                "ribbonDirection": 1,
+                "ribbonOffsetDirection": 1,
+                "ribbonReverse": false,
+                "ribbonPinch": 0.1,
+                "ribbonDegree": 1,
+                "ribbonUniformIsoparms": false,
+                "follicleScale": true,
+                "levelCount": 1,
+                "level1ControlCount": 5,
+                "level1Shape": 0,
+                "level1ShapeTranslate": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "level1ShapeScale": [
+                    1.0,
+                    1.0,
+                    1.0
+                ],
+                "level2ControlCount": 3,
+                "level2Shape": 0,
+                "level2ShapeTranslate": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "level2ShapeScale": [
+                    1.0,
+                    1.0,
+                    1.0
+                ],
+                "guide3Name": "tip",
+                "guide4Name": "",
+                "invertCurl": false,
+                "spreadFactor": 1.0
+            },
+            "parent": {
+                "node": "R_indexMetacarpal_00_GUIDE_DATA",
+                "guide_index": 1
+            }
+        },
+        {
+            "node": "R_middleMetacarpal_00_GUIDE_DATA",
+            "module_type": "Limb_Metacarpal",
+            "base_name": "middleMetacarpal",
+            "side": "Right",
+            "index": 0,
+            "guide_count": 2,
+            "guide_nodes": [
+                "R_middleMetacarpal_00_GUIDE_ROOT",
+                "R_middleMetacarpal_00_01_GUIDE"
+            ],
+            "guides": [
+                {
+                    "translate": [
+                        -66.24334392438912,
+                        140.65253623854338,
+                        -1.5963292965371925
+                    ],
+                    "rotate": [
+                        0.03339860862974319,
+                        -7.227339824451958,
+                        -93.0328602833034
+                    ],
+                    "scale": [
+                        1.0000000000000002,
+                        1.0,
+                        1.0
+                    ]
+                },
+                {
+                    "translate": [
+                        -72.91947528641614,
+                        141.00576602105608,
+                        -1.6001953989271112
+                    ],
+                    "rotate": [
+                        0.03339860862973838,
+                        -7.2273398244519536,
+                        -93.03286028330342
+                    ],
+                    "scale": [
+                        1.0,
+                        0.9999999999999999,
+                        1.0
+                    ]
+                }
+            ],
+            "pivot_nodes": {},
+            "pivots": {},
+            "settings": {
+                "constraintType": 0,
+                "simpleConnection": false,
+                "offsetGroup": false,
+                "noCtrl": false,
+                "shapeCtrl": 0,
+                "shapeTranslate": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "shapeRotate": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "shapeScale": 1.0,
+                "moduleType": 0,
+                "side": 2,
+                "baseName": "middleMetacarpal",
+                "index": 0,
+                "aimVector": [
+                    1.0,
+                    0.0,
+                    0.0
+                ],
+                "upVector": [
+                    0.0,
+                    0.0,
+                    1.0
+                ],
+                "jointOrientation": 0,
+                "subCtrl": true,
+                "subCtrlSize": 0.75,
+                "guide0Name": "metacarpal",
+                "guide1Name": "knuckle",
+                "ikFkDefault": 0,
+                "fkShape": 0,
+                "fkSize": 0.5,
+                "ikShape": 0,
+                "ikSize": 0.5,
+                "ikCtrlOrient": 0,
+                "stretchIk": false,
+                "useRibbon": false,
+                "bindJointCount": 5,
+                "ribbonWidth": 2.0,
+                "ribbonDirection": 1,
+                "ribbonOffsetDirection": 1,
+                "ribbonReverse": false,
+                "ribbonPinch": 0.1,
+                "ribbonDegree": 1,
+                "ribbonUniformIsoparms": false,
+                "follicleScale": true,
+                "levelCount": 1,
+                "level1ControlCount": 5,
+                "level1Shape": 0,
+                "level1ShapeTranslate": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "level1ShapeScale": [
+                    1.0,
+                    1.0,
+                    1.0
+                ],
+                "level2ControlCount": 3,
+                "level2Shape": 0,
+                "level2ShapeTranslate": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "level2ShapeScale": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "parent": {
+                "node": "R_indexMetacarpal_00_GUIDE_DATA",
+                "guide_index": 0
+            }
+        },
+        {
+            "node": "R_middle_00_GUIDE_DATA",
+            "module_type": "Limb_Finger",
+            "base_name": "middle",
+            "side": "Right",
+            "index": 0,
+            "guide_count": 4,
+            "guide_nodes": [
+                "R_middle_00_GUIDE_ROOT",
+                "R_middle_00_01_GUIDE",
+                "R_middle_00_02_GUIDE",
+                "R_middle_00_03_GUIDE"
+            ],
+            "guides": [
+                {
+                    "translate": [
+                        -72.91947528641619,
+                        141.0057660210561,
+                        -1.6001953989271174
+                    ],
+                    "rotate": [
+                        -1.1584139223389003,
+                        -7.134463583864881,
+                        -83.52012444292244
+                    ],
+                    "scale": [
+                        0.6284728083272105,
+                        0.6284728083272105,
+                        0.6284728083272106
+                    ]
+                },
+                {
+                    "translate": [
+                        -75.95002474150334,
+                        140.7420491386089,
+                        -1.5461302305864224
+                    ],
+                    "rotate": [
+                        -1.4172119441449977,
+                        -6.7298461807615935,
+                        -77.94541464261673
+                    ],
+                    "scale": [
+                        0.9999999999999998,
+                        1.0,
+                        1.0
+                    ]
+                },
+                {
+                    "translate": [
+                        -78.3407114664668,
+                        140.1428043304087,
+                        -1.4745329601302264
+                    ],
+                    "rotate": [
+                        -2.9935706343638913,
+                        -6.193831668351093,
+                        -64.00691692784696
+                    ],
+                    "scale": [
+                        1.0,
+                        0.9999999999999999,
+                        1.0000000000000002
+                    ]
+                },
+                {
+                    "translate": [
+                        -80.45293516009284,
+                        139.12763015911568,
+                        -1.352695525150625
+                    ],
+                    "rotate": [
+                        -2.9935706343638913,
+                        -6.193831668351093,
+                        -64.00691692784696
+                    ],
+                    "scale": [
+                        1.0000000000000002,
+                        1.0000000000000002,
+                        1.0000000000000004
+                    ]
+                }
+            ],
+            "pivot_nodes": {},
+            "pivots": {},
+            "settings": {
+                "constraintType": 0,
+                "simpleConnection": false,
+                "offsetGroup": false,
+                "noCtrl": false,
+                "shapeCtrl": 0,
+                "shapeTranslate": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "shapeRotate": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "shapeScale": 1.0,
+                "moduleType": 0,
+                "side": 2,
+                "baseName": "middle",
+                "index": 0,
+                "aimVector": [
+                    1.0,
+                    0.0,
+                    0.0
+                ],
+                "upVector": [
+                    0.0,
+                    0.0,
+                    1.0
+                ],
+                "jointOrientation": 0,
+                "subCtrl": false,
+                "subCtrlSize": 0.75,
+                "guide0Name": "base",
+                "guide1Name": "middle",
+                "guide2Name": "distal",
+                "ikFkDefault": 0,
+                "fkShape": 0,
+                "fkSize": 0.5,
+                "ikShape": 0,
+                "ikSize": 0.5,
+                "ikCtrlOrient": 0,
+                "poleShape": 0,
+                "poleCtrlOrient": 0,
+                "poleSize": 0.3,
+                "poleDistance": 1.0,
+                "stretchIk": true,
+                "useRibbon": false,
+                "bindJointCount": 5,
+                "ribbonWidth": 2.0,
+                "ribbonDirection": 1,
+                "ribbonOffsetDirection": 1,
+                "ribbonReverse": false,
+                "ribbonPinch": 0.1,
+                "ribbonDegree": 1,
+                "ribbonUniformIsoparms": false,
+                "follicleScale": true,
+                "levelCount": 1,
+                "level1ControlCount": 5,
+                "level1Shape": 0,
+                "level1ShapeTranslate": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "level1ShapeScale": [
+                    1.0,
+                    1.0,
+                    1.0
+                ],
+                "level2ControlCount": 3,
+                "level2Shape": 0,
+                "level2ShapeTranslate": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "level2ShapeScale": [
+                    1.0,
+                    1.0,
+                    1.0
+                ],
+                "guide3Name": "tip",
+                "guide4Name": "",
+                "invertCurl": false,
+                "spreadFactor": 1.0
+            },
+            "parent": {
+                "node": "R_middleMetacarpal_00_GUIDE_DATA",
+                "guide_index": 1
+            }
+        },
+        {
+            "node": "R_ringMetacarpal_00_GUIDE_DATA",
+            "module_type": "Limb_Metacarpal",
+            "base_name": "ringMetacarpal",
+            "side": "Right",
+            "index": 0,
+            "guide_count": 2,
+            "guide_nodes": [
+                "R_ringMetacarpal_00_GUIDE_ROOT",
+                "R_ringMetacarpal_00_01_GUIDE"
+            ],
+            "guides": [
+                {
+                    "translate": [
+                        -66.21856529031795,
+                        140.37935918480488,
+                        -3.009267687463762
+                    ],
+                    "rotate": [
+                        5.289385462731866,
+                        -11.847537620746749,
+                        -88.73607677845257
+                    ],
+                    "scale": [
+                        0.9999999999999994,
+                        0.9999999999999999,
+                        0.9999999999999997
+                    ]
+                },
+                {
+                    "translate": [
+                        -72.31984723090653,
+                        140.1286701412339,
+                        -3.5624600350223337
+                    ],
+                    "rotate": [
+                        5.289385462731867,
+                        -11.847537620746744,
+                        -88.73607677845254
+                    ],
+                    "scale": [
+                        0.9999999999999999,
+                        0.9999999999999998,
+                        0.9999999999999998
+                    ]
+                }
+            ],
+            "pivot_nodes": {},
+            "pivots": {},
+            "settings": {
+                "constraintType": 0,
+                "simpleConnection": false,
+                "offsetGroup": false,
+                "noCtrl": false,
+                "shapeCtrl": 0,
+                "shapeTranslate": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "shapeRotate": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "shapeScale": 1.0,
+                "moduleType": 0,
+                "side": 2,
+                "baseName": "ringMetacarpal",
+                "index": 0,
+                "aimVector": [
+                    1.0,
+                    0.0,
+                    0.0
+                ],
+                "upVector": [
+                    0.0,
+                    0.0,
+                    1.0
+                ],
+                "jointOrientation": 0,
+                "subCtrl": true,
+                "subCtrlSize": 0.75,
+                "guide0Name": "metacarpal",
+                "guide1Name": "knuckle",
+                "ikFkDefault": 0,
+                "fkShape": 0,
+                "fkSize": 0.5,
+                "ikShape": 0,
+                "ikSize": 0.5,
+                "ikCtrlOrient": 0,
+                "stretchIk": false,
+                "useRibbon": false,
+                "bindJointCount": 5,
+                "ribbonWidth": 2.0,
+                "ribbonDirection": 1,
+                "ribbonOffsetDirection": 1,
+                "ribbonReverse": false,
+                "ribbonPinch": 0.1,
+                "ribbonDegree": 1,
+                "ribbonUniformIsoparms": false,
+                "follicleScale": true,
+                "levelCount": 1,
+                "level1ControlCount": 5,
+                "level1Shape": 0,
+                "level1ShapeTranslate": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "level1ShapeScale": [
+                    1.0,
+                    1.0,
+                    1.0
+                ],
+                "level2ControlCount": 3,
+                "level2Shape": 0,
+                "level2ShapeTranslate": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "level2ShapeScale": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "parent": {
+                "node": "R_middleMetacarpal_00_GUIDE_DATA",
+                "guide_index": 0
+            }
+        },
+        {
+            "node": "R_pinkyMetacarpal_00_GUIDE_DATA",
+            "module_type": "Limb_Metacarpal",
+            "base_name": "pinkyMetacarpal",
+            "side": "Right",
+            "index": 0,
+            "guide_count": 2,
+            "guide_nodes": [
+                "R_pinkyMetacarpal_00_GUIDE_ROOT",
+                "R_pinkyMetacarpal_00_01_GUIDE"
+            ],
+            "guides": [
+                {
+                    "translate": [
+                        -66.08909061991498,
+                        140.03910296628322,
+                        -4.283079527799005
+                    ],
+                    "rotate": [
+                        10.093673339157165,
+                        -20.61699732743578,
+                        -90.11749111689576
+                    ],
+                    "scale": [
+                        0.9999999999999998,
+                        0.9999999999999998,
+                        0.9999999999999998
+                    ]
+                },
+                {
+                    "translate": [
+                        -71.41377395417697,
+                        139.71630208836876,
+                        -5.170125500261506
+                    ],
+                    "rotate": [
+                        10.09367333915716,
+                        -20.616997327435776,
+                        -90.11749111689572
+                    ],
+                    "scale": [
+                        1.0,
+                        0.9999999999999999,
+                        0.9999999999999998
+                    ]
+                }
+            ],
+            "pivot_nodes": {},
+            "pivots": {},
+            "settings": {
+                "constraintType": 0,
+                "simpleConnection": false,
+                "offsetGroup": false,
+                "noCtrl": false,
+                "shapeCtrl": 0,
+                "shapeTranslate": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "shapeRotate": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "shapeScale": 1.0,
+                "moduleType": 0,
+                "side": 2,
+                "baseName": "pinkyMetacarpal",
+                "index": 0,
+                "aimVector": [
+                    1.0,
+                    0.0,
+                    0.0
+                ],
+                "upVector": [
+                    0.0,
+                    0.0,
+                    1.0
+                ],
+                "jointOrientation": 0,
+                "subCtrl": true,
+                "subCtrlSize": 0.75,
+                "guide0Name": "metacarpal",
+                "guide1Name": "knuckle",
+                "ikFkDefault": 0,
+                "fkShape": 0,
+                "fkSize": 0.5,
+                "ikShape": 0,
+                "ikSize": 0.5,
+                "ikCtrlOrient": 0,
+                "stretchIk": false,
+                "useRibbon": false,
+                "bindJointCount": 5,
+                "ribbonWidth": 2.0,
+                "ribbonDirection": 1,
+                "ribbonOffsetDirection": 1,
+                "ribbonReverse": false,
+                "ribbonPinch": 0.1,
+                "ribbonDegree": 1,
+                "ribbonUniformIsoparms": false,
+                "follicleScale": true,
+                "levelCount": 1,
+                "level1ControlCount": 5,
+                "level1Shape": 0,
+                "level1ShapeTranslate": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "level1ShapeScale": [
+                    1.0,
+                    1.0,
+                    1.0
+                ],
+                "level2ControlCount": 3,
+                "level2Shape": 0,
+                "level2ShapeTranslate": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "level2ShapeScale": [
+                    1.0,
+                    1.0,
+                    1.0
+                ]
+            },
+            "parent": {
+                "node": "R_ringMetacarpal_00_GUIDE_DATA",
+                "guide_index": 0
+            }
+        },
+        {
+            "node": "R_pinky_00_GUIDE_DATA",
+            "module_type": "Limb_Finger",
+            "base_name": "pinky",
+            "side": "Right",
+            "index": 0,
+            "guide_count": 4,
+            "guide_nodes": [
+                "R_pinky_00_GUIDE_ROOT",
+                "R_pinky_00_01_GUIDE",
+                "R_pinky_00_02_GUIDE",
+                "R_pinky_00_03_GUIDE"
+            ],
+            "guides": [
+                {
+                    "translate": [
+                        -71.41377395417702,
+                        139.71630208836868,
+                        -5.170125500261469
+                    ],
+                    "rotate": [
+                        1.090520407342103,
+                        -22.83358562595249,
+                        -66.10700778155993
+                    ],
+                    "scale": [
+                        0.6284728083272106,
+                        0.6284728083272106,
+                        0.6284728083272108
+                    ]
+                },
+                {
+                    "translate": [
+                        -74.05942474295449,
+                        138.81019944844059,
+                        -5.32206506609772
+                    ],
+                    "rotate": [
+                        -2.1367735496242437,
+                        -22.48470770041316,
+                        -56.65039886560288
+                    ],
+                    "scale": [
+                        1.0,
+                        0.9999999999999999,
+                        0.9999999999999998
+                    ]
+                },
+                {
+                    "translate": [
+                        -75.56783043131847,
+                        137.84805067285254,
+                        -5.260391300768262
+                    ],
+                    "rotate": [
+                        -3.1742963904369517,
+                        -22.368105862802725,
+                        -53.931223053214765
+                    ],
+                    "scale": [
+                        0.9999999999999997,
+                        0.9999999999999999,
+                        0.9999999999999996
+                    ]
+                },
+                {
+                    "translate": [
+                        -77.08156355479129,
+                        136.79363702169468,
+                        -5.165801760613134
+                    ],
+                    "rotate": [
+                        -3.17429639043695,
+                        -22.36810586280272,
+                        -53.93122305321478
+                    ],
+                    "scale": [
+                        1.0,
+                        0.9999999999999999,
+                        0.9999999999999999
+                    ]
+                }
+            ],
+            "pivot_nodes": {},
+            "pivots": {},
+            "settings": {
+                "constraintType": 0,
+                "simpleConnection": false,
+                "offsetGroup": false,
+                "noCtrl": false,
+                "shapeCtrl": 0,
+                "shapeTranslate": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "shapeRotate": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "shapeScale": 1.0,
+                "moduleType": 0,
+                "side": 2,
+                "baseName": "pinky",
+                "index": 0,
+                "aimVector": [
+                    1.0,
+                    0.0,
+                    0.0
+                ],
+                "upVector": [
+                    0.0,
+                    0.0,
+                    1.0
+                ],
+                "jointOrientation": 0,
+                "subCtrl": false,
+                "subCtrlSize": 0.75,
+                "guide0Name": "base",
+                "guide1Name": "middle",
+                "guide2Name": "distal",
+                "ikFkDefault": 0,
+                "fkShape": 0,
+                "fkSize": 0.5,
+                "ikShape": 0,
+                "ikSize": 0.5,
+                "ikCtrlOrient": 0,
+                "poleShape": 0,
+                "poleCtrlOrient": 0,
+                "poleSize": 0.3,
+                "poleDistance": 1.0,
+                "stretchIk": true,
+                "useRibbon": false,
+                "bindJointCount": 5,
+                "ribbonWidth": 2.0,
+                "ribbonDirection": 1,
+                "ribbonOffsetDirection": 1,
+                "ribbonReverse": false,
+                "ribbonPinch": 0.1,
+                "ribbonDegree": 1,
+                "ribbonUniformIsoparms": false,
+                "follicleScale": true,
+                "levelCount": 1,
+                "level1ControlCount": 5,
+                "level1Shape": 0,
+                "level1ShapeTranslate": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "level1ShapeScale": [
+                    1.0,
+                    1.0,
+                    1.0
+                ],
+                "level2ControlCount": 3,
+                "level2Shape": 0,
+                "level2ShapeTranslate": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "level2ShapeScale": [
+                    1.0,
+                    1.0,
+                    1.0
+                ],
+                "guide3Name": "tip",
+                "guide4Name": "",
+                "invertCurl": false,
+                "spreadFactor": 1.0
+            },
+            "parent": {
+                "node": "R_pinkyMetacarpal_00_GUIDE_DATA",
+                "guide_index": 1
+            }
+        },
+        {
+            "node": "R_ring_00_GUIDE_DATA",
+            "module_type": "Limb_Finger",
+            "base_name": "ring",
+            "side": "Right",
+            "index": 0,
+            "guide_count": 4,
+            "guide_nodes": [
+                "R_ring_00_GUIDE_ROOT",
+                "R_ring_00_01_GUIDE",
+                "R_ring_00_02_GUIDE",
+                "R_ring_00_03_GUIDE"
+            ],
+            "guides": [
+                {
+                    "translate": [
+                        -72.31984723090655,
+                        140.12867014123393,
+                        -3.5624600350223217
+                    ],
+                    "rotate": [
+                        4.014083440644663,
+                        -12.332008385021611,
+                        -82.6526141676296
+                    ],
+                    "scale": [
+                        0.6284728083272108,
+                        0.6284728083272108,
+                        0.6284728083272108
+                    ]
+                },
+                {
+                    "translate": [
+                        -75.30639066095989,
+                        139.9994298327209,
+                        -3.824357867659236
+                    ],
+                    "rotate": [
+                        2.5065183733152234,
+                        -12.560951783881071,
+                        -73.7129344977567
+                    ],
+                    "scale": [
+                        0.9999999999999999,
+                        0.9999999999999999,
+                        0.9999999999999999
+                    ]
+                },
+                {
+                    "translate": [
+                        -77.5173235693684,
+                        139.3305407531574,
+                        -3.923048906563142
+                    ],
+                    "rotate": [
+                        0.10052768943301892,
+                        -12.804265649384545,
+                        -62.78585647733219
+                    ],
+                    "scale": [
+                        0.9999999999999997,
+                        0.9999999999999999,
+                        1.0
+                    ]
+                },
+                {
+                    "translate": [
+                        -79.2440261129752,
+                        138.44174815830291,
+                        -3.9263715342231427
+                    ],
+                    "rotate": [
+                        0.10052768943301889,
+                        -12.804265649384543,
+                        -62.78585647733219
+                    ],
+                    "scale": [
+                        1.0,
+                        0.9999999999999999,
+                        1.0
+                    ]
+                }
+            ],
+            "pivot_nodes": {},
+            "pivots": {},
+            "settings": {
+                "constraintType": 0,
+                "simpleConnection": false,
+                "offsetGroup": false,
+                "noCtrl": false,
+                "shapeCtrl": 0,
+                "shapeTranslate": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "shapeRotate": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "shapeScale": 1.0,
+                "moduleType": 0,
+                "side": 2,
+                "baseName": "ring",
+                "index": 0,
+                "aimVector": [
+                    1.0,
+                    0.0,
+                    0.0
+                ],
+                "upVector": [
+                    0.0,
+                    0.0,
+                    1.0
+                ],
+                "jointOrientation": 0,
+                "subCtrl": false,
+                "subCtrlSize": 0.75,
+                "guide0Name": "base",
+                "guide1Name": "middle",
+                "guide2Name": "distal",
+                "ikFkDefault": 0,
+                "fkShape": 0,
+                "fkSize": 0.5,
+                "ikShape": 0,
+                "ikSize": 0.5,
+                "ikCtrlOrient": 0,
+                "poleShape": 0,
+                "poleCtrlOrient": 0,
+                "poleSize": 0.3,
+                "poleDistance": 1.0,
+                "stretchIk": true,
+                "useRibbon": false,
+                "bindJointCount": 5,
+                "ribbonWidth": 2.0,
+                "ribbonDirection": 1,
+                "ribbonOffsetDirection": 1,
+                "ribbonReverse": false,
+                "ribbonPinch": 0.1,
+                "ribbonDegree": 1,
+                "ribbonUniformIsoparms": false,
+                "follicleScale": true,
+                "levelCount": 1,
+                "level1ControlCount": 5,
+                "level1Shape": 0,
+                "level1ShapeTranslate": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "level1ShapeScale": [
+                    1.0,
+                    1.0,
+                    1.0
+                ],
+                "level2ControlCount": 3,
+                "level2Shape": 0,
+                "level2ShapeTranslate": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "level2ShapeScale": [
+                    1.0,
+                    1.0,
+                    1.0
+                ],
+                "guide3Name": "tip",
+                "guide4Name": "",
+                "invertCurl": false,
+                "spreadFactor": 1.0
+            },
+            "parent": {
+                "node": "R_ringMetacarpal_00_GUIDE_DATA",
+                "guide_index": 1
+            }
+        },
+        {
+            "node": "R_thumb_00_GUIDE_DATA",
+            "module_type": "Limb_Finger",
+            "base_name": "thumb",
+            "side": "Right",
+            "index": 0,
+            "guide_count": 4,
+            "guide_nodes": [
+                "R_thumb_00_GUIDE_ROOT",
+                "R_thumb_00_01_GUIDE",
+                "R_thumb_00_02_GUIDE",
+                "R_thumb_00_03_GUIDE"
+            ],
+            "guides": [
+                {
+                    "translate": [
+                        -66.7310276968169,
+                        140.35267778407706,
+                        0.5970214529278111
+                    ],
+                    "rotate": [
+                        -42.3498849048012,
+                        23.966107106725726,
+                        -104.93438183596965
+                    ],
+                    "scale": [
+                        0.6284728083272106,
+                        0.6284728083272106,
+                        0.6284728083272106
+                    ]
+                },
+                {
+                    "translate": [
+                        -69.09917537416308,
+                        140.1909745623479,
+                        2.5002892434940716
+                    ],
+                    "rotate": [
+                        -39.998000705323484,
+                        27.827154524855903,
+                        -100.50291060837988
+                    ],
+                    "scale": [
+                        1.0000000000000002,
+                        1.0,
+                        1.0000000000000002
+                    ]
+                },
+                {
+                    "translate": [
+                        -71.10504186335984,
+                        139.7259411874362,
+                        3.856698884400342
+                    ],
+                    "rotate": [
+                        -33.00593938637269,
+                        36.11309400466113,
+                        -87.37320808437003
+                    ],
+                    "scale": [
+                        0.9999999999999998,
+                        1.0,
+                        1.0
+                    ]
+                },
+                {
+                    "translate": [
+                        -73.40703569466152,
+                        138.72140136886134,
+                        5.087550902695799
+                    ],
+                    "rotate": [
+                        -33.00593938637269,
+                        36.11309400466113,
+                        -87.37320808437005
+                    ],
+                    "scale": [
+                        0.9999999999999999,
+                        1.0,
+                        0.9999999999999998
+                    ]
+                }
+            ],
+            "pivot_nodes": {},
+            "pivots": {},
+            "settings": {
+                "constraintType": 0,
+                "simpleConnection": false,
+                "offsetGroup": false,
+                "noCtrl": false,
+                "shapeCtrl": 0,
+                "shapeTranslate": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "shapeRotate": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "shapeScale": 1.0,
+                "moduleType": 0,
+                "side": 2,
+                "baseName": "thumb",
+                "index": 0,
+                "aimVector": [
+                    1.0,
+                    0.0,
+                    0.0
+                ],
+                "upVector": [
+                    0.0,
+                    0.0,
+                    1.0
+                ],
+                "jointOrientation": 0,
+                "subCtrl": false,
+                "subCtrlSize": 0.75,
+                "guide0Name": "base",
+                "guide1Name": "middle",
+                "guide2Name": "distal",
+                "ikFkDefault": 0,
+                "fkShape": 0,
+                "fkSize": 0.5,
+                "ikShape": 0,
+                "ikSize": 0.5,
+                "ikCtrlOrient": 0,
+                "poleShape": 0,
+                "poleCtrlOrient": 0,
+                "poleSize": 0.3,
+                "poleDistance": 1.0,
+                "stretchIk": true,
+                "useRibbon": false,
+                "bindJointCount": 5,
+                "ribbonWidth": 2.0,
+                "ribbonDirection": 1,
+                "ribbonOffsetDirection": 1,
+                "ribbonReverse": false,
+                "ribbonPinch": 0.1,
+                "ribbonDegree": 1,
+                "ribbonUniformIsoparms": false,
+                "follicleScale": true,
+                "levelCount": 1,
+                "level1ControlCount": 5,
+                "level1Shape": 0,
+                "level1ShapeTranslate": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "level1ShapeScale": [
+                    1.0,
+                    1.0,
+                    1.0
+                ],
+                "level2ControlCount": 3,
+                "level2Shape": 0,
+                "level2ShapeTranslate": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "level2ShapeScale": [
+                    1.0,
+                    1.0,
+                    1.0
+                ],
+                "guide3Name": "tip",
+                "guide4Name": "",
+                "invertCurl": false,
+                "spreadFactor": 1.0
+            },
+            "parent": {
+                "node": "R_middleMetacarpal_00_GUIDE_DATA",
+                "guide_index": 1
+            }
+        }
+    ]
+}

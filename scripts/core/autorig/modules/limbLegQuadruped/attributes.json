@@ -1,0 +1,49 @@
+{
+    "extends": "limb",
+    "module_label": "Leg (Quadruped)",
+    "attributes": {
+        "guide0Name": {"value": "hip"},
+        "guide1Name": {"value": "knee"},
+        "guide2Name": {"value": "hock"},
+        "guide3Name": {
+            "label": "Guide 4 Name",
+            "widget": "string",
+            "order": 35,
+            "section": "General",
+            "tooltip": "Nom du 4e guide : remplace son index dans les noms de joints et de ctrls. Vide : index.",
+            "dt": "string",
+            "value": "foot"
+        },
+
+        "quadrupedIkMethod": {
+            "label": "IK Method",
+            "widget": "enum",
+            "order": 127,
+            "section": "IK",
+            "tooltip": "SC_RP : SingleChain hanche -> genou (ctrl genou), puis RotatePlane genou -> pied (ctrl IK + pole devant le jarret). RP_RP : RotatePlane hanche -> jarret (ctrl jarret + pole devant le genou), puis RotatePlane genou -> pied (ctrl IK, sans pole vector). RP_SC : RotatePlane hanche -> jarret (ctrl jarret + pole devant le genou), puis SingleChain jarret -> pied (ctrl IK).",
+            "at": "enum",
+            "enumName": "SC_RP:RP_RP:RP_SC",
+            "value": 1
+        },
+        "secondaryShape": {
+            "label": "Knee / Hock Shape",
+            "widget": "enum",
+            "order": 129,
+            "section": "IK",
+            "tooltip": "Forme du ctrl secondaire : genou (SC_RP) ou jarret (RP_RP).",
+            "at": "enum",
+            "enumName": "sphere:circle:square:cube:diamond:arrow:plus:pyramid",
+            "value": 0
+        },
+        "secondarySize": {
+            "label": "Knee / Hock Size",
+            "widget": "float",
+            "order": 129.5,
+            "section": "IK",
+            "min": 0.01,
+            "tooltip": "Taille du ctrl secondaire.",
+            "at": "double",
+            "value": 0.75
+        }
+    }
+}

@@ -100,7 +100,7 @@ class ImportExportPanel(QtWidgets.QWidget):
         export_box.setFrameShape(QtWidgets.QFrame.StyledPanel)
         export_layout = QtWidgets.QVBoxLayout(export_box)
 
-        export_layout.addWidget(self._title("EXPORT"))
+        export_layout.addWidget(self._title("EXPORT GUIDES"))
         export_layout.addWidget(self.rig_combo)
         export_layout.addWidget(self.export_button)
 
@@ -110,7 +110,7 @@ class ImportExportPanel(QtWidgets.QWidget):
         import_box.setFrameShape(QtWidgets.QFrame.StyledPanel)
         import_layout = QtWidgets.QVBoxLayout(import_box)
 
-        import_layout.addWidget(self._title("IMPORT"))
+        import_layout.addWidget(self._title("IMPORT GUIDES"))
 
         file_row = QtWidgets.QHBoxLayout()
         file_row.addWidget(self.file_field)

@@ -1,0 +1,88 @@
+{
+    "extends": "simpleCtrl",
+    "module_label": "Base",
+    "sections": {
+        "Orientation": {
+            "order": 20,
+            "collapsed": true
+        }
+    },
+    "attributes": {
+        "constraintType": {
+            "label": "Constraint Type",
+            "widget": "enum",
+            "order": 44,
+            "section": "Build",
+            "tooltip": "Matrix : contraintes de matrix (offsetParentMatrix, cnstrMtx_utilities). Classic : contraintes natives Maya (parentConstraint, pointConstraint, poleVectorConstraint...) ; l'offsetParentMatrix baké du node contraint est remis dans ses channels avant.",
+            "at": "enum",
+            "enumName": "Matrix:Classic",
+            "value": 0
+        },
+        "simpleConnection": {
+            "label": "Simple Connection",
+            "widget": "bool",
+            "order": 45,
+            "section": "Build",
+            "tooltip": "Connecte directement translate/rotate/scale du ctrl au joint (offset stocké dans l'offsetParentMatrix du joint) au lieu d'une contrainte de matrice.",
+            "at": "bool",
+            "value": 0
+        },
+        "offsetGroup": {
+            "tooltip": "Crée un groupe offset au-dessus de chaque ctrl, au lieu de stocker l'offset dans l'offsetParentMatrix du ctrl."
+        },
+        "noCtrl": {
+            "label": "No Ctrl (shape on joint)",
+            "widget": "bool",
+            "order": 47,
+            "section": "Build",
+            "tooltip": "Ne crée aucun ctrl séparé : la shape du ctrl est posée directement sur le joint (offset stocké dans l'offsetParentMatrix du joint), qui devient lui-même animable.",
+            "at": "bool",
+            "value": 0
+        },
+        "attributesHost": {
+            "label": "Attributes Ctrl",
+            "widget": "message",
+            "order": 48,
+            "section": "Build",
+            "tooltip": "Guide (un seul) dont le ctrl portera les attributs custom du module dans Maya. Vide = ctrl par défaut du module.",
+            "at": "message"
+        },
+        "moduleType": {
+            "enumName": "base"
+        },
+        "baseName": {
+            "value": "Base"
+        },
+        "spaceSwitchTargets": {
+            "tooltip": "Guides added here become space-switch spaces on the module's control."
+        },
+        "aimVector": {
+            "label": "Aim Vector",
+            "widget": "vector",
+            "order": 50,
+            "section": "Orientation",
+            "tooltip": "Primary axis of the joints when orienting the chain.",
+            "at": "double3",
+            "value": [1.0, 0.0, 0.0]
+        },
+        "upVector": {
+            "label": "Up Vector",
+            "widget": "vector",
+            "order": 60,
+            "section": "Orientation",
+            "tooltip": "Secondary (up) axis of the joints when orienting the chain.",
+            "at": "double3",
+            "value": [0.0, 0.0, 1.0]
+        },
+        "jointOrientation": {
+            "label": "Joint Orientation",
+            "widget": "enum",
+            "order": 45,
+            "section": "Orientation",
+            "tooltip": "Chain Plane : aim vers le joint suivant, up (Up Vector) sur la normale du plan de la chaîne - même axe de pliage pour tous les joints, adapté à l'IK (chaîne droite : up = axe Y du guide). Guide Up : aim vers le joint suivant, up sur l'axe Y de chaque guide. Guides : les joints prennent exactement l'orientation de leur guide.",
+            "at": "enum",
+            "enumName": "Chain Plane:Guide Up:Guides",
+            "value": 0
+        }
+    }
+}

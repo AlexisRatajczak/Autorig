@@ -1,0 +1,137 @@
+{
+    "extends": "simpleBase",
+    "module_label": "Foot",
+    "sections": {
+        "Foot": {
+            "order": 16,
+            "collapsed": true
+        }
+    },
+    "attributes": {
+        "noCtrl": {
+            "hidden": true
+        },
+        "shapeCtrl": {
+            "hidden": true
+        },
+        "simpleConnection": {
+            "hidden": true
+        },
+
+        "attachToLeg": {
+            "label": "Attach To Leg",
+            "widget": "bool",
+            "order": 60,
+            "section": "Foot",
+            "tooltip": "Guide root sous le dernier guide d'une jambe (limb / simpleIk) : le ctrl IK de la jambe devient le ctrl du pied (pivots et ctrl de roll dessus), l'ikHandle de la jambe suit le pivot ball, et le switch ikFk de la jambe fait passer les joints du pied de la jambe (FK) au reverse foot (IK). Décoché ou sans jambe : ctrl de pied propre.",
+            "at": "bool",
+            "value": 1
+        },
+        "footShape": {
+            "label": "Foot Shape",
+            "widget": "enum",
+            "order": 62,
+            "section": "Foot",
+            "tooltip": "Forme du ctrl de pied (sans jambe attachée).",
+            "at": "enum",
+            "enumName": "cube:circle:square:sphere:diamond:arrow:plus:pyramid",
+            "value": 0
+        },
+        "footSize": {
+            "label": "Foot Size",
+            "widget": "float",
+            "order": 63,
+            "section": "Foot",
+            "min": 0.01,
+            "tooltip": "Taille du ctrl de pied (sans jambe attachée).",
+            "at": "double",
+            "value": 1.0
+        },
+        "pivotControls": {
+            "label": "Pivot Controls",
+            "widget": "bool",
+            "order": 64,
+            "section": "Foot",
+            "tooltip": "Crée un ctrl sur chaque pivot (heel, tiptoe, bankL, bankR, ball, toe), dans la hiérarchie du reverse foot : sa rotation s'ajoute à celle des attributs (footRoll, bank...). Translate / scale verrouillés.",
+            "at": "bool",
+            "value": 1
+        },
+        "pivotCtrlSize": {
+            "label": "Pivot Ctrl Size",
+            "widget": "float",
+            "order": 65,
+            "section": "Foot",
+            "visible_when": {"attr": "pivotControls", "equals": 1},
+            "min": 0.01,
+            "tooltip": "Taille des ctrls de pivot.",
+            "at": "double",
+            "value": 1.0
+        },
+        "phalanxAngle": {
+            "label": "Phalanx Angle",
+            "widget": "float",
+            "order": 67.5,
+            "section": "Foot",
+            "min": 0.0,
+            "tooltip": "Valeur par défaut de l'attribut 'phalanxAngle' du ctrl de roll (avec au moins une phalange entre le ball et la pointe) : plage de roll de chaque phalange (degrés), prise l'une après l'autre après le ball, avant la pointe.",
+            "at": "double",
+            "value": 20.0
+        },
+        "rollFactor": {
+            "label": "Roll Factor",
+            "widget": "float",
+            "order": 66,
+            "section": "Foot",
+            "min": 0.0,
+            "tooltip": "Valeur par défaut de l'attribut 'rollFactor' du ctrl de roll : degrés de roll / bank par unité de translate (translateZ : roll, translateX : bank).",
+            "at": "double",
+            "value": 10.0
+        },
+        "rollCtrlOffset": {
+            "label": "Roll Ctrl Offset",
+            "widget": "float",
+            "order": 67,
+            "section": "Foot",
+            "min": 0.0,
+            "tooltip": "Recul du ctrl de roll derrière le pivot du talon.",
+            "at": "double",
+            "value": 2.0
+        },
+        "fkCtrlSize": {
+            "label": "FK Ctrl Size",
+            "widget": "float",
+            "order": 68,
+            "section": "Foot",
+            "min": 0.01,
+            "tooltip": "Taille des ctrls de la chaîne FK du pied (fk_ctrl) et des ctrls du reverse foot par segment (ik_ctrl).",
+            "at": "double",
+            "value": 1.0
+        },
+        "heelGuide": {
+            "hidden": true,
+            "at": "message"
+        },
+        "tiptoeGuide": {
+            "hidden": true,
+            "at": "message"
+        },
+        "bankLGuide": {
+            "hidden": true,
+            "at": "message"
+        },
+        "bankRGuide": {
+            "hidden": true,
+            "at": "message"
+        },
+        "ballAngle": {
+            "label": "Ball Angle",
+            "widget": "float",
+            "order": 67,
+            "section": "Foot",
+            "min": 0.0,
+            "tooltip": "Valeur par défaut de l'attribut 'ballAngle' du ctrl de roll : limite de rotation du ball (degrés). Au-delà, le roll passe sur la pointe.",
+            "at": "double",
+            "value": 30.0
+        }
+    }
+}

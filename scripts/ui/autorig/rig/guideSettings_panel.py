@@ -3,7 +3,7 @@ from PySide6 import QtWidgets, QtCore
 import maya.cmds as cmds
 
 from ....core.autorig.modules import registry
-from ....core.autorig.modules.base import ui_settings
+from ....core.autorig.modules.simpleBase import ui_settings
 
 from importlib import reload
 reload(registry)

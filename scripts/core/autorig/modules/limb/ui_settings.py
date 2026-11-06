@@ -10,7 +10,7 @@
 
 from importlib import reload
 
-from ..base import ui_settings as base_ui_settings
+from ..simpleBase import ui_settings as base_ui_settings
 
 reload(base_ui_settings)
 

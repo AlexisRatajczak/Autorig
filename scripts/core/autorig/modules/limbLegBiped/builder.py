@@ -1,0 +1,19 @@
+# ====================================================================================================================
+# LEG BIPED BUILDER
+# ====================================================================================================================
+#
+#   Builder - limb hip -> knee -> ankle: every step is inherited from limb.Builder. Override here what is specific.
+#
+# ====================================================================================================================
+
+from ..limb import builder as limb_builder
+
+from importlib import reload
+
+reload(limb_builder)
+
+
+class Builder(limb_builder.Builder):
+
+    # Joint labels: hip, knee, ankle.
+    JOINT_TYPES = ("Hip", "Knee", "Foot")

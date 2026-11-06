@@ -28,7 +28,7 @@ __all__ = [
     "BASE_SETTINGS",
     "SIMPLE_FK_SETTINGS",
     "SIMPLE_IK_SETTINGS",
-    "IK_SPINE_SETTINGS",
+    "SPINE_SETTINGS",
     "LIMB_SETTINGS",
     "ARM_SETTINGS",
     "LEG_BIPED_SETTINGS",
@@ -53,7 +53,7 @@ BASE_SETTINGS = {
     "shapeCtrl":           "Default",                  # Default | circle | square | cube | sphere | diamond | arrow | plus | pyramid
     "shapeTranslate":      (0.0, 0.0, 0.0),
     "shapeRotate":         (0.0, 0.0, 0.0),
-    "shapeScale":          (1.0, 1.0, 1.0),
+    "shapeScale":           1.0,
 
     # Orientation
     "jointOrientation":    "Chain Plane",              # Chain Plane | Guide Up | Guides
@@ -79,7 +79,7 @@ SIMPLE_FK_SETTINGS = {
     "shapeCtrl":           "Default",                  # Default | circle | square | cube | sphere | diamond | arrow | plus | pyramid
     "shapeTranslate":      (0.0, 0.0, 0.0),
     "shapeRotate":         (0.0, 0.0, 0.0),
-    "shapeScale":          (1.0, 1.0, 1.0),
+    "shapeScale":           1.0,
 
     # Orientation
     "jointOrientation":    "Chain Plane",              # Chain Plane | Guide Up | Guides
@@ -111,7 +111,7 @@ SIMPLE_IK_SETTINGS = {
     "shapeCtrl":               "Default",                  # Default | circle | square | cube | sphere | diamond | arrow | plus | pyramid
     "shapeTranslate":          (0.0, 0.0, 0.0),
     "shapeRotate":             (0.0, 0.0, 0.0),
-    "shapeScale":              (1.0, 1.0, 1.0),
+    "shapeScale":               1.0,
 
     # Orientation
     "jointOrientation":        "Chain Plane",              # Chain Plane | Guide Up | Guides
@@ -125,16 +125,16 @@ SIMPLE_IK_SETTINGS = {
 }
 
 # ==========================================================
-# IkSpine - build_ik_spine
+# Spine - build_spine
 # ==========================================================
 
-IK_SPINE_SETTINGS = {
+SPINE_SETTINGS = {
     # Build
     "simpleConnection":    0,
     "offsetGroup":         0,
     "attributesHost":      None,                       # node
 
-    # IK Spine
+    # Spine
     "spineJointCount":     8,
     "mainShape":           "circle",                   # circle | square | cube | sphere | diamond | arrow | plus | pyramid
     "mainSize":            1.5,
@@ -144,7 +144,7 @@ IK_SPINE_SETTINGS = {
     # Shape
     "shapeTranslate":      (0.0, 0.0, 0.0),
     "shapeRotate":         (0.0, 0.0, 0.0),
-    "shapeScale":          (1.0, 1.0, 1.0),
+    "shapeScale":           1.0,
 
     # Orientation
     "jointOrientation":    "Chain Plane",              # Chain Plane | Guide Up | Guides
@@ -168,7 +168,7 @@ LIMB_SETTINGS = {
     # Shape
     "shapeTranslate":          (0.0, 0.0, 0.0),
     "shapeRotate":             (0.0, 0.0, 0.0),
-    "shapeScale":              (1.0, 1.0, 1.0),
+    "shapeScale":               1.0,
 
     # Orientation
     "jointOrientation":        "Chain Plane",              # Chain Plane | Guide Up | Guides
@@ -177,8 +177,6 @@ LIMB_SETTINGS = {
 
     # IK/FK Switch
     "ikFkDefault":             "FK",                       # FK | IK
-    "switchSize":              0.5,
-    "switchShapeOffset":       (0.0, 2.0, 0.0),
 
     # FK
     "fkShape":                 "circle",                   # circle | square | cube | sphere | diamond | arrow | plus | pyramid
@@ -234,7 +232,7 @@ ARM_SETTINGS = {
     # Shape
     "shapeTranslate":          (0.0, 0.0, 0.0),
     "shapeRotate":             (0.0, 0.0, 0.0),
-    "shapeScale":              (1.0, 1.0, 1.0),
+    "shapeScale":               1.0,
 
     # Orientation
     "jointOrientation":        "Chain Plane",              # Chain Plane | Guide Up | Guides
@@ -243,8 +241,6 @@ ARM_SETTINGS = {
 
     # IK/FK Switch
     "ikFkDefault":             "FK",                       # FK | IK
-    "switchSize":              0.5,
-    "switchShapeOffset":       (0.0, 2.0, 0.0),
 
     # FK
     "fkShape":                 "circle",                   # circle | square | cube | sphere | diamond | arrow | plus | pyramid
@@ -300,7 +296,7 @@ LEG_BIPED_SETTINGS = {
     # Shape
     "shapeTranslate":          (0.0, 0.0, 0.0),
     "shapeRotate":             (0.0, 0.0, 0.0),
-    "shapeScale":              (1.0, 1.0, 1.0),
+    "shapeScale":               1.0,
 
     # Orientation
     "jointOrientation":        "Chain Plane",              # Chain Plane | Guide Up | Guides
@@ -309,8 +305,6 @@ LEG_BIPED_SETTINGS = {
 
     # IK/FK Switch
     "ikFkDefault":             "FK",                       # FK | IK
-    "switchSize":              0.5,
-    "switchShapeOffset":       (0.0, 2.0, 0.0),
 
     # FK
     "fkShape":                 "circle",                   # circle | square | cube | sphere | diamond | arrow | plus | pyramid
@@ -366,7 +360,7 @@ LEG_QUADRUPED_SETTINGS = {
     # Shape
     "shapeTranslate":          (0.0, 0.0, 0.0),
     "shapeRotate":             (0.0, 0.0, 0.0),
-    "shapeScale":              (1.0, 1.0, 1.0),
+    "shapeScale":               1.0,
 
     # Orientation
     "jointOrientation":        "Chain Plane",              # Chain Plane | Guide Up | Guides
@@ -375,8 +369,6 @@ LEG_QUADRUPED_SETTINGS = {
 
     # IK/FK Switch
     "ikFkDefault":             "FK",                       # FK | IK
-    "switchSize":              0.5,
-    "switchShapeOffset":       (0.0, 2.0, 0.0),
 
     # FK
     "fkShape":                 "circle",                   # circle | square | cube | sphere | diamond | arrow | plus | pyramid
@@ -490,7 +482,7 @@ SETTINGS = {
     "base": BASE_SETTINGS,
     "SimpleFk": SIMPLE_FK_SETTINGS,
     "SimpleIk": SIMPLE_IK_SETTINGS,
-    "IkSpine": IK_SPINE_SETTINGS,
+    "Spine": SPINE_SETTINGS,
     "Limb": LIMB_SETTINGS,
     "Arm": ARM_SETTINGS,
     "legBiped": LEG_BIPED_SETTINGS,

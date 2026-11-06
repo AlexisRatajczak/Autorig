@@ -1,0 +1,23 @@
+{
+    "extends": "limb",
+    "module_label": "Metacarpal",
+    "attributes": {
+        "guide0Name": {"value": "metacarpal"},
+        "guide1Name": {"value": "knuckle"},
+        "guide2Name": {"remove": true},
+
+        "poleShape": {"remove": true},
+        "poleCtrlOrient": {"remove": true},
+        "poleSize": {"remove": true},
+        "poleDistance": {"remove": true},
+        "poleSpaceSwitchTargets": {"remove": true},
+
+        "stretchIk": {
+            "tooltip": "Stretch du métacarpe (attribut 'stretch' sur le ctrl IK) : la chaîne s'allonge quand le ctrl IK s'éloigne au-delà de sa longueur.",
+            "value": 0
+        },
+
+        "fkSize": {"value": 0.5},
+        "ikSize": {"value": 0.5}
+    }
+}

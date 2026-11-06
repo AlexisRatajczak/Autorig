@@ -1,0 +1,134 @@
+{
+    "module_label": "Basic Ctrl",
+    "sections": {
+        "General": {
+            "order": 10
+        },
+        "Build": {
+            "order": 15,
+            "collapsed": true
+        },
+        "Shape": {
+            "order": 17,
+            "collapsed": true
+        },
+        "Space Switch": {
+            "order": 30,
+            "collapsed": true
+        }
+    },
+    "attributes": {
+        "offsetGroup": {
+            "label": "Offset Group",
+            "widget": "bool",
+            "order": 46,
+            "section": "Build",
+            "tooltip": "Crée un groupe offset au-dessus du ctrl, au lieu de stocker l'offset dans l'offsetParentMatrix du ctrl.",
+            "at": "bool",
+            "value": 0
+        },
+        "shapeCtrl": {
+            "label": "Shape",
+            "widget": "enum",
+            "order": 46,
+            "section": "Shape",
+            "tooltip": "Forme du ctrl. 'Default' garde la forme par défaut du module.",
+            "at": "enum",
+            "enumName": "Default:circle:square:cube:sphere:diamond:arrow:plus:pyramid",
+            "value": 0
+        },
+        "shapeTranslate": {
+            "label": "Shape Translate",
+            "widget": "vector",
+            "order": 47,
+            "section": "Shape",
+            "tooltip": "Décale uniquement les points de la shape du ctrl (unités locales).",
+            "at": "double3",
+            "value": [0.0, 0.0, 0.0]
+        },
+        "shapeRotate": {
+            "label": "Shape Rotate",
+            "widget": "vector",
+            "order": 48,
+            "section": "Shape",
+            "tooltip": "Tourne uniquement les points de la shape du ctrl (degrés, ordre XYZ).",
+            "at": "double3",
+            "value": [0.0, 0.0, 0.0]
+        },
+        "shapeScale": {
+            "label": "Shape Scale",
+            "widget": "float",
+            "order": 49,
+            "section": "Shape",
+            "min": 0.01,
+            "tooltip": "Scale uniforme des points de la shape du ctrl uniquement.",
+            "at": "double",
+            "value": 1.0
+        },
+        "moduleType": {
+            "label": "Module Type",
+            "widget": "enum",
+            "order": 40,
+            "section": "General",
+            "readonly": true,
+            "at": "enum",
+            "enumName": "BasicCtrl",
+            "value": 0
+        },
+        "side": {
+            "label": "Side",
+            "widget": "enum",
+            "order": 20,
+            "section": "General",
+            "tooltip": "Center / Left / Right. Drives naming and default colors.",
+            "at": "enum",
+            "enumName": "Center:Left:Right",
+            "value": 0
+        },
+        "baseName": {
+            "label": "Name",
+            "widget": "string",
+            "order": 10,
+            "section": "General",
+            "tooltip": "Base name used for every node of the module.",
+            "dt": "string",
+            "value": "Ctrl"
+        },
+        "index": {
+            "label": "Index",
+            "widget": "int",
+            "order": 30,
+            "section": "General",
+            "min": 0,
+            "tooltip": "Disambiguates modules sharing the same name and side.",
+            "at": "long",
+            "value": 0
+        },
+        "parent": {
+            "hidden": true,
+            "at": "message"
+        },
+        "rigData": {
+            "hidden": true,
+            "at": "message"
+        },
+        "rootGuide": {
+            "hidden": true,
+            "at": "message"
+        },
+        "guides": {
+            "hidden": true,
+            "at": "message",
+            "multi": true
+        },
+        "spaceSwitchTargets": {
+            "label": "Space Switch Targets",
+            "widget": "message_list",
+            "order": 70,
+            "section": "Space Switch",
+            "tooltip": "Guides added here become space-switch spaces on the module's control (in addition to Local, its parent). Empty list: no space switch.",
+            "at": "message",
+            "multi": true
+        }
+    }
+}

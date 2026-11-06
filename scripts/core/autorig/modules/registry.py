@@ -8,7 +8,8 @@
 #   _read_module_name(guides_file)          - MODULE_NAME of a guides.py, without importing it
 #   list_module_types()                     - {moduleType: folder} of every module
 #   _find_module_dir(module_type)           - folder of a moduleType
-#   get_module_class(module_type)           - Guides class
+#   get_module_class(module_type)           - Guides class (parent guides reloaded first)
+#   reload_parent_guides(guides_class)      - reload the parent guides modules (base first)
 #   get_builder_class(module_type)          - Builder class (base builder reloaded first)
 #   get_settings_widget_class(module_type)  - SettingsWidget class (ui_settings.py)
 #   get_base_guides_class()                 - Guides class of 'base'
@@ -19,6 +20,7 @@
 
 import ast
 import importlib
+import sys
 from pathlib import Path
 
 import maya.cmds as cmds
@@ -29,7 +31,10 @@ from ... import log
 MODULES_DIR = Path(__file__).resolve().parent
 
 # Builder every other builder inherits from (see get_builder_class).
-BASE_BUILDER_PATH = "scripts.core.autorig.modules.base.builder"
+BASE_BUILDER_PATH = "scripts.core.autorig.modules.simpleBase.builder"
+
+# moduleType of the simpleBase module (MODULE_NAME), parent of every module with joints.
+BASE_MODULE_TYPE = "Simple_Jnt"
 
 
 def _read_module_name(guides_file):
@@ -111,12 +116,43 @@ def get_module_class(module_type):
 
     try:
         python_module = importlib.import_module(import_path)
+
+        # Reload the parent guides first (base -> ... -> this one): a module guides.py only
+        # imports them, the Maya session would keep their stale class (ex: base mirror code).
+        reload_parent_guides(getattr(python_module, "Guides", None))
+
         importlib.reload(python_module)
     except Exception as e:
         print(f"Could not import '{import_path}' : {e}")
         return None
 
     return getattr(python_module, "Guides", None)
+
+
+def reload_parent_guides(guides_class):
+
+    """
+    Reload the python modules of the parent classes of 'guides_class' (MRO, base
+    first), this package only, each once. Called before reloading the module itself
+    so it subclasses the fresh parents.
+    """
+
+    if guides_class is None:
+        return
+
+    package = __name__.rsplit(".", 1)[0]
+
+    done = set()
+
+    for cls in reversed(guides_class.__mro__[1:]):
+
+        name = cls.__module__
+
+        if name in done or not name.startswith(package) or name not in sys.modules:
+            continue
+
+        done.add(name)
+        importlib.reload(sys.modules[name])
 
 
 def get_builder_class(module_type):
@@ -174,12 +210,12 @@ def get_settings_widget_class(module_type):
 
 def get_base_guides_class():
     """Guides class of the 'base' module."""
-    return get_module_class("base")
+    return get_module_class(BASE_MODULE_TYPE)
 
 
 def get_base_builder_class():
     """Builder class of the 'base' module."""
-    return get_builder_class("base")
+    return get_builder_class(BASE_MODULE_TYPE)
 
 
 def load_guide(data_node):

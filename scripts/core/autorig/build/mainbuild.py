@@ -5,14 +5,17 @@
 #   MainBuild(data)
 #       build()                 - run every build step
 #       RIG NAME                get_rig_name
+#       RIG SETTINGS            get_rig_setting, get_control_scale, apply_control_scale
 #       GROUPS                  create_groups, get_or_create_group
 #       SETS                    create_sets, get_or_create_set, add_to_set
 #       LAYERS                  create_layers, create_layer
 #       BUILDERS                create_builders, get_first_joint_name, get_builder
 #       COLORS                  get_color
 #       MODULES                 build_modules
-#       JOINTS                  parent_joint_modules, parent_module_root, get_guide_naming
-#       CONTROLS                parent_ctrls_module, parent_module_root_control, get_offset_group
+#       JOINTS                  parent_joint_modules, parent_module_root, collect_guide_names, get_guide_naming
+#                               (GuideIndex: guide index formatting as its 'guide{i}Name')
+#       CONTROLS                parent_ctrls_module, parent_module_root_control, get_guide_builder,
+#                               create_attach_group (parent guide without ctrl: group on its joint), get_offset_group
 #       SPACE SWITCH            create_space_switches
 #       MISC                    parent_misc_module
 #       CLEAN                   cleanup_temp
@@ -27,19 +30,45 @@ import maya.cmds as cmds
 from ..modules import registry
 from ..rigData import init_rigData
 from ...utilities import ctrl_utilities
+from ...utilities import cnstrMtx_utilities
 from importlib import reload
 
 reload(registry)
 reload(init_rigData)
 reload(ctrl_utilities)
+reload(cnstrMtx_utilities)
+
+
+class GuideIndex(int):
+
+    """
+    Guide index of get_guide_naming: an int (comparisons, arithmetic) that FORMATS as
+    the guide name when the module gives one ('guide{i}Name': f"{index:02d}" ->
+    "shoulder"), else as the number. Every node name built from it follows (joints,
+    ctrls, lookups by name).
+    """
+
+    def __new__(cls, value, label=None):
+        instance = super().__new__(cls, value)
+        instance.label = label
+        return instance
+
+    def __format__(self, spec):
+        return self.label if self.label else super().__format__(spec)
 
 
 class MainBuild():
+
+    # Module attribute holding the name of guide i (ex: limb 'guide0Name' = "shoulder").
+    GUIDE_NAME_ATTR = "guide{}Name"
 
     def __init__(self, data):
 
         self.rig_data = data.get("rig_data")
         self.data = data.get("modules", {})
+
+        # {guide short name: name}, from the modules 'guide{i}Name' (get_guide_naming).
+        self.guide_names = self.collect_guide_names()
 
         self.groups = {}
         self.sets = {}
@@ -64,6 +93,7 @@ class MainBuild():
         self.create_layers()
         self.create_builders()
         self.build_modules()
+        self.apply_control_scale()
         self.parent_ctrls_module()
         self.create_space_switches()
         self.parent_misc_module()
@@ -80,6 +110,68 @@ class MainBuild():
             return cmds.getAttr(f"{self.rig_data}.rigName") or self.rig_data
 
         return self.rig_data or "RIG"
+
+    # ======================================================
+    # RIG SETTINGS
+    # ======================================================
+
+    def get_rig_setting(self, attribute, default):
+        """Rig data 'attribute' value (Settings panel), else 'default' (no rig data / attribute / value)."""
+
+        if not self.rig_data or not cmds.objExists(self.rig_data):
+            return default
+
+        if not cmds.attributeQuery(attribute, node=self.rig_data, exists=True):
+            return default
+
+        value = cmds.getAttr(f"{self.rig_data}.{attribute}")
+
+        return default if value is None else value
+
+    def get_control_scale(self):
+
+        """
+        Ctrl shape factor: rig data rigScale * controlSize (Settings panel, Build). A
+        value never set (0, the addAttr default) counts as 1.
+        """
+
+        factor = 1.0
+
+        for attribute in ("rigScale", "controlSize"):
+
+            try:
+                value = float(self.get_rig_setting(attribute, 1.0))
+            except (TypeError, ValueError):
+                value = 1.0
+
+            factor *= value if value > 0 else 1.0
+
+        return factor
+
+    def apply_control_scale(self):
+
+        """
+        Scale the shapes (CVs only, local space: ctrl transforms and channels kept) of
+        every module ctrl by get_control_scale(), once all are built: one place for every
+        module, module shape sizes / offsets scaled along. 'No Ctrl' joints too (their
+        shapes are the ctrl). Each ctrl once. Nothing at factor 1.
+        """
+
+        factor = self.get_control_scale()
+
+        if abs(factor - 1.0) < 1e-6:
+            return
+
+        done = set()
+
+        for control in self.controls:
+
+            if not control or control in done or not cmds.objExists(control):
+                continue
+
+            done.add(control)
+
+            ctrl_utilities.Control(control, shape=None).scale_shape(factor)
 
     # ======================================================
     # GROUPS
@@ -115,9 +207,12 @@ class MainBuild():
         self.sets["controls"] = self.get_or_create_set("CTRL_set")
         self.sets["setup"] = self.get_or_create_set("SETUP_set")
 
+        # Joints to skin, every module (Builder.get_skin_joints).
+        self.sets["skin"] = self.get_or_create_set("JNT_bindskin")
+
         self.sets["rig"] = self.get_or_create_set(
             f"{self.get_rig_name()}_set",
-            members=[self.sets["joints"], self.sets["controls"], self.sets["setup"]]
+            members=[self.sets["joints"], self.sets["skin"], self.sets["controls"], self.sets["setup"]]
         )
 
     def get_or_create_set(self, name, members=None):
@@ -274,6 +369,10 @@ class MainBuild():
             for joint in builder.joints:
                 self.add_to_set(joint.name, self.sets["joints"])
 
+            # Skin joints: main chain, or ribbon sk joints, spine chain... (Builder.get_skin_joints).
+            for joint in builder.get_skin_joints():
+                self.add_to_set(getattr(joint, "name", joint), self.sets["skin"])
+
             for control in builder.controls:
                 self.add_to_set(control, self.sets["controls"])
 
@@ -341,9 +440,46 @@ class MainBuild():
 
         joint.freeze_transform()
 
+    def collect_guide_names(self):
+
+        """
+        {guide short name: name} from each module 'guide{i}Name' (i = guide position in
+        its chain, root 0). Sanitized (letters, digits, '_'); empty, or duplicated in the
+        module, left out (the guide keeps its index).
+        """
+
+        names = {}
+
+        for module_data in self.data.values():
+
+            guides = list((module_data or {}).get("guides") or {})
+            used = set()
+
+            for position, guide in enumerate(guides):
+
+                raw = module_data.get(self.GUIDE_NAME_ATTR.format(position))
+
+                if not isinstance(raw, str):
+                    continue
+
+                label = "".join(char if char.isalnum() else "_" for char in raw.strip()).strip("_")
+
+                if not label or label in used:
+                    continue
+
+                used.add(label)
+                names[guide.split("|")[-1]] = label
+
+        return names
+
     def get_guide_naming(self, guide):
 
-        """(baseName, side, index) from a guide name (ex: L_Brow_00_GUIDE, L_Brow_00_GUIDE_ROOT)."""
+        """
+        (baseName, side, index) from a guide name (ex: L_Brow_00_GUIDE, L_Brow_00_GUIDE_ROOT).
+        'index' is a GuideIndex: it formats as the guide name when its module gives one
+        (guide{i}Name), so f"{side}_{baseName}_{index:02d}" -> L_Arm_00_shoulder. A named
+        root guide keeps the module index in baseName (L_Arm_00_shoulder, not L_Arm_shoulder).
+        """
 
         short_name = guide.split("|")[-1]
         base = short_name.split("_GUIDE")[0]
@@ -353,7 +489,12 @@ class MainBuild():
         index = int(parts[-1])
         base_name = "_".join(parts[1:-1])
 
-        return base_name, side, index
+        label = getattr(self, "guide_names", {}).get(short_name)
+
+        if label and short_name.endswith("_GUIDE_ROOT"):
+            base_name = f"{base_name}_{index:02d}"
+
+        return base_name, side, GuideIndex(index, label)
 
     # ======================================================
     # CONTROLS
@@ -361,22 +502,24 @@ class MainBuild():
 
     def parent_ctrls_module(self):
 
-        """Parent the first ctrl of each module, once every ctrl exists."""
+        """Parent the root ctrl of each module (Builder.get_module_root_control), once every ctrl exists."""
 
         for module, builder in self.builders.items():
 
-            if not builder.controls:
+            control = builder.get_module_root_control()
+
+            if not control:
                 continue
 
             module_parent = self.data.get(module, {}).get("parent")
 
-            self.parent_module_root_control(builder.controls[0], module_parent)
+            self.parent_module_root_control(control, module_parent)
 
     def parent_module_root_control(self, control, module_parent):
 
         """
-        Parent the first ctrl of a module under the ctrl of its parent guide,
-        else under CTRL_grp.
+        Parent the first ctrl of a module under the attach group of its parent
+        guide (spine: follows the spine curve), else its ctrl, else CTRL_grp.
 
         Offset group if one exists, else the ctrl itself: relative parent,
         world matrix restored, offsetParentMatrix re-baked. Skipped in
@@ -394,10 +537,19 @@ class MainBuild():
         if module_parent and cmds.objExists(module_parent):
 
             base_name, side, index = self.get_guide_naming(module_parent)
-            candidate = f"{side}_{base_name}_{index:02d}_ctrl"
 
-            if cmds.objExists(candidate):
-                target = candidate
+            for suffix in ("attach_grp", "ctrl"):
+
+                candidate = f"{side}_{base_name}_{index:02d}_{suffix}"
+
+                if cmds.objExists(candidate):
+                    target = candidate
+                    break
+
+            # No ctrl named after the parent guide (ex: limb: root / fk / ik ctrls only): a group
+            # following the parent guide joint.
+            if not target:
+                target = self.create_attach_group(module_parent)
 
         if not target:
             target = self.groups.get("controls")
@@ -421,6 +573,57 @@ class MainBuild():
         cmds.xform(node, worldSpace=True, matrix=world_matrix)
 
         ctrl_utilities.Control(node).transfer_offset_parent_matrix()
+
+    def get_guide_builder(self, guide):
+        """Builder of the module owning 'guide' (in its guides), or None."""
+
+        short_name = guide.split("|")[-1]
+
+        for builder in self.builders.values():
+
+            guides = [name.split("|")[-1] for name in (builder.data.get("guides") or {})]
+
+            if short_name in guides:
+                return builder
+
+        return None
+
+    def create_attach_group(self, guide):
+
+        """
+        '{guide}_attach_grp' following the joint of 'guide' ('{guide}_jnt'), for a parent guide
+        without its own ctrl (ex: a limb guide): under the root ctrl of the module owning the
+        guide (else CTRL_grp), matched on the joint, ParentCnstrMtx without offset nor scale
+        (the parent stretch / squash do not reach the children). Reused by every child module
+        of that guide. Returns it, or None without joint.
+        """
+
+        base_name, side, index = self.get_guide_naming(guide)
+        prefix = f"{side}_{base_name}_{index:02d}"
+
+        group = f"{prefix}_attach_grp"
+
+        if cmds.objExists(group):
+            return group
+
+        joint = f"{prefix}_jnt"
+
+        if not cmds.objExists(joint):
+            return None
+
+        builder = self.get_guide_builder(guide)
+        parent = builder.get_module_root_control() if builder else None
+
+        if not parent or not cmds.objExists(parent):
+            parent = self.groups.get("controls")
+
+        group = cmds.group(empty=True, name=group, parent=parent) if parent else cmds.group(empty=True, name=group)
+
+        cmds.matchTransform(group, joint, position=True, rotation=True)
+
+        cnstrMtx_utilities.ParentCnstrMtx(group, joint, mo=False, dcmpMtx=False, scale=False)
+
+        return group
 
     def get_offset_group(self, control):
 

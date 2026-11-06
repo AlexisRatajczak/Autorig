@@ -1,0 +1,9 @@
+{
+    "extends": "limb",
+    "module_label": "Arm",
+    "attributes": {
+        "guide0Name": {"value": "shoulder"},
+        "guide1Name": {"value": "elbow"},
+        "guide2Name": {"value": "wrist"}
+    }
+}

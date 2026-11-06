@@ -9,7 +9,7 @@
 
 from pathlib import Path
 
-from ..base.guides import Guides as BaseGuides
+from ..simpleBase.guides import Guides as BaseGuides
 from ..ui_schema import attribute_defs, load_ui_settings
 
 _MODULE_DIR = Path(__file__).resolve().parent

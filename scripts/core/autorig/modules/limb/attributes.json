@@ -1,15 +1,18 @@
 {
-    "extends": "base",
+    "extends": "simpleFk",
     "module_label": "Limb",
     "sections": {
         "IK/FK Switch": {
-            "order": 22
+            "order": 22,
+            "collapsed": true
         },
         "FK": {
-            "order": 24
+            "order": 24,
+            "collapsed": true
         },
         "IK": {
-            "order": 26
+            "order": 26,
+            "collapsed": true
         },
         "Ribbon": {
             "order": 28,
@@ -37,34 +40,43 @@
             "tooltip": "Guides added here become space-switch spaces on the FK root control."
         },
 
+        "guide0Name": {
+            "label": "Guide 1 Name",
+            "widget": "string",
+            "order": 32,
+            "section": "General",
+            "tooltip": "Nom du 1er guide (racine) : remplace son index dans les noms de joints et de ctrls (ex : L_Arm_00_shoulder_jnt, L_Arm_00_shoulder_fk_ctrl). Vide : index.",
+            "dt": "string",
+            "value": "upper"
+        },
+        "guide1Name": {
+            "label": "Guide 2 Name",
+            "widget": "string",
+            "order": 33,
+            "section": "General",
+            "tooltip": "Nom du 2e guide : remplace son index dans les noms de joints et de ctrls. Vide : index.",
+            "dt": "string",
+            "value": "middle"
+        },
+        "guide2Name": {
+            "label": "Guide 3 Name",
+            "widget": "string",
+            "order": 34,
+            "section": "General",
+            "tooltip": "Nom du 3e guide : remplace son index dans les noms de joints et de ctrls. Vide : index.",
+            "dt": "string",
+            "value": "end"
+        },
+
         "ikFkDefault": {
             "label": "Default Mode",
             "widget": "enum",
             "order": 100,
             "section": "IK/FK Switch",
-            "tooltip": "Mode actif au build (valeur par défaut de l'attribut 'ikFk').",
+            "tooltip": "Mode actif au build (valeur par défaut de l'attribut 'ikFk', créé sur le root ctrl du limb).",
             "at": "enum",
             "enumName": "FK:IK",
             "value": 0
-        },
-        "switchSize": {
-            "label": "Switch Ctrl Size",
-            "widget": "float",
-            "order": 102,
-            "section": "IK/FK Switch",
-            "min": 0.01,
-            "tooltip": "Taille du ctrl qui porte l'attribut de switch IK/FK.",
-            "at": "double",
-            "value": 0.5
-        },
-        "switchShapeOffset": {
-            "label": "Switch Shape Offset",
-            "widget": "vector",
-            "order": 104,
-            "section": "IK/FK Switch",
-            "tooltip": "Décale la shape du ctrl de switch par rapport au dernier joint (unités locales).",
-            "at": "double3",
-            "value": [0.0, 2.0, 0.0]
         },
 
         "fkShape": {
@@ -172,7 +184,7 @@
             "widget": "message_list",
             "order": 80,
             "section": "Space Switch",
-            "tooltip": "Guides added here become space-switch spaces on the IK control.",
+            "tooltip": "Espaces du ctrl IK, en plus de Local et World (toujours créés) : space group au-dessus du ctrl (inheritsTransform off), attributs 'spaceTranslate' / 'spaceRotate' / 'spaceScale' sur le ctrl (un espace par canal).",
             "at": "message",
             "multi": true
         },
@@ -181,7 +193,7 @@
             "widget": "message_list",
             "order": 90,
             "section": "Space Switch",
-            "tooltip": "Guides added here become space-switch spaces on the pole vector control.",
+            "tooltip": "Espaces du ctrl pole vector, en plus de Local et World (toujours créés) : space group au-dessus du ctrl (inheritsTransform off), attributs 'spaceTranslate' / 'spaceRotate' / 'spaceScale' sur le ctrl (un espace par canal).",
             "at": "message",
             "multi": true
         },

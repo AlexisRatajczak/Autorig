@@ -1,0 +1,40 @@
+{
+    "extends": "simpleIk",
+    "module_label": "Clavicle",
+    "attributes": {
+        "rotatePlaneSolver": {"remove": true},
+        "poleCtrlOrient": {"remove": true},
+        "poleSpaceSwitchTargets": {"remove": true},
+
+        "guide0Name": {
+            "label": "Guide 1 Name",
+            "widget": "string",
+            "order": 32,
+            "section": "General",
+            "tooltip": "Nom du 1er guide (base de la clavicule) : remplace son index dans les noms de joints et de ctrls (ex : L_Clavicle_00_clavicle_jnt). Vide : index.",
+            "dt": "string",
+            "value": "clavicle"
+        },
+        "guide1Name": {
+            "label": "Guide 2 Name",
+            "widget": "string",
+            "order": 33,
+            "section": "General",
+            "tooltip": "Nom du 2e guide (bout de la clavicule) : remplace son index dans les noms de joints et de ctrls. Vide : index.",
+            "dt": "string",
+            "value": "clavicleEnd"
+        },
+
+        "spaceSwitchTargets": {
+            "label": "FK Space Switch Targets",
+            "tooltip": "Guides ajoutés ici : espaces du space switch du ctrl FK (base de la clavicule)."
+        },
+        "stretchIk": {
+            "tooltip": "Stretch de la clavicule (attribut 'stretch' sur le ctrl IK) : la chaîne s'allonge quand le ctrl IK s'éloigne au-delà de sa longueur.",
+            "value": 0
+        },
+        "ikSpaceSwitchTargets": {
+            "tooltip": "Espaces du ctrl IK, en plus de Local (le ctrl FK) et World (toujours créés) : space group au-dessus du ctrl (inheritsTransform off), attributs 'spaceTranslate' / 'spaceRotate' / 'spaceScale' sur le ctrl (un espace par canal)."
+        }
+    }
+}

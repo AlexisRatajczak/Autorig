@@ -1,9 +1,10 @@
 {
-    "extends": "base",
+    "extends": "simpleBase",
     "module_label": "Simple IK",
     "sections": {
         "IK": {
-            "order": 16
+            "order": 16,
+            "collapsed": true
         }
     },
     "attributes": {
@@ -51,7 +52,7 @@
             "widget": "message_list",
             "order": 80,
             "section": "Space Switch",
-            "tooltip": "Guides added here become space-switch spaces on the IK control.",
+            "tooltip": "Espaces du ctrl IK, en plus de Local et World (toujours créés) : space group au-dessus du ctrl (inheritsTransform off), attributs 'spaceTranslate' / 'spaceRotate' / 'spaceScale' sur le ctrl (un espace par canal).",
             "at": "message",
             "multi": true
         },
@@ -60,7 +61,7 @@
             "widget": "message_list",
             "order": 90,
             "section": "Space Switch",
-            "tooltip": "Guides added here become space-switch spaces on the pole vector control.",
+            "tooltip": "Espaces du ctrl pole vector, en plus de Local et World (toujours créés) : space group au-dessus du ctrl (inheritsTransform off), attributs 'spaceTranslate' / 'spaceRotate' / 'spaceScale' sur le ctrl (un espace par canal).",
             "at": "message",
             "multi": true
         }

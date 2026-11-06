@@ -9,7 +9,7 @@
 
 from pathlib import Path
 
-from ..base.guides import Guides as BaseGuides
+from ..simpleBase.guides import Guides as BaseGuides
 from ..ui_schema import attribute_defs, load_ui_settings
 
 _MODULE_DIR = Path(__file__).resolve().parent
@@ -17,7 +17,7 @@ _MODULE_DIR = Path(__file__).resolve().parent
 
 class Guides(BaseGuides):
 
-    MODULE_NAME = "SimpleFk"
+    MODULE_NAME = "Simple_Fk"
     DEFAULT_NAME = "SimpleFk"
 
     # Auto chain of 3 guides.

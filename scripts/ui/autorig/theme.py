@@ -420,4 +420,45 @@ STYLESHEET = f"""
         left: 10px;
         padding: 0 4px;
     }}
+
+    /* ---------------- DISABLED ---------------- */
+    /*
+      The rules above force colors on every widget: without these, a disabled
+      widget (ex. guide settings 'visible_when' rows) keeps its normal look.
+    */
+
+    QLabel:disabled,
+    QCheckBox:disabled,
+    QRadioButton:disabled {{
+        color: {DISABLED_TEXT};
+    }}
+
+    QLineEdit:disabled,
+    QTextEdit:disabled,
+    QComboBox:disabled,
+    QSpinBox:disabled,
+    QDoubleSpinBox:disabled,
+    QTreeWidget:disabled,
+    QListWidget:disabled {{
+        background: {DISABLED_BG};
+        color: {DISABLED_TEXT};
+        border: 1px solid {DISABLED_BG};
+    }}
+
+    QToolButton:disabled {{
+        background: {DISABLED_BG};
+        color: {DISABLED_TEXT};
+    }}
+
+    QCheckBox::indicator:disabled,
+    QRadioButton::indicator:disabled {{
+        background: {DISABLED_BG};
+        border: 1px solid {DISABLED_BG};
+    }}
+
+    QCheckBox::indicator:checked:disabled,
+    QRadioButton::indicator:checked:disabled {{
+        background: {DISABLED_TEXT};
+        border: 1px solid {DISABLED_TEXT};
+    }}
 """

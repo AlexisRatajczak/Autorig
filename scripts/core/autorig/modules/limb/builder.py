@@ -15,10 +15,10 @@
 #       Root    root_ctrl on the root joint, drives it (controls[0], reparented by MainBuild)
 #       FK      simpleFk.create_fk_controls on the FK chain (fk_ctrl)
 #       IK      simpleIk.create_ik_control / create_pole_control on the IK chain (ik_ctrl + pole_ctrl)
-#       Switch  switch_ctrl holding 'ikFk', follows the last bind joint
+#       Switch  no dedicated ctrl: 'ikFk' is added on the limb root ctrl (or the attributes host)
 #       'No Ctrl': root shape on the root joint, IK / pole joint ctrls under it.
 #   SETUP
-#       simpleIk setup on the IK chain (ikHandle under MISC_grp). Each bind joint follows its FK or IK joint
+#       simpleIk setup on the IK chain (ikHandle in the module setup group). Each bind joint follows its FK or IK joint
 #       through a blend SpaceSwitch driven by 'ikFk', which also drives the FK / IK ctrl visibility.
 #   RIBBON ('useRibbon', ribbon module steps)
 #       Ribbon through the limb guides, skinned to the bind joints, bindJointCount sk joints on follicles and up
@@ -28,10 +28,11 @@
 #   Builder
 #       DATA HELPERS    get_float, get_string, use_ribbon
 #       BUILD           build
-#       JOINTS          build_joints, build_ribbon_joints, fk_chain, ik_chain
+#       JOINTS          build_joints, get_skin_joints, build_ribbon_joints, fk_chain, ik_chain
 #       CONTROLS        create_controls, create_limb_root_control, parent_under_root, create_fk_step,
-#                       create_ik_step, create_switch_control, control_name_for
-#       SETUP           create_setup, connect_setup, create_ik_setup, connect_ik_setup
+#                       create_ik_step, control_name_for
+#       SETUP           create_setup, connect_setup, create_attach_groups (child module parents: FK main ctrl /
+#                       IK joint, never a sub ctrl), create_ik_setup, connect_ik_setup
 #       IK / FK SWITCH  create_ik_fk_switch, connect_ik_fk_visibility, connect_visibility
 #       SPACE SWITCH    create_space_switches
 #
@@ -39,10 +40,10 @@
 
 import maya.cmds as cmds
 
-from ..base.builder import Builder as BaseBuilder
+from ..simpleBase.builder import Builder as BaseBuilder
 from ..simpleIk import builder as simpleIk_builder
 from ..simpleFk import builder as simpleFk_builder
-from ..ribbon import builder as ribbon_builder
+from ..simpleRibbon import builder as ribbon_builder
 from ....utilities import joint_utilities
 from ....utilities import ctrl_utilities
 from ....utilities import cnstrMtx_utilities
@@ -81,10 +82,8 @@ class Builder(IkBuilder, FkBuilder, ribbonBuilder):
     FK_CONTROL_SUFFIX = "fk_ctrl"
     IK_CONTROL_SUFFIX = "ik_ctrl"
     POLE_CONTROL_SUFFIX = "pole_ctrl"
-    SWITCH_CONTROL_SUFFIX = "switch_ctrl"
 
-    SWITCH_CONTROL_SHAPE = "plus"
-    SWITCH_CONTROL_COLOR_TYPE = "FK Secondary"
+    # IK/FK switch attribute, on the limb root ctrl (or the attributes host).
     SWITCH_ATTR = "ikFk"
 
     def __init__(self, module, data, main):
@@ -98,9 +97,11 @@ class Builder(IkBuilder, FkBuilder, ribbonBuilder):
 
         # Not self.root_control (simpleIk): it would constrain the IK chain root.
         self.limb_root_control = None
-        self.switch_control = None
         self.ik_fk_switches = []
         self.ik_fk_plug = None
+
+        # Child module parents, one per guide (create_attach_groups).
+        self.attach_groups = []
 
         # Used by simpleIk get_pole_vector_position.
         self.POLE_DISTANCE = self.get_float("poleDistance", 1.0)
@@ -175,6 +176,14 @@ class Builder(IkBuilder, FkBuilder, ribbonBuilder):
 
         return self.joints
 
+    def get_skin_joints(self):
+        """Skin joints: the ribbon sk joints with 'useRibbon' (and a built ribbon), else the bind chain."""
+
+        if self.use_ribbon() and getattr(self, "sk_joints", None):
+            return list(self.sk_joints)
+
+        return list(self.bind_joints)
+
     def build_ribbon_joints(self):
 
         """
@@ -215,7 +224,7 @@ class Builder(IkBuilder, FkBuilder, ribbonBuilder):
 
     def create_controls(self):
 
-        """Root ctrl first (controls[0]), then FK, IK, pole and switch, all under the root ctrl."""
+        """Root ctrl first (controls[0], carries the ikFk attribute), then FK, IK and pole, all under it."""
 
         if not self.bind_joints or not self.fk_joints or not self.ik_joints:
             return []
@@ -225,15 +234,13 @@ class Builder(IkBuilder, FkBuilder, ribbonBuilder):
         fk_controls = list(self.create_fk_step())
         ik_control, pole_control = self.create_ik_step()
 
-        # The switch is constrained at creation (parent space frozen): created under the root directly.
-        switch_control = self.create_switch_control(parent=root_control)
-
         for control in (fk_controls[:1] + [ik_control, pole_control]):
             self.parent_under_root(control)
 
-        controls = [root_control] + fk_controls
+        # FK sub ctrls ('subCtrl', simpleFk): under their main FK ctrl, after it in the list.
+        controls = [root_control] + fk_controls + list(self.fk_sub_controls)
 
-        for control in (ik_control, pole_control, switch_control):
+        for control in (ik_control, pole_control):
             if control:
                 controls.append(control)
 
@@ -333,7 +340,7 @@ class Builder(IkBuilder, FkBuilder, ribbonBuilder):
     # --------------------------------------------------
 
     def create_fk_step(self):
-        """Chained FK ctrls on the FK chain (simpleFk.create_fk_controls)."""
+        """Chained FK ctrls on the FK chain (simpleFk.create_fk_controls), + sub ctrls with 'subCtrl'."""
 
         return FkBuilder.create_fk_controls(
             self,
@@ -341,7 +348,8 @@ class Builder(IkBuilder, FkBuilder, ribbonBuilder):
             suffix=self.FK_CONTROL_SUFFIX,
             shape=self.get_string("fkShape", self.CONTROL_SHAPE),
             size=self.get_float("fkSize", 1.0),
-            color=self.get_role_color(self.CONTROL_COLOR_TYPE)
+            color=self.get_role_color(self.CONTROL_COLOR_TYPE),
+            sub=FkBuilder.use_sub_controls(self)
         )
 
     # --------------------------------------------------
@@ -374,49 +382,6 @@ class Builder(IkBuilder, FkBuilder, ribbonBuilder):
         )
 
         return ik_control, pole_control
-
-    # --------------------------------------------------
-    # SWITCH
-    # --------------------------------------------------
-
-    def create_switch_control(self, parent=None):
-
-        """
-        Ctrl holding the IK/FK switch attribute: on the last bind joint (shape
-        offset by switchShapeOffset), under 'parent' (else CTRL_grp), follows
-        it (ParentCnstrMtx). Channels locked.
-        """
-
-        end_joint = self.bind_joints[-1]
-
-        control = ctrl_utilities.Control(
-            self.control_name_for(end_joint, self.SWITCH_CONTROL_SUFFIX),
-            shape=self.SWITCH_CONTROL_SHAPE,
-            size=self.get_float("switchSize", 0.5),
-            color=self.get_role_color(self.SWITCH_CONTROL_COLOR_TYPE)
-        )
-        control.create()
-
-        offset = self.get_vector_attribute("switchShapeOffset", default=(0.0, 0.0, 0.0))
-
-        if tuple(offset) != (0.0, 0.0, 0.0):
-            control.translate_shape(offset)
-
-        cmds.matchTransform(control.name, end_joint.name, position=True, rotation=True)
-
-        target_parent = parent if parent and cmds.objExists(parent) else self.main.groups.get("controls")
-
-        control.create_offset(parent=target_parent)
-
-        cnstrMtx_utilities.ParentCnstrMtx(control.name, end_joint.name, dcmpMtx=False)
-
-        for attr in ("translate", "rotate", "scale"):
-            for axis in "XYZ":
-                cmds.setAttr(f"{control.name}.{attr}{axis}", lock=True, keyable=False, channelBox=False)
-
-        self.switch_control = control.name
-
-        return self.switch_control
 
     def control_name_for(self, joint, suffix):
         """Name '{side}_{baseName}_{index}_{suffix}' of a ctrl built on 'joint' (Joint)."""
@@ -454,8 +419,57 @@ class Builder(IkBuilder, FkBuilder, ribbonBuilder):
 
         self.create_ik_fk_switch()
 
+        # Before MainBuild.parent_ctrls_module: child modules parent on these groups.
+        self.create_attach_groups()
+
         if self.use_ribbon() and self.nurb:
             ribbonBuilder.connect_setup(self)
+
+    def create_attach_groups(self):
+
+        """
+        Per guide, '{guide}_attach_grp' under the limb root ctrl, matched on its bind joint:
+        the parent of the child module root ctrls (MainBuild finds it by name). Blended by
+        the IK/FK switch (ik_fk_plug): FK = the guide MAIN FK ctrl (never its sub ctrl),
+        IK = its IK joint. Without switch: the main FK ctrl only. Returns the groups.
+        """
+
+        self.attach_groups = []
+
+        parent = self.limb_root_control if self.limb_root_control and cmds.objExists(self.limb_root_control) else self.get_controls_group()
+
+        for bind, fk_control, ik_joint in zip(self.bind_joints, self.fk_controls, self.ik_joints):
+
+            name = f"{self.control_name_for(bind, 'attach_grp')}"
+
+            if cmds.objExists(name):
+                continue
+
+            group = cmds.group(empty=True, name=name, parent=parent) if parent else cmds.group(empty=True, name=name)
+
+            cmds.matchTransform(group, bind.name, position=True, rotation=True)
+
+            switch = self.ik_fk_plug if self.ik_fk_plug and cmds.objExists(self.ik_fk_plug) else None
+
+            if switch:
+                host, attr = switch.split(".", 1)
+
+                switchSpace_utilities.SpaceSwitch(
+                    target=group,
+                    spaces=[("FK", fk_control), ("IK", ik_joint.name)],
+                    default=cmds.getAttr(switch),
+                    attr_name=attr,
+                    attr_host=host,
+                    mo=True,
+                    blend=True,
+                    separator="IK FK"
+                )
+            else:
+                cnstrMtx_utilities.ParentCnstrMtx(group, fk_control, mo=True, dcmpMtx=False)
+
+            self.attach_groups.append(group)
+
+        return self.attach_groups
 
     def create_ik_setup(self):
         """IK chain ikHandle(s) (simpleIk.create_setup). Overridden by legQuadruped."""
@@ -476,7 +490,7 @@ class Builder(IkBuilder, FkBuilder, ribbonBuilder):
         """
         Per bind joint, a blend SpaceSwitch between its FK and IK joints into
         its offsetParentMatrix. All share one 0 (FK) -> 1 (IK) float on the
-        attributes host (else the switch ctrl). No maintain offset: the 3
+        attributes host (else the limb root ctrl). No maintain offset: the 3
         chains are identical.
 
         attr_name : switch attribute (SWITCH_ATTR by default).
@@ -488,7 +502,7 @@ class Builder(IkBuilder, FkBuilder, ribbonBuilder):
         if default is None:
             default = 1 if self.get_string("ikFkDefault", "FK") == "IK" else 0
 
-        host = self.get_attributes_host(default=self.switch_control)
+        host = self.get_attributes_host(default=self.limb_root_control)
 
         if not host or not cmds.objExists(host):
             cmds.warning("Limb : aucun ctrl pour porter le switch IK/FK.")
@@ -505,7 +519,8 @@ class Builder(IkBuilder, FkBuilder, ribbonBuilder):
                 attr_name=attr_name,
                 attr_host=host,
                 mo=False,
-                blend=True
+                blend=True,
+                separator="IK FK"
             )
 
             self.ik_fk_switches.append(switch)

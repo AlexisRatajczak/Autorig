@@ -1,0 +1,94 @@
+{
+    "extends": "simpleBase",
+    "module_label": "SpineIK",
+    "sections": {
+        "Spine": {
+            "order": 16,
+            "collapsed": true
+        }
+    },
+    "attributes": {
+        "noCtrl": {
+            "hidden": true
+        },
+        "shapeCtrl": {
+            "hidden": true
+        },
+        "spaceSwitchTargets": {
+            "tooltip": "Guides ajoutés ici : espaces du space switch du main ctrl du premier guide."
+        },
+
+        "spineJointCount": {
+            "label": "Spine Joint Count",
+            "widget": "int",
+            "order": 60,
+            "section": "Spine",
+            "min": 2,
+            "max": 50,
+            "tooltip": "Nombre de joints de spine (joints de skin) répartis à distance égale le long de la courbe des ctrls, pilotés par la spline IK.",
+            "at": "long",
+            "value": 5
+        },
+        "twistMethod": {
+            "label": "Twist Method",
+            "widget": "enum",
+            "order": 61,
+            "section": "Spine",
+            "tooltip": "Advanced Twist : spline IK, twist entre le premier et le dernier sub ctrl. Up Curve : une curve décalée sur l'up vector des joints (skinnée aux sub ctrls) porte un locator par joint de spine ; chaque joint suit la courbe, vise le suivant et prend son up vector vers son locator (twist de chaque sub ctrl). En Up Curve, les joints suivent toujours la longueur de la courbe : 'stretch' ne règle que leur scale.",
+            "at": "enum",
+            "enumName": "Advanced Twist:Up Curve",
+            "value": 0
+        },
+        "upCurveOffset": {
+            "label": "Up Curve Offset",
+            "widget": "float",
+            "order": 61.5,
+            "section": "Spine",
+            "visible_when": {"attr": "twistMethod", "equals": 1},
+            "min": 0.01,
+            "tooltip": "Distance de la up curve (et des locators) le long de l'up vector des joints.",
+            "at": "double",
+            "value": 2.0
+        },
+        "mainShape": {
+            "label": "Main Shape",
+            "widget": "enum",
+            "order": 62,
+            "section": "Spine",
+            "tooltip": "Forme des main ctrls (un par guide, chaînés).",
+            "at": "enum",
+            "enumName": "circle:square:cube:sphere:diamond:arrow:plus:pyramid",
+            "value": 0
+        },
+        "mainSize": {
+            "label": "Main Size",
+            "widget": "float",
+            "order": 64,
+            "section": "Spine",
+            "min": 0.01,
+            "tooltip": "Taille des main ctrls.",
+            "at": "double",
+            "value": 1.5
+        },
+        "subShape": {
+            "label": "Sub Shape",
+            "widget": "enum",
+            "order": 66,
+            "section": "Spine",
+            "tooltip": "Forme des sub ctrls (sous chaque main, pilotent les joints des guides qui skinnent la courbe).",
+            "at": "enum",
+            "enumName": "circle:square:cube:sphere:diamond:arrow:plus:pyramid",
+            "value": 0
+        },
+        "subSize": {
+            "label": "Sub Size",
+            "widget": "float",
+            "order": 68,
+            "section": "Spine",
+            "min": 0.01,
+            "tooltip": "Taille des sub ctrls.",
+            "at": "double",
+            "value": 1.0
+        }
+    }
+}

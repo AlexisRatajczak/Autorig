@@ -9,7 +9,7 @@
 #   attributes.json:
 #
 #   {
-#     "extends": "base",                  # optional: merged over a parent schema
+#     "extends": "simpleBase",                  # optional: merged over a parent schema
 #     "module_label": "Arm",              # optional
 #     "sections": {                       # optional: panel foldouts
 #       "Orientation": {                  #   key = "section" value of the attributes
@@ -34,7 +34,7 @@
 #         "remove": true,                 # optional: removes an attribute inherited from the parent
 #         "section": "Orientation",       # optional: foldout of the attribute
 #         "section_collapsed": true,      # optional: foldout closed by default
-#         "visible_when": {               # optional: conditional visibility
+#         "visible_when": {               # optional: conditional availability (always shown, greyed while false)
 #           "attr": "<otherAttr>", "equals": 1      #   or "in": [..], or "min" / "max";
 #         },                                        #   or a list of conditions (all true)
 #
@@ -196,6 +196,9 @@ def load_ui_settings(module_dir):
             print(f"'{module_dir.name}/attributes.json' : 'extends' pointe sur lui-même.")
         else:
             parent = load_ui_settings(parent_dir)
+
+            if parent is None:
+                print(f"'{module_dir.name}/attributes.json' : 'extends' introuvable : '{extends}'.")
 
     schema = _merge(parent, raw)
 

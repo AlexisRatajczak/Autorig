@@ -120,8 +120,6 @@ class SettingsPanel(QtWidgets.QWidget):
     def build_widgets(self):
         """Create all widgets used by the settings panel."""
 
-        self.title = QtWidgets.QLabel("RIG SETTINGS")
-        self.title.setAlignment(QtCore.Qt.AlignCenter)
 
         self.rig_name = QtWidgets.QLineEdit()
 
@@ -195,7 +193,7 @@ class SettingsPanel(QtWidgets.QWidget):
         root_layout.setContentsMargins(0, 10, 0, 0)
         root_layout.setSpacing(10)
 
-        root_layout.addWidget(self.title)
+        root_layout.addWidget(self._title("RIG SETTINGS"))
 
         scroll = QtWidgets.QScrollArea()
         scroll.setWidgetResizable(True)
@@ -355,6 +353,11 @@ class SettingsPanel(QtWidgets.QWidget):
                 button.clicked.connect(
                     lambda checked=False, s=side, n=name: self.pick_color(s, n)
                 )
+    def _title(self, text):
+        label = QtWidgets.QLabel(text)
+        label.setAlignment(QtCore.Qt.AlignCenter)
+        label.setStyleSheet("font-weight: bold;")
+        return label
 
     def set_style(self):
         """Apply the settings panel stylesheet."""

@@ -1,4 +1,32 @@
 {
-    "extends": "base",
-    "module_label": "Simple FK"
+    "extends": "simpleBase",
+    "module_label": "Simple FK",
+    "sections": {
+        "FK": {
+            "order": 16,
+            "collapsed": true
+        }
+    },
+    "attributes": {
+        "subCtrl": {
+            "label": "Sub Ctrl",
+            "widget": "bool",
+            "order": 60,
+            "section": "FK",
+            "tooltip": "Deuxième niveau de ctrls dans la chaîne : un sub ctrl sous chaque ctrl FK (sauf le dernier), qui pilote son joint et porte la suite de la chaîne (main > sub > main > sub...). Les modules enfants se parentent sur les ctrls FK principaux.",
+            "at": "bool",
+            "value": 0
+        },
+        "subCtrlSize": {
+            "label": "Sub Ctrl Size",
+            "widget": "float",
+            "order": 61,
+            "section": "FK",
+            "visible_when": {"attr": "subCtrl", "equals": 1},
+            "min": 0.01,
+            "tooltip": "Taille des sub ctrls, relative aux ctrls FK principaux.",
+            "at": "double",
+            "value": 0.75
+        }
+    }
 }

@@ -2,15 +2,17 @@ from PySide6 import QtWidgets, QtCore
 
 from importlib import reload
 
-from . import guides_panel, settings_panel, import_export_panel
+from . import guides_panel, settings_panel, import_export_panel, ctrl_shapes_panel
 
 reload(guides_panel)
 reload(settings_panel)
 reload(import_export_panel)
+reload(ctrl_shapes_panel)
 
 from .guides_panel import GuidesPanel
 from .settings_panel import SettingsPanel
 from .import_export_panel import ImportExportPanel
+from .ctrl_shapes_panel import CtrlShapesPanel
 
 
 # ==========================================================
@@ -54,6 +56,7 @@ class SlidingPanel(QtWidgets.QFrame):
             "Settings": SettingsPanel(),
             "Modules": GuidesPanel(),
             "Import/Export": ImportExportPanel(),
+            "Ctrl Shapes": CtrlShapesPanel(),
         }
 
     def build_layout(self):

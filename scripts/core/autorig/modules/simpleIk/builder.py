@@ -10,10 +10,11 @@
 #   Builder
 #       CONTROLS        create_controls, create_root_control, create_ik_control, create_pole_control,
 #                       create_control_joint, get_pole_vector_position, get_role_color
-#       SETUP           rotate_plane_solver, ik_ctrl_world, pole_ctrl_joint, use_stretch, create_setup, connect_setup,
-#                       orient_end_joint, freeze_effector_inputs, add_pole_flip
-#       STRETCH         stretch_ik, prepare_ik_chain, move_rest_rotation_to_joint_orient, get_chain_scale,
-#                       add_stretch_attribute
+#       SETUP           get_ik_target, rotate_plane_solver, ik_ctrl_world, pole_ctrl_joint, use_stretch, create_setup,
+#                       connect_setup, orient_end_joint, freeze_effector_inputs, add_pole_flip
+#                       (ik_target: node the IK end follows, IK ctrl by default, ex: foot ankle target)
+#       STRETCH         stretch_ik, prepare_ik_chain, move_rest_rotation_to_joint_orient, get_chain_scale
+#                       (ctrl attributes: attribute_utilities, one separated section per group)
 #       SPACE SWITCH    parent_ik_controls, get_control_node, create_space_switches
 #
 # ====================================================================================================================
@@ -21,16 +22,18 @@
 import maya.cmds as cmds
 import maya.api.OpenMaya as om
 
-from ..base.builder import Builder as BaseBuilder
+from ..simpleBase.builder import Builder as BaseBuilder
 from ....utilities import joint_utilities
 from ....utilities import ctrl_utilities
 from ....utilities import cnstrMtx_utilities
+from ....utilities import attribute_utilities
 
 from importlib import reload
 
 reload(joint_utilities)
 reload(ctrl_utilities)
 reload(cnstrMtx_utilities)
+reload(attribute_utilities)
 
 
 class Builder(BaseBuilder):
@@ -60,6 +63,17 @@ class Builder(BaseBuilder):
         self.ik_control = None
         self.pole_control = None
         self.ik_handle = None
+
+        # Node the IK end goes to (ikHandle, stretch / lock distances), the IK ctrl by default.
+        # Set by another module before the connect pass (ex: foot -> its ankle target on the ball pivot).
+        self.ik_target = None
+
+    def get_ik_target(self):
+        """Node the IK end follows (ikHandle constraint, stretch / lock distances): ik_target, else the IK ctrl."""
+
+        target = getattr(self, "ik_target", None)
+
+        return target if target and cmds.objExists(target) else self.ik_control
 
     # ======================================================
     # CONTROLS
@@ -369,7 +383,7 @@ class Builder(BaseBuilder):
 
     def create_setup(self, joints=None):
 
-        """Hidden ikHandle on 'joints' (self.joints by default) under MISC_grp: ikRPsolver, or ikSCsolver without 'Rotate Plane Solver'."""
+        """Hidden ikHandle on 'joints' (self.joints by default) in the module setup group: ikRPsolver, or ikSCsolver without 'Rotate Plane Solver'."""
 
         joints = self.joints if joints is None else joints
 
@@ -394,10 +408,7 @@ class Builder(BaseBuilder):
 
         cmds.rename(ik_effector, f"{side}_{base_name}_{index:02d}_ikEffector")
 
-        setup_parent = self.main.groups.get("misc")
-
-        if setup_parent and cmds.objExists(setup_parent):
-            ik_handle = cmds.parent(ik_handle, setup_parent)[0]
+        ik_handle = self.parent_to_setup(ik_handle)
 
         cmds.setAttr(f"{ik_handle}.visibility", 0)
 
@@ -408,37 +419,43 @@ class Builder(BaseBuilder):
     def connect_setup(self, joints=None):
 
         """
-        On 'joints' (self.joints by default): root ctrl -> first joint, IK ctrl ->
-        ikHandle and last joint orientation, pole -> ikHandle, then the stretch.
+        On 'joints' (self.joints by default): root ctrl -> first joint, IK target
+        (get_ik_target: IK ctrl, or the foot ankle target) -> ikHandle, IK ctrl -> last
+        joint orientation, pole -> ikHandle, then the stretch (distances to the IK target,
+        attributes on the IK ctrl).
         """
 
         joints = self.joints if joints is None else joints
 
         if self.root_control and joints:
-            cnstrMtx_utilities.ParentCnstrMtx(joints[0].name, self.root_control, dcmpMtx=False)
+            # Classic + stretch: the stretch drives the first joint scale, no scaleConstraint on it.
+            scale = self.constraint_method() == "Matrix" or not self.use_stretch()
+            self.constrain("parent", joints[0].name, self.root_control, dcmpMtx=False, scale=scale)
 
         if not self.ik_handle:
             return
 
+        target = self.get_ik_target()
+
         if self.ik_control:
 
             # RP: position only (the handle rotation would turn the chain plane, the pole defines it).
-            # SC (no pole): its rotation orients the chain, it follows the ctrl (maintain offset).
+            # SC (no pole): its rotation orients the chain, it follows the target (maintain offset).
             if self.rotate_plane_solver():
-                cnstrMtx_utilities.PointCnstrMtx(self.ik_handle, self.ik_control, dcmpMtx=False)
+                self.constrain("point", self.ik_handle, target, dcmpMtx=False)
             else:
-                cnstrMtx_utilities.ParentCnstrMtx(self.ik_handle, self.ik_control, mo=True, dcmpMtx=False)
+                self.constrain("parent", self.ik_handle, target, mo=True, dcmpMtx=False)
 
             # Last joint orientation: its own network, independent of the ikHandle.
             self.orient_end_joint(joints[-1].name, mo=self.ik_ctrl_world())
 
         if self.pole_control and self.rotate_plane_solver():
-            cnstrMtx_utilities.PoleVectorCnstr(self.ik_handle, self.pole_control)
+            self.constrain("poleVector", self.ik_handle, self.pole_control)
             self.add_pole_flip(self.ik_handle, self.pole_control)
 
         # After orient_end_joint (it drives the last joint offsetParentMatrix).
         if self.use_stretch():
-            self.stretch_ik(joints)
+            self.stretch_ik(joints, ik_control=target, host=self.ik_control)
 
     def orient_end_joint(self, end_joint=None, mo=False):
 
@@ -580,8 +597,9 @@ class Builder(BaseBuilder):
             cmds.warning(f"add_pole_flip : '{ik_handle}.poleVector' n'est pas connecté.")
             return None
 
-        if not cmds.attributeQuery(attr, node=pole_control, exists=True):
-            cmds.addAttr(pole_control, longName=attr, attributeType="enum", enumName="Positive:Negative", keyable=True)
+        attribute_utilities.add_attributes(pole_control, "POLE", [
+            {"name": attr, "attr_type": "enum", "enum_names": ["Positive", "Negative"]},
+        ])
 
         sign = cmds.createNode("condition", name=f"{ik_handle}_poleFlip_cnd")
         cmds.setAttr(f"{sign}.operation", 0)
@@ -669,21 +687,32 @@ class Builder(BaseBuilder):
             return f"{db}.distance"
 
         # Distance start: 'root', else the first joint position without reading the joint (its scale is
-        # driven by the stretch: cycle): its offsetParentMatrix (source or value) * parent worldMatrix.
+        # driven by the stretch: cycle): translate (source or value, classic constraint) * offsetParentMatrix
+        # (source or value, matrix constraint) * parent worldMatrix.
         if not root:
             root_position = node("multMatrix", "root_position_mm")
+
+            translate = node("composeMatrix", "root_translate_cm")
+            source = cmds.listConnections(f"{root_joint}.translate", source=True, destination=False, plugs=True)
+
+            if source:
+                cmds.connectAttr(source[0], f"{translate}.inputTranslate")
+            else:
+                cmds.setAttr(f"{translate}.inputTranslate", *cmds.getAttr(f"{root_joint}.translate")[0])
+
+            cmds.connectAttr(f"{translate}.outputMatrix", f"{root_position}.matrixIn[0]")
 
             source = cmds.listConnections(f"{root_joint}.offsetParentMatrix", source=True, destination=False, plugs=True)
 
             if source:
-                cmds.connectAttr(source[0], f"{root_position}.matrixIn[0]")
+                cmds.connectAttr(source[0], f"{root_position}.matrixIn[1]")
             else:
-                cmds.setAttr(f"{root_position}.matrixIn[0]", cmds.getAttr(f"{root_joint}.offsetParentMatrix"), type="matrix")
+                cmds.setAttr(f"{root_position}.matrixIn[1]", cmds.getAttr(f"{root_joint}.offsetParentMatrix"), type="matrix")
 
             root_parent = cmds.listRelatives(root_joint, parent=True, fullPath=True)
 
             if root_parent:
-                cmds.connectAttr(f"{root_parent[0]}.worldMatrix[0]", f"{root_position}.matrixIn[1]")
+                cmds.connectAttr(f"{root_parent[0]}.worldMatrix[0]", f"{root_position}.matrixIn[2]")
 
             root = f"{root_position}.matrixSum"
 
@@ -719,9 +748,14 @@ class Builder(BaseBuilder):
 
         chain_length = scaled("chain_length_fm", sum(lengths))
 
+        # STRETCH section on the host: stretch / stretchLimit / squash.
+        attribute_utilities.add_attributes(host, "STRETCH", [
+            {"name": "stretch", "default": 1.0, "minimum": 0.0, "maximum": 1.0},
+            {"name": "stretchLimit", "default": 2.0, "minimum": 1.0},
+            {"name": "squash", "default": 0.5, "minimum": 0.0, "maximum": 1.0},
+        ])
+
         # Stretch: distance / length past the length, limited.
-        self.add_stretch_attribute(host, "stretch", 1.0, maximum=1.0)
-        self.add_stretch_attribute(host, "stretchLimit", 2.0, minimum=1.0, maximum=None)
 
         chain_distance = distance("stretch_db", root, ik_control)
         ratio = float_math("stretch_ratio_fm", 3, chain_distance, chain_length)
@@ -739,9 +773,7 @@ class Builder(BaseBuilder):
 
         factors = [stretch] * len(bones)
 
-        # Squash: -squash exponent, set on the IK ctrl.
-        self.add_stretch_attribute(host, "squash", 0.5, maximum=1.0)
-
+        # Squash: -squash exponent (STRETCH section of the host).
         squash_power = float_math("squash_power_fm", 2, f"{host}.squash", -1.0)
 
         # Lock: upper bones (to the middle joint) and lower bones, to the pole.
@@ -749,7 +781,9 @@ class Builder(BaseBuilder):
 
         if pole_control and 0 < pivot < len(joints) - 1:
 
-            self.add_stretch_attribute(pole_control, "lock", 0.0, maximum=1.0)
+            attribute_utilities.add_attributes(pole_control, "LOCK", [
+                {"name": "lock", "default": 0.0, "minimum": 0.0, "maximum": 1.0},
+            ])
 
             upper, lower = slice(0, pivot), slice(pivot, len(bones))
 
@@ -849,7 +883,7 @@ class Builder(BaseBuilder):
         World scale (X) plug of the chain root: module root joint (self.root_joint,
         ex: limb), else the first joint parent, never the first joint (its scale is
         driven by the stretch: cycle). Read by a ScaleCnstrMtx on a hidden
-        '{prefix}_stretchScale_grp' under MISC_grp. 1.0 without root.
+        '{prefix}_stretchScale_grp' in the module setup group. 1.0 without root.
         """
 
         first = joints[0].name
@@ -868,35 +902,14 @@ class Builder(BaseBuilder):
 
         if not cmds.objExists(group):
 
-            group = cmds.group(empty=True, name=group)
-
-            misc = self.get_misc_group()
-
-            if misc:
-                group = cmds.parent(group, misc)[0]
+            group = self.parent_to_setup(cmds.group(empty=True, name=group))
 
             cmds.setAttr(f"{group}.visibility", 0)
 
-            cnstrMtx_utilities.ScaleCnstrMtx(group, root, mo=False, dcmpMtx=True)
+            self.constrain("scale", group, root, mo=False, dcmpMtx=True)
 
         return f"{group}.scaleX"
 
-    @staticmethod
-    def add_stretch_attribute(control, attr, default, minimum=0.0, maximum=1.0):
-        """Keyable float 'attr' on 'control' (optional bounds), if missing."""
-
-        if cmds.attributeQuery(attr, node=control, exists=True):
-            return
-
-        kwargs = {"longName": attr, "attributeType": "float", "defaultValue": default, "keyable": True}
-
-        if minimum is not None:
-            kwargs["minValue"] = minimum
-
-        if maximum is not None:
-            kwargs["maxValue"] = maximum
-
-        cmds.addAttr(control, **kwargs)
 
     # ======================================================
     # SPACE SWITCH
@@ -955,7 +968,9 @@ class Builder(BaseBuilder):
         """
         Space switches of the root ctrl (spaceSwitchTargets), IK ctrl
         (ikSpaceSwitchTargets) and pole (poleSpaceSwitchTargets). The pole is first
-        grouped under the IK ctrl final parent (parent_ik_controls).
+        grouped under the IK ctrl final parent (parent_ik_controls). IK ctrl and pole:
+        space group (inheritsTransform off) with Local + World + their guide list
+        (create_world_space_switch).
         """
 
         self.parent_ik_controls()
@@ -964,15 +979,7 @@ class Builder(BaseBuilder):
             self.create_space_switch(self.root_control)
 
         if self.ik_control:
-            self.create_space_switch(
-                self.ik_control,
-                attr_name="space",
-                targets_attr="ikSpaceSwitchTargets"
-            )
+            self.create_world_space_switch(self.ik_control, "ikSpaceSwitchTargets")
 
         if self.pole_control:
-            self.create_space_switch(
-                self.pole_control,
-                attr_name="space",
-                targets_attr="poleSpaceSwitchTargets"
-            )
+            self.create_world_space_switch(self.pole_control, "poleSpaceSwitchTargets")

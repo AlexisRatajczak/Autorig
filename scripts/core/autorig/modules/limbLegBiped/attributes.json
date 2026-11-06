@@ -1,0 +1,9 @@
+{
+    "extends": "limb",
+    "module_label": "Leg (Biped)",
+    "attributes": {
+        "guide0Name": {"value": "hip"},
+        "guide1Name": {"value": "knee"},
+        "guide2Name": {"value": "ankle"}
+    }
+}

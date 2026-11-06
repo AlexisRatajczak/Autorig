@@ -88,9 +88,6 @@ class GuidesPanel(QtWidgets.QFrame):
     def build_widgets(self):
         """Create all widgets used by the guides panel."""
 
-        self.title = QtWidgets.QLabel("GUIDES")
-        self.title.setAlignment(QtCore.Qt.AlignCenter)
-
         self.name_field = QtWidgets.QLineEdit()
         self.name_field.setPlaceholderText("Search Guides...")
 
@@ -100,12 +97,17 @@ class GuidesPanel(QtWidgets.QFrame):
         """Build the guides panel layout."""
 
         layout = QtWidgets.QVBoxLayout(self)
-        layout.addWidget(self.title)
+        layout.addWidget(self._title("GUIDES"))
         layout.addWidget(self.name_field)
         layout.addWidget(self.module_list)
 
         self.name_field.textChanged.connect(self.filter_modules)
 
+    def _title(self, text):
+        label = QtWidgets.QLabel(text)
+        label.setAlignment(QtCore.Qt.AlignCenter)
+        label.setStyleSheet("font-weight: bold;")
+        return label
     # ------------------------------------------------------
     # UI LOGIC
     # ------------------------------------------------------

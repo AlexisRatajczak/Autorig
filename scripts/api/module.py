@@ -12,7 +12,7 @@
 #   from api import module
 #
 #   module.create_rig_data("Dragon")
-#   spine = module.create_module("IkSpine", rig_data="Dragon")
+#   spine = module.create_module("Spine", rig_data="Dragon")
 #   arm = module.create_arm(side="Left", parent=spine.guides[-1], rig_data="Dragon",
 #                           settings={"useRibbon": 1, "stretchIk": 1})
 #   module.mirror_module(arm)
@@ -32,7 +32,7 @@
 # CREATE
 #   create_module(module_type, name, side, index, parent, rig_data, settings, guides)
 #                                                              - crée un module (+ rig data, settings)
-#   create_base / create_simple_fk / create_simple_ik / create_ik_spine / create_limb /
+#   create_base / create_simple_fk / create_simple_ik / create_spine / create_limb /
 #   create_arm / create_leg_biped / create_leg_quadruped / create_ribbon_module
 #                                                              - create_module pour chaque type
 #
@@ -57,7 +57,7 @@
 #   get_joint_chain(joints, count)                             - joints d'une chaîne existante (racine ou liste)
 #   build_module(module_type, joints, attributes, name, side, rig_data, parent, guides, delete_guides)
 #                                                              - construit un module seul, retourne son Builder
-#   build_base / build_simple_fk / build_simple_ik / build_ik_spine / build_limb /
+#   build_base / build_simple_fk / build_simple_ik / build_spine / build_limb /
 #   build_arm / build_leg_biped / build_leg_quadruped / build_ribbon
 #                                                              - build_module pour chaque Builder
 #   place_guides(module, targets)                              - place les guides sur des nodes / positions
@@ -92,7 +92,7 @@ __all__ = [
     "list_module_types", "get_module_class", "get_module_attributes", "get_joint_limits",
     "check_joint_count",
     # create
-    "create_module", "create_base", "create_simple_fk", "create_simple_ik", "create_ik_spine",
+    "create_module", "create_base", "create_simple_fk", "create_simple_ik", "create_spine",
     "create_limb", "create_arm", "create_leg_biped", "create_leg_quadruped", "create_ribbon_module",
     # scene
     "list_modules", "get_module", "get_module_attribute", "set_module_attribute",
@@ -103,7 +103,7 @@ __all__ = [
     # build
     "get_default_settings", "get_joint_chain",
     "build_module", "place_guides", "build_modules", "build_base", "build_simple_fk",
-    "build_simple_ik", "build_ik_spine", "build_limb", "build_arm", "build_leg_biped",
+    "build_simple_ik", "build_spine", "build_limb", "build_arm", "build_leg_biped",
     "build_leg_quadruped", "build_ribbon",
 ]
 
@@ -278,7 +278,7 @@ def create_base(name=None, side="Center", parent=None, rig_data=None, settings=N
             shapeCtrl           enum    "Default"                 Default | circle | square | cube | sphere | diamond | arrow | plus | pyramid
             shapeTranslate      vector  (0.0, 0.0, 0.0)
             shapeRotate         vector  (0.0, 0.0, 0.0)
-            shapeScale          vector  (1.0, 1.0, 1.0)
+            shapeScale          float   1.0
 
         Orientation
             jointOrientation    enum    "Chain Plane"             Chain Plane | Guide Up | Guides
@@ -309,7 +309,7 @@ def create_simple_fk(name=None, side="Center", parent=None, rig_data=None, setti
             shapeCtrl           enum    "Default"                 Default | circle | square | cube | sphere | diamond | arrow | plus | pyramid
             shapeTranslate      vector  (0.0, 0.0, 0.0)
             shapeRotate         vector  (0.0, 0.0, 0.0)
-            shapeScale          vector  (1.0, 1.0, 1.0)
+            shapeScale          float   1.0
 
         Orientation
             jointOrientation    enum    "Chain Plane"             Chain Plane | Guide Up | Guides
@@ -346,7 +346,7 @@ def create_simple_ik(name=None, side="Center", parent=None, rig_data=None, setti
             shapeCtrl               enum    "Default"                 Default | circle | square | cube | sphere | diamond | arrow | plus | pyramid
             shapeTranslate          vector  (0.0, 0.0, 0.0)
             shapeRotate             vector  (0.0, 0.0, 0.0)
-            shapeScale              vector  (1.0, 1.0, 1.0)
+            shapeScale              float   1.0
 
         Orientation
             jointOrientation        enum    "Chain Plane"             Chain Plane | Guide Up | Guides
@@ -362,19 +362,19 @@ def create_simple_ik(name=None, side="Center", parent=None, rig_data=None, setti
     return create_module("SimpleIk", name, side, parent=parent, rig_data=rig_data, settings=settings, guides=guides)
 
 
-def create_ik_spine(name=None, side="Center", parent=None, rig_data=None, settings=None, guides=None):
+def create_spine(name=None, side="Center", parent=None, rig_data=None, settings=None, guides=None):
 
     """
-    Module 'IkSpine' (spline IK, main + sub ctrl par guide) : create_module. Guides / joints : 5 ou plus (bassin -> poitrine).
+    Module 'Spine' (spline IK, main + sub ctrl par guide) : create_module. Guides / joints : 5 ou plus (bassin -> poitrine).
 
-    settings (exemple complet : module_settings.IK_SPINE_SETTINGS) :
+    settings (exemple complet : module_settings.SPINE_SETTINGS) :
 
         Build
             simpleConnection    bool    0
             offsetGroup         bool    0
             attributesHost      node    None
 
-        IK Spine
+        Spine
             spineJointCount     int     8
             mainShape           enum    "circle"                  circle | square | cube | sphere | diamond | arrow | plus | pyramid
             mainSize            float   1.5
@@ -384,7 +384,7 @@ def create_ik_spine(name=None, side="Center", parent=None, rig_data=None, settin
         Shape
             shapeTranslate      vector  (0.0, 0.0, 0.0)
             shapeRotate         vector  (0.0, 0.0, 0.0)
-            shapeScale          vector  (1.0, 1.0, 1.0)
+            shapeScale          float   1.0
 
         Orientation
             jointOrientation    enum    "Chain Plane"             Chain Plane | Guide Up | Guides
@@ -395,7 +395,7 @@ def create_ik_spine(name=None, side="Center", parent=None, rig_data=None, settin
             spaceSwitchTargets  nodes   []
     """
 
-    return create_module("IkSpine", name, side, parent=parent, rig_data=rig_data, settings=settings, guides=guides)
+    return create_module("Spine", name, side, parent=parent, rig_data=rig_data, settings=settings, guides=guides)
 
 
 def create_limb(name=None, side="Left", parent=None, rig_data=None, settings=None, guides=None):
@@ -413,7 +413,7 @@ def create_limb(name=None, side="Left", parent=None, rig_data=None, settings=Non
         Shape
             shapeTranslate          vector  (0.0, 0.0, 0.0)
             shapeRotate             vector  (0.0, 0.0, 0.0)
-            shapeScale              vector  (1.0, 1.0, 1.0)
+            shapeScale              float   1.0
 
         Orientation
             jointOrientation        enum    "Chain Plane"             Chain Plane | Guide Up | Guides
@@ -422,8 +422,6 @@ def create_limb(name=None, side="Left", parent=None, rig_data=None, settings=Non
 
         IK/FK Switch
             ikFkDefault             enum    "FK"                      FK | IK
-            switchSize              float   0.5
-            switchShapeOffset       vector  (0.0, 2.0, 0.0)
 
         FK
             fkShape                 enum    "circle"                  circle | square | cube | sphere | diamond | arrow | plus | pyramid
@@ -484,7 +482,7 @@ def create_arm(name=None, side="Left", parent=None, rig_data=None, settings=None
         Shape
             shapeTranslate          vector  (0.0, 0.0, 0.0)
             shapeRotate             vector  (0.0, 0.0, 0.0)
-            shapeScale              vector  (1.0, 1.0, 1.0)
+            shapeScale              float   1.0
 
         Orientation
             jointOrientation        enum    "Chain Plane"             Chain Plane | Guide Up | Guides
@@ -493,8 +491,6 @@ def create_arm(name=None, side="Left", parent=None, rig_data=None, settings=None
 
         IK/FK Switch
             ikFkDefault             enum    "FK"                      FK | IK
-            switchSize              float   0.5
-            switchShapeOffset       vector  (0.0, 2.0, 0.0)
 
         FK
             fkShape                 enum    "circle"                  circle | square | cube | sphere | diamond | arrow | plus | pyramid
@@ -555,7 +551,7 @@ def create_leg_biped(name=None, side="Left", parent=None, rig_data=None, setting
         Shape
             shapeTranslate          vector  (0.0, 0.0, 0.0)
             shapeRotate             vector  (0.0, 0.0, 0.0)
-            shapeScale              vector  (1.0, 1.0, 1.0)
+            shapeScale              float   1.0
 
         Orientation
             jointOrientation        enum    "Chain Plane"             Chain Plane | Guide Up | Guides
@@ -564,8 +560,6 @@ def create_leg_biped(name=None, side="Left", parent=None, rig_data=None, setting
 
         IK/FK Switch
             ikFkDefault             enum    "FK"                      FK | IK
-            switchSize              float   0.5
-            switchShapeOffset       vector  (0.0, 2.0, 0.0)
 
         FK
             fkShape                 enum    "circle"                  circle | square | cube | sphere | diamond | arrow | plus | pyramid
@@ -628,7 +622,7 @@ def create_leg_quadruped(name=None, side="Left", parent=None, rig_data=None, set
         Shape
             shapeTranslate          vector  (0.0, 0.0, 0.0)
             shapeRotate             vector  (0.0, 0.0, 0.0)
-            shapeScale              vector  (1.0, 1.0, 1.0)
+            shapeScale              float   1.0
 
         Orientation
             jointOrientation        enum    "Chain Plane"             Chain Plane | Guide Up | Guides
@@ -637,8 +631,6 @@ def create_leg_quadruped(name=None, side="Left", parent=None, rig_data=None, set
 
         IK/FK Switch
             ikFkDefault             enum    "FK"                      FK | IK
-            switchSize              float   0.5
-            switchShapeOffset       vector  (0.0, 2.0, 0.0)
 
         FK
             fkShape                 enum    "circle"                  circle | square | cube | sphere | diamond | arrow | plus | pyramid
@@ -1217,15 +1209,15 @@ def build_simple_ik(joints=None, attributes=None, name=None, side="Center", rig_
     return build_module("SimpleIk", joints, attributes, name, side, rig_data, parent, guides)
 
 
-def build_ik_spine(joints=None, attributes=None, name=None, side="Center", rig_data=None, parent=None, guides=None):
+def build_spine(joints=None, attributes=None, name=None, side="Center", rig_data=None, parent=None, guides=None):
 
     """
-    Builder 'IkSpine' (spline IK, main + sub ctrl par guide) : build_module. Joints : 5 ou plus (bassin -> poitrine) (erreur sinon, voir check_joint_count).
-    attributes : mêmes clés que les settings de create_ik_spine (exemple complet :
-    module_settings.IK_SPINE_SETTINGS).
+    Builder 'Spine' (spline IK, main + sub ctrl par guide) : build_module. Joints : 5 ou plus (bassin -> poitrine) (erreur sinon, voir check_joint_count).
+    attributes : mêmes clés que les settings de create_spine (exemple complet :
+    module_settings.SPINE_SETTINGS).
     """
 
-    return build_module("IkSpine", joints, attributes, name, side, rig_data, parent, guides)
+    return build_module("Spine", joints, attributes, name, side, rig_data, parent, guides)
 
 
 def build_limb(joints=None, attributes=None, name=None, side="Left", rig_data=None, parent=None, guides=None):

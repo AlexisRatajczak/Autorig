@@ -2,16 +2,18 @@
 # RIG SERIALIZE
 # ====================================================================================================================
 #
-#   export_rig() dumps a whole rig (rig data + every module: hierarchy, settings, guide xforms, guide count)
-#   to a dict / .json. rebuild_rig() rebuilds the rig data and modules from it; modules with an unknown
-#   moduleType are skipped and listed in the report.
+#   export_rig() dumps a whole rig (rig data + every module: hierarchy, settings, guide xforms, guide count,
+#   pivot guides such as the foot heel / tiptoe / bank locators) to a dict / .json. rebuild_rig() rebuilds the
+#   rig data and modules from it; modules with an unknown moduleType are skipped and listed in the report.
 #
-#   HELPERS     _connections, _module_root, _module_guides, _jsonable, _guide_xform, _read_settings,
-#               _module_parent, _order_modules
+#   HELPERS     _connections, _module_root, _module_guides, _module_pivots, _jsonable, _guide_xform,
+#               _read_settings, _module_parent, _order_modules
 #   EXPORT      export_rig(rig_data_node, filepath), _export_module
 #   REBUILD     rebuild_rig(source), rebuild_rig_data_only(source), rebuild_modules(source, module_nodes, rig_name),
 #               _descendants, _rebuild_module_list, _load_json, _rebuild_rig_data, _rebuild_module,
 #               _reconnect_messages
+#   CTRL SHAPES export_ctrl_shapes(filepath, controls) - selected ctrls (else every '*_ctrl') shapes to a dict / .json,
+#               import_ctrl_shapes(source) - re-apply them on every ctrl that exists, list_ctrls, _ctrl_transform
 #
 # ====================================================================================================================
 
@@ -21,11 +23,13 @@ import maya.cmds as cmds
 
 from .autorig.modules import registry
 from .autorig.rigData import init_rigData
+from .utilities import ctrl_utilities
 
 from importlib import reload
 
 reload(registry)
 reload(init_rigData)
+reload(ctrl_utilities)
 
 
 SCHEMA_VERSION = 1
@@ -203,6 +207,8 @@ def export_rig(rig_data_node, filepath=None):
                 "guide_count",
                 "guide_nodes": [<names>],
                 "guides": [{"translate","rotate","scale"}, ...],
+                "pivot_nodes": {<attr>: <name>},          # PIVOT_GUIDES (foot locators), {} if none
+                "pivots": {<attr>: {"translate","rotate","scale"}},
                 "settings": {...},
                 "parent": {"node": <parent data node|None>, "guide_index": <int|None>}
             },
@@ -234,9 +240,28 @@ def export_rig(rig_data_node, filepath=None):
     return data
 
 
+def _module_pivots(data_node):
+
+    """
+    {attr: pivot guide} of the module PIVOT_GUIDES (ex: foot heel / tiptoe / bankL / bankR),
+    through its Guides class. {} for a module without pivot guides.
+    """
+
+    instance = registry.load_guide(data_node)
+
+    return instance.get_pivot_guides() if instance and hasattr(instance, "get_pivot_guides") else {}
+
+
 def _export_module(data_node, all_modules):
 
     guide_nodes = _module_guides(data_node)
+    pivots = _module_pivots(data_node)
+
+    settings = _read_settings(data_node)
+
+    # Pivot guide messages: rebuilt from "pivots" (their own xforms), not reconnected as settings.
+    for attr in pivots:
+        settings.pop(attr, None)
 
     return {
         "node": data_node,
@@ -247,7 +272,9 @@ def _export_module(data_node, all_modules):
         "guide_count": len(guide_nodes),
         "guide_nodes": guide_nodes,
         "guides": [_guide_xform(guide) for guide in guide_nodes if cmds.objExists(guide)],
-        "settings": _read_settings(data_node),
+        "pivot_nodes": dict(pivots),
+        "pivots": {attr: _guide_xform(pivot) for attr, pivot in pivots.items() if cmds.objExists(pivot)},
+        "settings": settings,
         "parent": _module_parent(data_node, all_modules),
     }
 
@@ -501,10 +528,27 @@ def _rebuild_module(cls, module, old_to_new, guide_map, pending_messages, report
     for old_guide, new_guide in zip(module.get("guide_nodes") or [], instance.guides):
         guide_map[old_guide] = new_guide
 
+    # -- pivot guides (ex: foot heel / tiptoe / bankL / bankR) ----------
+    if hasattr(instance, "create_pivot_guides"):
+
+        pivot_xforms = module.get("pivots") or {}
+        old_pivots = module.get("pivot_nodes") or {}
+
+        for attr, pivot in instance.create_pivot_guides().items():
+
+            if attr in pivot_xforms:
+                instance.apply_guide_xform(pivot, pivot_xforms[attr])
+
+            if attr in old_pivots:
+                guide_map[old_pivots[attr]] = pivot
+
     # -- settings -----------------------------------------------------
+    pivot_attrs = getattr(instance, "PIVOT_GUIDES", {})
+
     for attr, value in (module.get("settings") or {}).items():
 
-        if attr == "moduleType":
+        # Pivot guide messages: connected by create_pivot_guides (older exports kept them in settings).
+        if attr == "moduleType" or attr in pivot_attrs:
             continue
 
         if isinstance(value, dict) and "__message__" in value:
@@ -560,3 +604,116 @@ def _reconnect_messages(pending_messages, guide_map, report):
 
     for instance, _, _ in pending_messages:
         instance.lock_attributes()
+
+
+# ==========================================================
+# CTRL SHAPES
+# ==========================================================
+
+def _ctrl_transform(node):
+
+    """Ctrl transform of 'node' (a shape -> its parent), if it holds nurbsCurve shapes, else None."""
+
+    if not node or not cmds.objExists(node):
+        return None
+
+    if cmds.objectType(node, isAType="shape"):
+        node = (cmds.listRelatives(node, parent=True, fullPath=True) or [None])[0]
+
+    if not node or not cmds.objectType(node, isAType="transform"):
+        return None
+
+    curves = cmds.listRelatives(node, shapes=True, type="nurbsCurve", fullPath=True) or []
+
+    return node if curves else None
+
+
+def list_ctrls(controls=None):
+
+    """
+    Ctrls to export: 'controls' if given, else the selection, else every '*_ctrl'
+    transform of the scene. Only transforms holding curves, each once, in order.
+    """
+
+    if controls is None:
+        controls = cmds.ls(selection=True, long=True) or cmds.ls("*_ctrl", type="transform", long=True) or []
+
+    result = []
+
+    for node in controls:
+
+        ctrl = _ctrl_transform(node)
+
+        if ctrl and ctrl not in result:
+            result.append(ctrl)
+
+    return result
+
+
+def export_ctrl_shapes(filepath=None, controls=None):
+
+    """
+    Shapes of the selected ctrls (every '*_ctrl' if nothing is selected, or 'controls')
+    to a dict, written to 'filepath' (.json) when given.
+
+    Returns:
+    {
+        "version": 1,
+        "controls": {
+            <ctrl>: {"name", "shapes": [{"name", "points", "degree", "form", "color", "line_width"}, ...]},
+            ...
+        }
+    }
+    """
+
+    data = {"version": SCHEMA_VERSION, "controls": {}}
+
+    for ctrl in list_ctrls(controls):
+
+        shapes_data = ctrl_utilities.Control(ctrl).get_shapes_data()
+
+        if shapes_data and shapes_data["shapes"]:
+            data["controls"][shapes_data["name"]] = shapes_data
+
+    if filepath:
+        with open(filepath, "w", encoding="utf-8") as file:
+            json.dump(data, file, indent=4)
+
+    print(f"Ctrl shapes : {len(data['controls'])} ctrl(s) exporté(s){f' -> {filepath}' if filepath else ''}.")
+
+    return data
+
+
+def import_ctrl_shapes(source):
+
+    """
+    Re-apply the shapes of 'source' (export_ctrl_shapes dict, or .json path) on every
+    ctrl that exists in the scene (Control.set_shapes_data). Each ctrl is tried on
+    its own: one failure does not stop the others.
+
+    Returns {"applied": [ctrl], "missing": [ctrl], "failed": [(ctrl, error)]}.
+    """
+
+    data = _load_json(source) if isinstance(source, str) else (source or {})
+
+    report = {"applied": [], "missing": [], "failed": []}
+
+    for ctrl, shapes_data in (data.get("controls") or {}).items():
+
+        if not cmds.objExists(ctrl):
+            report["missing"].append(ctrl)
+            continue
+
+        try:
+            ctrl_utilities.Control(ctrl).set_shapes_data(shapes_data)
+            report["applied"].append(ctrl)
+        except Exception as error:
+            report["failed"].append((ctrl, str(error)))
+            cmds.warning(f"Ctrl shapes : échec sur '{ctrl}' : {error}")
+
+    print(
+        f"Ctrl shapes : {len(report['applied'])} appliqué(s), "
+        f"{len(report['missing'])} introuvable(s), {len(report['failed'])} en échec."
+    )
+
+    return report

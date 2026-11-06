@@ -26,6 +26,7 @@ class Toolbar(QtWidgets.QFrame):
             ("⚙", "Settings"),
             ("🦴", "Modules"),
             ("💾", "Import/Export"),
+            ("🎨", "Ctrl Shapes"),
             #("📦", "Assets"),
             #("💻", "Console")
         ]

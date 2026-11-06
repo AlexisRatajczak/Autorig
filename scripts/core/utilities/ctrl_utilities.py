@@ -26,6 +26,13 @@
 #       set_color(color)                                - override color (index or RGB) of the shapes
 #       set_line_width(width)                           - display line width of the shapes
 #       transform_shape(translate, rotate, scale, pivot) - transform the shape CVs (not the ctrl)
+#       get_shape_color(shape)                          - override color of a shape (index, RGB or None)
+#       get_shape_points(shape)                         - CV positions + degree + form (to rebuild the curve)
+#       get_shape_line_width(shape)                     - line width of a shape
+#       get_shapes_data()                               - dict of the ctrl and its shapes (all the above)
+#       set_shapes_data(data)                           - apply get_shapes_data() (CVs in place, else rebuild)
+#       _create_curve_shape(shape_data, index)          - curve shape from one shape data (periodic handled)
+#       _apply_shape_color(shape, color)                - override color of one shape
 #       translate_shape / rotate_shape / scale_shape    - transform_shape shortcuts
 #       _as_vector3(value, default)                     - scalar / list -> (x, y, z)
 #
@@ -36,6 +43,8 @@ import math
 import os
 
 import maya.cmds as cmds
+
+from . import attribute_utilities
 
 SHAPES_PATH = os.path.join(os.path.dirname(__file__), "..", "..", "..", "config", "shapesCtrl_config.json")
 
@@ -517,8 +526,9 @@ class Control:
             cmds.warning(f"{self.name} n'existe pas.")
             return None
 
-        if not cmds.attributeQuery("lockLimit", node=self.name, exists=True):
-            cmds.addAttr(self.name, longName="lockLimit", attributeType="bool", defaultValue=1, keyable=True)
+        attribute_utilities.add_attributes(self.name, "LIMITS", [
+            {"name": "lockLimit", "attr_type": "bool", "default": 1},
+        ])
 
         for attr in LIMIT_ENABLE_ATTRS:
 
@@ -706,6 +716,175 @@ class Control:
             )
 
         return self.get_shapes()
+
+    # ----------------------------------------
+    # SHAPE DATA (export / import)
+    # ----------------------------------------
+
+    def get_shape_color(self, shape):
+
+        """
+        Override color of 'shape': RGB [r, g, b] (0-1) if overrideRGBColors, else the
+        index (0-31). None if overrideEnabled is off.
+        """
+
+        if not cmds.objExists(shape) or not cmds.getAttr(f"{shape}.overrideEnabled"):
+            return None
+
+        if cmds.getAttr(f"{shape}.overrideRGBColors"):
+            return list(cmds.getAttr(f"{shape}.overrideColorRGB")[0])
+
+        return cmds.getAttr(f"{shape}.overrideColor")
+
+    def get_shape_points(self, shape):
+
+        """
+        What rebuilds the curve of 'shape': object space CV positions (unique CVs, a
+        periodic curve does not repeat its first ones), degree and form (0 open,
+        1 closed, 2 periodic).
+        """
+
+        if not cmds.objExists(shape):
+            return None
+
+        return {
+            "points": [list(point) for point in _get_cv_positions(shape)],
+            "degree": cmds.getAttr(f"{shape}.degree"),
+            "form": cmds.getAttr(f"{shape}.form"),
+        }
+
+    def get_shape_line_width(self, shape):
+        """Display line width of 'shape' (-1 = Maya default), None without lineWidth."""
+
+        if not cmds.objExists(f"{shape}.lineWidth"):
+            return None
+
+        return cmds.getAttr(f"{shape}.lineWidth")
+
+    def get_shapes_data(self):
+
+        """
+        Shape data of the ctrl, every curve gathered (get_shape_points / color / line width):
+
+        {"name": ctrl, "shapes": [{"name", "points", "degree", "form", "color", "line_width"}, ...]}
+
+        Only nurbsCurve shapes, in their order under the ctrl. None if the ctrl does not exist.
+        """
+
+        if not cmds.objExists(self.name):
+            return None
+
+        shapes = []
+
+        for shape in self.get_shapes():
+
+            if cmds.nodeType(shape) != "nurbsCurve":
+                continue
+
+            shape_data = {"name": shape.split("|")[-1]}
+            shape_data.update(self.get_shape_points(shape))
+            shape_data["color"] = self.get_shape_color(shape)
+            shape_data["line_width"] = self.get_shape_line_width(shape)
+
+            shapes.append(shape_data)
+
+        return {"name": self.name.split("|")[-1], "shapes": shapes}
+
+    def set_shapes_data(self, data):
+
+        """
+        Apply get_shapes_data() 'data' on the ctrl. Same curves (count, CV count, degree,
+        form): CVs moved in place, the shape nodes and their connections are kept. Else the
+        curves are rebuilt (delete_shapes, then one curve per shape, renamed). Then color
+        and line width per shape. Returns the ctrl shapes.
+        """
+
+        if not cmds.objExists(self.name):
+            cmds.warning(f"{self.name} n'existe pas.")
+            return []
+
+        shapes_data = (data or {}).get("shapes") or []
+
+        if not shapes_data:
+            return self.get_shapes()
+
+        current = [shape for shape in self.get_shapes() if cmds.nodeType(shape) == "nurbsCurve"]
+
+        same_topology = len(current) == len(shapes_data) and all(
+            len(_get_cv_positions(shape)) == len(shape_data["points"])
+            and cmds.getAttr(f"{shape}.degree") == shape_data.get("degree")
+            and cmds.getAttr(f"{shape}.form") == shape_data.get("form")
+            for shape, shape_data in zip(current, shapes_data)
+        )
+
+        if same_topology:
+
+            for shape, shape_data in zip(current, shapes_data):
+                _set_cv_positions(shape, shape_data["points"])
+
+        else:
+
+            self.delete_shapes()
+
+            current = [self._create_curve_shape(shape_data, index) for index, shape_data in enumerate(shapes_data)]
+
+        for shape, shape_data in zip(current, shapes_data):
+
+            self._apply_shape_color(shape, shape_data.get("color"))
+
+            width = shape_data.get("line_width")
+
+            if width is not None and cmds.objExists(f"{shape}.lineWidth"):
+                cmds.setAttr(f"{shape}.lineWidth", width)
+
+        self.shape = None
+
+        return self.get_shapes()
+
+    def _create_curve_shape(self, shape_data, index=0):
+
+        """
+        Curve from 'shape_data' (points, degree, form) parented as a shape of the ctrl,
+        renamed 'shape_data["name"]' (else '{ctrl}Shape{index}'). Periodic: the first
+        'degree' points repeated, uniform knots. Returns the shape (full path).
+        """
+
+        points = [list(point) for point in shape_data["points"]]
+        degree = shape_data.get("degree", 1)
+
+        if shape_data.get("form") == 2 and len(points) > degree:
+            knots = list(range(-(degree - 1), len(points) + degree))
+            curve = cmds.curve(point=points + points[:degree], degree=degree, periodic=True, knot=knots,
+                               name=f"{self.name}_shape_{index}_temp")
+        else:
+            curve = cmds.curve(point=points, degree=degree, name=f"{self.name}_shape_{index}_temp")
+
+        curve_shape = cmds.listRelatives(curve, shapes=True, fullPath=True)[0]
+
+        curve_shape = cmds.parent(curve_shape, self.name, shape=True, relative=True)[0]
+        cmds.delete(curve)
+
+        name = shape_data.get("name") or f"{self.name.split('|')[-1]}Shape{index}"
+        curve_shape = cmds.rename(curve_shape, name)
+
+        return cmds.ls(curve_shape, long=True)[0]
+
+    @staticmethod
+    def _apply_shape_color(shape, color):
+        """Override color of one shape: index (0-31), RGB (0-1), or None to disable the override."""
+
+        if color is None:
+            cmds.setAttr(f"{shape}.overrideEnabled", False)
+            return
+
+        cmds.setAttr(f"{shape}.overrideEnabled", True)
+
+        if isinstance(color, (tuple, list)):
+            cmds.setAttr(f"{shape}.overrideRGBColors", True)
+            cmds.setAttr(f"{shape}.overrideColorRGB", *color)
+        else:
+            cmds.setAttr(f"{shape}.overrideRGBColors", False)
+            cmds.setAttr(f"{shape}.overrideColor", color)
 
     def translate_shape(self, translate):
         """Offset the ctrl CVs (transform_shape shortcut)."""
